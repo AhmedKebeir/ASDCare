@@ -1,0 +1,311 @@
+.sign {
+  width: 100%;
+  font-family: "Tajawal";
+}
+.sign .container {
+  display: flex;
+  height: 100vh;
+}
+
+.sign .container .slide {
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sign .container .welcome img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: 0.3s;
+}
+.sign .container .slide h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  width: 650px;
+  position: absolute;
+  left: 60px;
+  font-family: "Tajawal";
+}
+
+.sign .container .form {
+  flex-grow: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 700px;
+  min-width: 700px;
+}
+
+.sign .container .form img {
+  width: 68.718px;
+  margin-bottom: 0;
+}
+
+.sign .container .form h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #00225c;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.form form {
+  width: 100%;
+  text-align: center;
+}
+
+.form form input {
+  margin: 10px 0;
+  width: 60%;
+  padding: 11px 10px 11px 20px;
+  outline: none;
+  border: none;
+  background-color: #b8bcc4;
+  color: rgba(45, 46, 49, 1);
+  border-radius: 6px;
+  border: 2px solid #b8bcc4;
+  font-size: 24px;
+  font-weight: 700px;
+  font-family: "Tajawal";
+}
+.form form input:focus {
+  background-color: white;
+  border: 2px solid #00225c;
+}
+.form form .gender {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.form form .gender .male,
+.form form .gender .female {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.form form .gender input[type="radio"],
+.form form .gender-child input[type="radio"] {
+  appearance: none; /* Removes default checkbox styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 18px; /* Set width */
+  height: 18px; /* Set height */
+
+  border: 2px solid rgba(0, 0, 0, 1); /* Border color */
+  border-radius: 50%; /* Makes it circular */
+
+  display: inline-block;
+  position: relative;
+
+  cursor: pointer;
+  background-color: white;
+  padding: 0;
+}
+.form form .gender input[type="radio"]:checked,
+.form form .gender-child input[type="radio"]:checked {
+  border-color: #00225c;
+}
+.form form .gender input[type="radio"]:checked::after,
+.form form .gender-child input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #042867;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form form .gender label {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form form .btn-sign {
+  margin: 10px 0;
+  width: 60%;
+  padding: 11px 10px 11px 20px;
+  outline: none;
+  border: none;
+  background-color: #133e87;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 24px;
+  font-weight: 700px;
+  font-family: "Tajawal";
+}
+.form form .btn-sign:hover {
+  background-color: #00225c;
+}
+
+.form form .or p {
+  font-size: 20px;
+  color: #00225c;
+}
+.form form .or p a {
+  cursor: pointer;
+  color: #0e8398;
+}
+
+.sign div.icon {
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+.sign div.icon span {
+  height: 34px;
+  width: 8px;
+  background-color: white;
+  display: flex;
+  border-radius: 4px;
+  opacity: 0.3;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.sign div.icon span.text-white {
+  opacity: 1;
+}
+
+/* account type  */
+
+.form form .account-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 75px;
+}
+.form form .account-type div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form form .account-type div label {
+  font-size: 48px;
+  color: black;
+  font-weight: 700;
+}
+
+.form form .account-type input[type="radio"] {
+  appearance: none; /* Removes default checkbox styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Set height */
+
+  /* Border color */
+  border-radius: 50%; /* Makes it circular */
+
+  display: inline-block;
+  position: relative;
+  width: 140px;
+  height: 140px;
+
+  cursor: pointer;
+  background-image: url("../../Images/doctor.jpg");
+  background-size: cover;
+  padding: 0;
+}
+
+.form form .account-type input[type="radio"]:checked {
+  border: 6px solid #325ca5;
+}
+
+.form form .account-type .doctor input[type="radio"]:checked {
+  background-image: url("../../Images/doctor-color.jpg");
+}
+
+.form form .account-type .parent input[type="radio"]:checked {
+  background-image: url("../../Images/parent.png");
+}
+
+/* end account type  */
+
+/* start child auth  */
+.form form .gender-child {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form form .gender-child div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* end child auth */
+
+/* start log in  */
+
+.form form .forget {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 700;
+
+  text-align: end;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form form .forget a {
+  cursor: pointer;
+  color: rgba(0, 34, 92, 1);
+}
+
+/* end log in  */
+
+/* start Forget password */
+
+.sign p.page-forget,
+p.page-opt {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0, 34, 92, 1);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.input-opt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 59px;
+}
+
+.sign .container form .input-opt input {
+  width: 59px;
+}
+.sign .container h1.newpass {
+  font-size: 40px;
+}
+
+.sign .container p.newpass {
+  font-size: 20px !important;
+}
