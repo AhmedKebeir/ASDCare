@@ -7,11 +7,13 @@ import ChildAuth from "./Pages/Auth/ChildAuth";
 import ForgetPassword from "./Pages/Auth/ForgetPassword";
 import OPT from "./Pages/Auth/OPT";
 import CreateNewPass from "./Pages/Auth/CreateNewPass";
+import HomePage from "./Pages/WebSite/HomePage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/continue" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />

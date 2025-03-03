@@ -1,0 +1,140 @@
+:root {
+  --main-color-logo: rgba(9, 54, 75, 1);
+  --second-color-logo: rgba(47, 188, 215, 1);
+  --main-color: rgba(19, 62, 135, 1);
+  --second-color: rgba(143, 173, 225, 1);
+  --second-color-hover: rgba(92, 130, 195, 1);
+  --color-hover: rgba(0, 34, 92, 1);
+}
+
+.Welcome-page {
+  padding-top: 125px;
+  padding-bottom: 82.24px;
+  height: calc(100vh - 69px);
+}
+.Welcome-page .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 91px;
+}
+
+.Welcome-page .main-container .title {
+  width: 590px;
+  margin-bottom: 94px;
+}
+.Welcome-page .main-container .title h1 {
+  font-size: 76px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  line-height: 90.29px;
+}
+
+.Welcome-page .main-container .title h1 span {
+  font-weight: 500;
+}
+.Welcome-page .main-container .auth-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.Welcome-page .main-container .auth-welcome a,
+.early .main-container .auth-early a {
+  width: 440px;
+  height: 59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 20px;
+  border-radius: 9px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  transition: 0.3s;
+}
+.Welcome-page .main-container .auth-welcome a:first-of-type,
+.early .main-container .auth-early a {
+  background-color: var(--main-color);
+  color: white;
+}
+.Welcome-page .main-container .auth-welcome a:first-of-type:hover,
+.early .main-container .auth-early a:hover {
+  background-color: var(--color-hover);
+}
+
+.Welcome-page .main-container .auth-welcome a:last-of-type {
+  background-color: var(--second-color);
+  color: black;
+}
+.Welcome-page .main-container .auth-welcome a:last-of-type:hover {
+  background-color: var(--second-color-hover);
+}
+
+/* end welcome  */
+
+/* start early  */
+
+.early {
+  position: relative;
+  background-color: rgba(223, 239, 253, 1);
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.early .back-image,
+.easy .back-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.early .back-image-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.early .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.early .main-container .title h1,
+.easy .main-container .title h1 {
+  font-size: 48px;
+  font-weight: 900px;
+  font-family: "Tajawal";
+  line-height: 57.02px;
+  margin-bottom: 30px;
+  color: rgba(45, 46, 49, 1);
+}
+
+.early .main-container .title p,
+.easy .main-container .title p {
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Tajawal";
+  line-height: 38.02px;
+  color: rgba(45, 46, 49, 1);
+  margin-bottom: 30px;
+}
+.early .main-container .early-image {
+  z-index: 11;
+}
+
+/* end early  */
+
+.easy {
+  position: relative;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+}
+.easy .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
