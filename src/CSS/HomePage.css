@@ -138,3 +138,70 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* end easy  */
+
+.support {
+  position: relative;
+  padding: 80px 0;
+  background-color: rgba(223, 239, 253, 1);
+}
+.support .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.support .main-container h1.main-title {
+  font-size: 64px;
+  font-weight: 800;
+  font-family: "Tajawal";
+  margin-bottom: 40px;
+}
+
+.support .main-container .support-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+.support .main-container .support-component div {
+  text-align: center;
+  border-radius: 28px;
+  background-color: white;
+  width: 550px;
+  padding: 25px;
+  z-index: 11;
+  border: 6px solid white;
+  font-family: "Tajawal";
+}
+
+.support .main-container .support-component div:last-of-type {
+  border: 6px solid rgba(19, 62, 135, 1);
+  color: rgba(19, 62, 135, 1);
+}
+.support .main-container .support-component div h2 {
+  font-size: 40px;
+
+  font-weight: 900;
+}
+.support .main-container .support-component div p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.support .back-image {
+  position: absolute;
+  bottom: 0;
+
+  left: 0;
+}
+
+/* end support  */
+
+.support .back-image-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}

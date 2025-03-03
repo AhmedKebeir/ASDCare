@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "../../Components/WebSite/Header";
 import "../../CSS/HomePage.css";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function HomePage() {
   return (
@@ -90,6 +91,40 @@ export default function HomePage() {
           </section>
         </div>
       </div>
+      <div className="support">
+        <div className="back-image">
+          <img src={require("../../Images/2pattern 1.png")} alt="" />
+        </div>
+        <div className="main-container">
+          <h1 className="main-title">Support with Families</h1>
+          <div className="support-component">
+            <div>
+              <h2>Resources</h2>
+              <img src={require("../../Images/Group 8.png")} alt="" />
+              <p>
+                Find expert-approved tools, therapies, and
+                <br /> support services tailored for individuals with
+                <br /> autism and their families.
+              </p>
+            </div>
+            <div>
+              <h2>Donations</h2>
+              <img src={require("../../Images/Group 7.png")} alt="" />
+              <p>
+                Help provide vital care and resources for families
+                <br /> by contributing funds or essential supplies. Every
+                <br /> donation makes a difference!.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="back-image-2">
+          <img src={require("../../Images/2pattern 2.png")} alt="" />
+        </div>
+      </div>
+
+      <Footer />
     </>
   );
 }
