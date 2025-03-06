@@ -10,7 +10,6 @@
 .Welcome-page {
   padding-top: 125px;
   padding-bottom: 82.24px;
-  height: calc(100vh - 69px);
 }
 .Welcome-page .main-container {
   display: flex;
@@ -364,6 +363,16 @@
 .join-in-home {
   padding-top: 100px;
   padding-bottom: 150px;
+  background: linear-gradient(90deg, #fff 53%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.join-in-home .join-image img {
+  width: 964.382px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
 }
 .join-in-home .main-container {
   text-align: center;

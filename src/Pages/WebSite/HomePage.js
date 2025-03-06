@@ -112,6 +112,12 @@ export default function HomePage() {
       </div>
 
       <div className="join-in-home">
+        <div className="join-image">
+          <img
+            src={require("../../Images/doctor-doing-paper-work-2025-02-12-01-58-46-utc 1.png")}
+            alt=""
+          />
+        </div>
         <div className="main-container">
           <div className="logo">
             <img
