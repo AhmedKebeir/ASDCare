@@ -21,24 +21,24 @@
   align-items: center;
 }
 
-.nav-bar .main-container .logo {
+.main-container .logo {
   display: flex;
   align-items: center;
 }
 
-.nav-bar .main-container .logo img {
+.logo img {
   width: 54px;
   height: 49px;
 }
 
-.nav-bar .main-container .logo h1 {
+.main-container .logo h1 {
   position: relative;
   font-size: 48px;
   font-weight: 700;
   color: var(--main-color-logo);
   font-family: "Tajawal";
 }
-.nav-bar .main-container .logo h1 span {
+.main-container .logo h1 span {
   font-size: 20px;
   font-weight: 400;
   color: var(--second-color-logo);
@@ -66,9 +66,26 @@
   cursor: pointer;
   transition: 0.3s;
 }
+@media (max-width: 767px) {
+  .nav-bar {
+    height: 144px;
+    padding: 10px 0;
+  }
+  .nav-bar .main-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+  .nav-bar .main-container .auth-header {
+    width: 100%;
+  }
+  .nav-bar .main-container .auth-header a {
+    width: calc(100%);
+  }
+}
 .nav-bar .main-container .auth-header a:first-of-type {
   background-color: var(--second-color);
-  color: black;
+  color: rgba(45, 46, 49, 1);
 }
 .nav-bar .main-container .auth-header a:first-of-type:hover {
   background-color: var(--second-color-hover);

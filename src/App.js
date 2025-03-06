@@ -8,6 +8,7 @@ import ForgetPassword from "./Pages/Auth/ForgetPassword";
 import OPT from "./Pages/Auth/OPT";
 import CreateNewPass from "./Pages/Auth/CreateNewPass";
 import HomePage from "./Pages/WebSite/HomePage";
+import DoctorAuth from "./Pages/Auth/DoctorAuth";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/continue" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />
+        <Route path="doctor" element={<DoctorAuth />} />
         <Route path="/login" element={<WelcomeSlideshow />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/opt" element={<OPT />} />
