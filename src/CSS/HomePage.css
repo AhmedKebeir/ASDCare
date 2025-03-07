@@ -90,7 +90,7 @@
 }
 @media (max-width: 767px) {
   .Welcome-page {
-    height: calc(100vh - 380px);
+    /* height: calc(100vh - 380px); */
     overflow: hidden;
     padding-top: 60px;
   }
