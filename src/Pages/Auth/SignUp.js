@@ -1,8 +1,38 @@
 import { Link } from "react-router-dom";
 import "./Sign.css";
 import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
+import { useState } from "react";
+import axios from "axios";
+import { BaseUrl, SIGNUP } from "../../Api/Api";
 
 export default function SignUp() {
+  const [form, setForm] = useState({
+    userName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const res = axios.post(
+        `https://asd-final-project-cr777.vercel.app/api/v1/auth/singupForUser`,
+        form,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div className="sign">
       <div className="container">
@@ -17,20 +47,36 @@ export default function SignUp() {
             </Link>
           </div>
           <h1>Sign Up</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="username">
               <input
                 type="text"
                 placeholder="Username"
-                name="username"
+                name="userName"
                 id="username"
+                onChange={handleChange}
+                value={form.userName}
               />
             </div>
             <div className="phone">
-              <input type="tel" id="phone" placeholder="Phone" name="phone" />
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Phone"
+                name="phone"
+                onChange={handleChange}
+                value={form.phone}
+              />
             </div>
             <div className="email">
-              <input type="email" id="email" placeholder="Email" name="email" />
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                name="email"
+                onChange={handleChange}
+                value={form.email}
+              />
             </div>
             <div className="password">
               <input
@@ -38,6 +84,8 @@ export default function SignUp() {
                 id="pasaword"
                 placeholder="Password"
                 name="password"
+                onChange={handleChange}
+                value={form.password}
               />
             </div>
             <div className="confirm-password">
@@ -45,16 +93,32 @@ export default function SignUp() {
                 type="password"
                 id="confirmpasaword"
                 placeholder="Confirm Password"
-                name="confirmpassword"
+                name="confirmPassword"
+                onChange={handleChange}
+                value={form.confirmPassword}
               />
             </div>
             <div className="gender">
               <div className="male">
-                <input type="radio" id="male" name="gender" />
+                <input
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  onChange={() => {
+                    console.log("ahmed");
+                  }}
+                />
                 <label htmlFor="male">Male</label>
               </div>
               <div className="male">
-                <input type="radio" id="female" name="gender" />
+                <input
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  onChange={() => {
+                    console.log("mohamed");
+                  }}
+                />
                 <label htmlFor="female">Female</label>
               </div>
             </div>

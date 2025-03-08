@@ -223,9 +223,14 @@
   height: 140px;
 
   cursor: pointer;
-  background-image: url("../../Images/doctor.jpg");
   background-size: cover;
   padding: 0;
+}
+.form form .account-type .doctor input[type="radio"] {
+  background-image: url("../../Images/doctor.jpg");
+}
+.form form .account-type .parent input[type="radio"] {
+  background-image: url("../../Images/Parent_BW.png");
 }
 
 .form form .account-type input[type="radio"]:checked {
@@ -308,4 +313,7 @@ p.page-opt {
 
 .sign .container p.newpass {
   font-size: 20px !important;
+}
+
+@media (max-width: 767px) {
 }
