@@ -39,8 +39,7 @@ export default function OPT() {
           <Logo />
           <h1>OPT Verification</h1>
           <p className="page-opt">
-            Enter the verification code. We just sent on your <br />
-            email address.
+            Enter the verification code. We just sent on your email address.
           </p>
 
           <form>

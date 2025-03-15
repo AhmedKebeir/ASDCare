@@ -11,8 +11,7 @@ export default function ForgetPassword() {
           <Logo />
           <h1>Forget Password</h1>
           <p className="page-forget">
-            Please enter the email address linked with your
-            <br /> account.
+            Please enter the email address linked with your account.
           </p>
           <form>
             <input
