@@ -61,7 +61,7 @@
 }
 
 .form form input {
-  margin: 10px 0;
+  margin: 5px 0;
   width: 60%;
   padding: 11px 10px 11px 20px;
   outline: none;
@@ -283,7 +283,287 @@
   cursor: pointer;
   color: rgba(0, 34, 92, 1);
 }
+@media (max-width: 767px) {
+  .sign .container {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200vh;
+  }
+  .sign .container .slide {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+  }
 
+  .sign .container .form {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  .sign .container .slide h1 {
+    color: white;
+    font-size: 28px;
+    width: 350px;
+  }
+
+  .sign .container .form img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .sign .container .form h1 {
+    font-size: 38px;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .form form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form form input {
+    width: 80%;
+
+    font-size: 18px;
+  }
+  .form form .forget {
+    width: 80%;
+  }
+  .form form .btn-sign {
+    width: 80%;
+
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .sign .container .slide {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sign .container .form {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 350px;
+    max-width: 350px;
+  }
+
+  .sign .container .slide h1 {
+    color: white;
+    font-size: 28px;
+    width: 350px;
+  }
+
+  .sign .container .form img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .sign .container .form h1 {
+    font-size: 38px;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .form form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form form input {
+    width: 80%;
+
+    font-size: 18px;
+  }
+  .form form .forget {
+    width: 80%;
+  }
+  .form form .btn-sign {
+    width: 80%;
+
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sign .container .slide {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sign .container .form {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 470px;
+    max-width: 470px;
+  }
+
+  .sign .container .slide h1 {
+    color: white;
+    font-size: 38px;
+    width: 500px;
+  }
+
+  .sign .container .form img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .sign .container .form h1 {
+    font-size: 38px;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .form form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form form input {
+    width: 70%;
+
+    font-size: 20px;
+  }
+  .form form .forget {
+    width: 70%;
+  }
+  .form form .btn-sign {
+    width: 70%;
+
+    font-size: 20px;
+  }
+}
+
+/* @media (min-width: 1200px) {
+  .sign .container .slide {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sign .container .form {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 470px;
+    max-width: 470px;
+  }
+
+  .sign .container .slide h1 {
+    color: white;
+    font-size: 38px;
+    width: 500px;
+  }
+
+  .sign .container .form img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .sign .container .form h1 {
+    font-size: 38px;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .form form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form form input {
+    width: 70%;
+
+    font-size: 20px;
+  }
+  .form form .forget {
+    width: 70%;
+  }
+  .form form .btn-sign {
+    width: 70%;
+
+    font-size: 20px;
+  }
+} */
+
+@media (min-width: 1400px) {
+  .sign .container .slide {
+    height: 100%;
+    flex-grow: 1;
+  }
+  .sign .container .form {
+    flex-grow: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 700px;
+    min-width: 700px;
+  }
+
+  .sign .container .slide h1 {
+    color: white;
+    font-size: 48px;
+    width: 650px;
+  }
+  .sign .container .form h1 {
+    font-size: 48px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .form form {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form form input {
+    width: 60%;
+
+    font-size: 24px;
+  }
+  .form form .btn-sign {
+    width: 60%;
+
+    font-size: 24px;
+  }
+  .form form .forget {
+    width: 60%;
+  }
+}
 /* end log in  */
 
 /* start Forget password */

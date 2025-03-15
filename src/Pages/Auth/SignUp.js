@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Sign.css";
 import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
 import { useState } from "react";
 import axios from "axios";
 import { BaseUrl, SIGNUP } from "../../Api/Api";
+import Cookie from "cookie-universal";
 
 export default function SignUp() {
+  const cookie = Cookie();
+  const nav = useNavigate();
   const [form, setForm] = useState({
     userName: "",
     email: "",
@@ -21,14 +24,9 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const res = axios.post(
-        `https://asd-final-project-cr777.vercel.app/api/v1/auth/singupForUser`,
-        form,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(res);
+      const res = await axios.post(`${BaseUrl}/${SIGNUP}`, form);
+
+      console.log(res.data.data.token);
     } catch (err) {
       console.log(err);
     }
