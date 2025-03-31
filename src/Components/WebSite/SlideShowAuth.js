@@ -40,7 +40,7 @@ export default function SlideShowAuth() {
         initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 0 }}
-        transition={{ duration: 1.4 }}
+        transition={{ duration: 1.5 }}
       />
 
       <AnimatePresence>
@@ -49,7 +49,7 @@ export default function SlideShowAuth() {
           initial={{ opacity: 0, y: 100 }} // يبدأ من الأسفل
           animate={{ opacity: 1, y: 0 }} // يظهر بشكل طبيعي
           exit={{ opacity: 0, y: -150 }} // يخرج للأعلى
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.5 }}
           className="slide-title"
         >
           {slides[index].title}

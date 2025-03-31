@@ -21,16 +21,40 @@ export default function SignUp() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  // const [data, setData] = useState("");
+  const [cookieData, SetCookieData] = useState({
+    userName: "",
+    role: "",
+    id: "",
+    token: "",
+  });
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const res = await axios.post(`${BaseUrl}/${SIGNUP}`, form);
 
-      console.log(res.data.data.token);
+      SetCookieData({
+        userName: res.data.data.userName,
+        role: res.data.data.role,
+        id: res.data.data._id,
+        token: res.data.token,
+      });
+
+      cookie.set(
+        "userDetails",
+        JSON.stringify({
+          userName: res.data.data.userName,
+          role: res.data.data.role,
+          id: res.data.data._id,
+          token: res.data.token,
+        })
+      );
+      nav("/signup/opt", { replace: true });
     } catch (err) {
       console.log(err);
     }
   }
+  console.log(cookieData);
   return (
     <div className="sign">
       <div className="container">

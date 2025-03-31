@@ -10,11 +10,11 @@ export default function Footer() {
             alt=""
           />
           <h1 className="nav-logo">
-            ASD<span className="nav-care">CORE</span>
+            ASD<span className="nav-care">CARE</span>
           </h1>
         </div>
         <p>
-          ASDcore is dedicated to providing specialized medical care,
+          ASDcare is dedicated to providing specialized medical care,
           <br /> therapies, and resources for individuals with autism
         </p>
       </div>

@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+
 import SignUp from "./Pages/Auth/SignUp";
 import WelcomeSlideshow from "./Pages/Auth/Login";
 import AccountType from "./Pages/Auth/AccountType";
@@ -18,10 +19,10 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/continue" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />
-        <Route path="doctor" element={<DoctorAuth />} />
+        <Route path="/signup/doctor" element={<DoctorAuth />} />
         <Route path="/login" element={<WelcomeSlideshow />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
-        <Route path="/opt" element={<OPT />} />
+        <Route path="/signup/opt" element={<OPT />} />
         <Route path="/createnewpass" element={<CreateNewPass />} />
       </Routes>
     </div>

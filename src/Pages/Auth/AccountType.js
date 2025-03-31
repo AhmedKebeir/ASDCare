@@ -1,7 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
+import { useState } from "react";
 
 export default function AccountType() {
+  const [type, setType] = useState("");
+  const nav = useNavigate();
+
+  function handleChange(e) {
+    setType(e.target.value);
+  }
+  console.log(type);
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (type !== "") {
+      if (type === "parent") nav("/signup/childauth", { replace: false });
+      else nav("/signup/doctor", { replace: false });
+    }
+  }
   return (
     <div className="sign">
       <div className="container">
@@ -16,14 +31,26 @@ export default function AccountType() {
             </Link>
           </div>
           <h1>Choose account type</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="account-type">
               <div className="doctor">
-                <input type="radio" name="account-type" id="doctor" />
+                <input
+                  type="radio"
+                  name="account-type"
+                  id="doctor"
+                  value="doctor"
+                  onChange={handleChange}
+                />
                 <label htmlFor="doctor">Doctor</label>
               </div>
               <div className="parent">
-                <input type="radio" name="account-type" id="parent" />
+                <input
+                  type="radio"
+                  name="account-type"
+                  id="parent"
+                  value="parent"
+                  onChange={handleChange}
+                />
                 <label htmlFor="parent">Parent</label>
               </div>
             </div>

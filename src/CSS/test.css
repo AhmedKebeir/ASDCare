@@ -1,0 +1,314 @@
+.early {
+  position: relative;
+  background-color: rgba(223, 239, 253, 1);
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.early .back-image,
+.easy .back-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.early .back-image-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.early .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.early .main-container .title h1,
+.easy .main-container .title h1 {
+  font-size: 48px;
+  font-weight: 900;
+  font-family: "Tajawal";
+  line-height: 57.02px;
+  margin-bottom: 30px;
+  color: rgba(45, 46, 49, 1);
+}
+
+.early .main-container .title p,
+.easy .main-container .title p {
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Tajawal";
+  line-height: 38.02px;
+  color: rgba(45, 46, 49, 1);
+  margin-bottom: 30px;
+  width: 510px;
+}
+.early .main-container .early-image {
+  z-index: 11;
+}
+
+.early .main-container .auth-early {
+  margin-top: -60px;
+}
+
+@media (max-width: 767px) {
+  .early .main-container {
+    flex-direction: column-reverse;
+  }
+
+  .early .back-image img,
+  .early .back-image-2 img {
+    width: 260px;
+  }
+  .early .main-container .early-image img {
+    width: 266px;
+  }
+}
+/* end early  */
+
+.easy {
+  position: relative;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+}
+.easy .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
+}
+@media (max-width: 767px) {
+  .easy .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .easy .main-container .easy-image img {
+    width: 277px;
+  }
+  .easy .back-image img {
+    width: 266px;
+    transform: rotate(180deg);
+  }
+  .easy .back-image {
+    top: calc(100% - 172px);
+    left: calc(100% - 266px);
+  }
+
+  .early .main-container .title h1,
+  .easy .main-container .title h1 {
+    font-size: 24px;
+    text-align: center;
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 119%;
+    margin-bottom: 15px;
+  }
+  .early .main-container .title p,
+  .easy .main-container .title p {
+    width: 333px;
+    margin: auto;
+    font-size: 20px;
+    text-align: center;
+    line-height: 119%;
+  }
+}
+
+/* end easy  */
+
+.support {
+  position: relative;
+  padding: 80px 0;
+  background-color: rgba(223, 239, 253, 1);
+}
+.support .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.support .main-container h1.main-title {
+  font-size: 64px;
+  font-weight: 800;
+  font-family: "Tajawal";
+  margin-bottom: 40px;
+}
+
+.support .main-container .support-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+.support .main-container .support-component div {
+  text-align: center;
+  border-radius: 28px;
+  background-color: white;
+  width: 550px;
+  padding: 25px;
+  z-index: 11;
+  border: 6px solid white;
+  font-family: "Tajawal";
+}
+
+.support .main-container .support-component div:last-of-type {
+  border: 6px solid rgba(19, 62, 135, 1);
+  color: rgba(19, 62, 135, 1);
+}
+.support .main-container .support-component div h2 {
+  font-size: 40px;
+
+  font-weight: 900;
+}
+.support .main-container .support-component div p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.support .back-image {
+  position: absolute;
+  bottom: 0;
+
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  .support .main-container {
+    justify-content: center;
+  }
+  .support .main-container h1.main-title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .support .main-container .support-component {
+    flex-direction: column;
+    gap: 27px;
+  }
+  .support .main-container .support-component div {
+    width: 318px;
+  }
+  .support .main-container .support-component div h2 {
+    font-size: 24px;
+  }
+  .support .main-container .support-component div p {
+    font-size: 13px;
+  }
+  .support .main-container .support-component div img {
+    width: 44px;
+  }
+  .support .back-image {
+    bottom: -5px;
+  }
+  .support .back-image img {
+    width: 266px;
+  }
+  .support .back-image-2 img {
+    width: 266px;
+  }
+}
+
+/* end support  */
+
+.support .back-image-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+/* end support  */
+
+/* start join home  */
+
+.join-in-home {
+  padding-top: 100px;
+  padding-bottom: 150px;
+  background: linear-gradient(90deg, #fff 53%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.join-in-home .join-image img {
+  width: 964.382px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+.join-in-home .main-container {
+  text-align: center;
+}
+
+.join-in-home .main-container .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -30px;
+}
+.join-in-home .main-container .logo img {
+  width: 104.08px;
+  height: 95px;
+}
+.join-in-home .main-container .logo h1 {
+  font-size: 96px;
+  font-weight: 700;
+}
+.join-in-home .main-container .logo h1 span {
+  font-size: 40px;
+}
+
+.join-in-home .main-container > h1 {
+  font-size: 96px;
+  font-weight: 800;
+  color: rgba(4, 40, 103, 1);
+}
+
+.join-in-home .main-container .auth-join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 58px;
+  margin-top: 70px;
+}
+
+.join-in-home .main-container .auth-join a:last-of-type {
+  color: rgba(45, 46, 49, 1);
+}
+
+@media (max-width: 767px) {
+  .join-in-home .join-image img {
+    width: 440px;
+    height: 100%;
+    right: -100px;
+  }
+  .join-in-home .main-container .logo {
+    flex-direction: column;
+  }
+  .join-in-home .main-container .logo h1 {
+    font-size: 40px;
+    font-weight: 700;
+    /* margin-top: -10px; */
+  }
+  .join-in-home .main-container .logo h1 span {
+    font-size: 20px;
+  }
+  .join-in-home .main-container > h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-top: 25px;
+    width: 288px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .join-in-home .main-container .auth-join {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 47px;
+  }
+}

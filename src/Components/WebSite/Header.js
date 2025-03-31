@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../CSS/Header.css";
 
 export default function Header() {
@@ -11,9 +11,31 @@ export default function Header() {
             alt=""
           />
           <h1 className="nav-logo">
-            ASD<span className="nav-care">CORE</span>
+            ASD<span className="nav-care">CARE</span>
           </h1>
         </div>
+        <ul className="header-links">
+          <li>
+            <NavLink to="/" activeClassName="active">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/doctors" activeClassName="active">
+              Doctors
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/evaluate" activeClassName="active">
+              Evaluate
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/progress" activeClassName="active">
+              Progress
+            </NavLink>
+          </li>
+        </ul>
         <div className="auth-header">
           <Link to="/login">Log In</Link>
           <Link to="/signup">Sign Up</Link>

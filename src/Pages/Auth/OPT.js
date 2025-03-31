@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import Logo from "../../Components/WebSite/Logo";
 import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
 import { useRef, useState } from "react";
+import axios from "axios";
+import { BaseUrl, VERIFYEMAIL } from "../../Api/Api";
+import Cookie from "cookie-universal";
 
 export default function OPT() {
   const inputRefs = [useRef(), useRef(), useRef(), useRef()];
   const [otp, setOtp] = useState(["", "", "", ""]);
-
+  const nav = useNavigate();
   const handleChange = (index, e) => {
     const value = e.target.value.replace(/\D/, ""); // السماح فقط بالأرقام
     const newOtp = [...otp];
+    // console.log(newOtp);
 
     if (value) {
       newOtp[index] = value;
@@ -31,6 +35,52 @@ export default function OPT() {
     }
   };
 
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+
+  console.log("✅ بيانات المستخدم:", parsedUser);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      // تحويل OTP إلى نص بدلاً من مصفوفة
+      const otpString = otp.join(""); // ["4", "4", "4", "7"] -> "4447"
+
+      const response = await axios.post(
+        `${BaseUrl}/${VERIFYEMAIL}`,
+        { resetCode: otpString },
+        {
+          headers: {
+            Authorization: "Bearer " + user.token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("✅ OTP تم التحقق بنجاح!", response.data);
+      nav("/signup/continue", { replace: false });
+    } catch (error) {
+      console.error(
+        "❌ خطأ عند إرسال OTP:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+
+  console.log(user);
   return (
     <div className="sign">
       <div className="container">
@@ -42,7 +92,7 @@ export default function OPT() {
             Enter the verification code. We just sent on your email address.
           </p>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-opt">
               {otp.map((_, index) => (
                 <input
