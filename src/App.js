@@ -10,12 +10,14 @@ import OPT from "./Pages/Auth/OPT";
 import CreateNewPass from "./Pages/Auth/CreateNewPass";
 import HomePage from "./Pages/WebSite/HomePage";
 import DoctorAuth from "./Pages/Auth/DoctorAuth";
+import HomeParent from "./Pages/WebSite/HomeParent";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="" element={<HomePage />} />
+        <Route path="/homeparent" element={<HomeParent />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/continue" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />

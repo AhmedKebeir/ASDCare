@@ -1,0 +1,323 @@
+/* start welcome name */
+
+.Welcome-page-parent {
+  padding-top: 125px;
+  padding-bottom: 82.24px;
+  position: relative;
+  /* height: 100vh; */
+}
+.Welcome-page-parent .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 91px;
+  overflow: hidden;
+  height: 550px;
+}
+
+.main-container .title {
+  margin-bottom: 91px;
+}
+
+.Welcome-page-parent .main-container .title h2 {
+  font-size: 76px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  line-height: 90.29px;
+  width: 600px;
+  color: white;
+}
+.Welcome-page-parent .main-container .title p {
+  font-size: 48px;
+  font-weight: 300;
+  font-family: "Tajawal";
+  color: white;
+}
+.Welcome-page-parent .main-container .search-box {
+  width: 550px;
+  padding: 22px 20px;
+  border-radius: 9px;
+  background-color: rgba(184, 188, 196, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 59px;
+}
+.Welcome-page-parent .main-container .search-box input {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: 700;
+  outline: none;
+  flex: 1;
+}
+.Welcome-page-parent .main-container .search-box svg {
+  font-size: 33.5px;
+  color: rgba(90, 92, 98, 1);
+}
+
+.Welcome-page-parent .main-container .welcome-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.Welcome-page-parent .main-container .welcome-image img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 991px) {
+  .Welcome-page-parent .main-container {
+    text-align: center;
+    /* display: block; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+  }
+  .Welcome-page-parent .main-container section {
+    width: 100%;
+  }
+  .Welcome-page-parent .main-container .title {
+    text-align: center;
+    width: 100%;
+  }
+  .Welcome-page-parent .main-container .title h2,
+  .Welcome-page-parent .main-container .title p {
+    width: 100%;
+  }
+  .Welcome-page-parent .main-container .search-box {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .Welcome-page-parent {
+    /* height: calc(100vh - 380px); */
+    overflow: hidden;
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Welcome-page-parent .main-container .title {
+    text-align: center;
+    width: 100%;
+  }
+  .Welcome-page-parent .main-container .title h2 {
+    font-size: 48px;
+    font-weight: 700;
+  }
+  .Welcome-page-parent .main-container .title p {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .Welcome-page-parent .main-container .search-box {
+    width: 90%;
+    margin: 0 auto;
+    padding: 22px 20px 22px 10px;
+  }
+  .Welcome-page-parent .main-container .search-box input {
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+  }
+}
+
+/* end welcome  */
+
+/* start our service  */
+
+.service {
+  position: relative;
+  padding: 30px 0;
+}
+
+.service .back-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.service .main-container .serv-title {
+  position: relative;
+  /* border: 1px solid red; */
+}
+
+.service .main-container .serv-title p.cust-serv {
+  position: absolute;
+  background-color: rgba(0, 34, 92, 1);
+  padding: 20px 28px;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  border-top-left-radius: 27px;
+  border-top-right-radius: 27px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 15px;
+
+  left: 0;
+}
+
+.service .main-container .serv-title h2 {
+  text-align: center;
+  font-size: 96px;
+  font-weight: 800;
+  color: rgba(0, 34, 92, 1);
+}
+
+.service .serv-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 25px 68px;
+  overflow: hidden;
+}
+
+.service .serv-grid {
+  background-color: rgba(217, 217, 217, 1);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 36px;
+  border-radius: 36px;
+  height: 169px;
+  transition: 0.3s;
+}
+.service .serv-grid h3 {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(19, 62, 135, 1);
+  transition: 0.3s;
+}
+
+.service .serv-grid p {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgba(19, 62, 135, 1);
+  transition: 0.3s;
+  display: none;
+}
+.service .serv-grid:hover {
+  background-color: rgba(143, 173, 225, 1);
+}
+.service .serv-grid:hover h3 {
+  font-size: 36px;
+}
+
+.service .serv-grid:hover p {
+  display: flex;
+}
+@media (max-width: 1400px) {
+  .service .serv-content {
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  }
+
+  .service .main-container .serv-title p.cust-serv {
+    font-size: 24px;
+    top: 5px;
+    height: 50px;
+  }
+  .service .main-container .serv-title h2 {
+    font-size: 80px;
+    font-weight: 600;
+  }
+  .service .main-container .serv-grid h3 {
+    font-size: 38px;
+  }
+  .service .main-container .serv-grid:hover h3 {
+    font-size: 28px;
+  }
+  .service .serv-grid p {
+    font-size: 22px;
+  }
+}
+@media (max-width: 1200px) {
+  .service .serv-content {
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 25px 25px;
+  }
+  .service .main-container .serv-title p.cust-serv {
+    font-size: 22px;
+    top: -10px;
+  }
+  .service .main-container .serv-title h2 {
+    font-size: 60px;
+    font-weight: 700;
+  }
+  .service .main-container .serv-grid h3 {
+    font-size: 28px;
+  }
+  .service .serv-grid p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .service .back-image {
+    width: 266px;
+  }
+  .service .back-image img {
+    width: 100%;
+  }
+  .service .serv-content {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px 25px;
+  }
+  .service .main-container .serv-title p.cust-serv {
+    font-size: 18px;
+    top: -20px;
+  }
+  .service .main-container .serv-title h2 {
+    font-size: 48px;
+    font-weight: 700;
+  }
+  .service .serv-content .serv-grid img {
+    width: 10%;
+    height: 100%;
+  }
+  .service .main-container .serv-grid h3 {
+    font-size: 28px;
+  }
+  .service .main-container .serv-grid:hover h3 {
+    font-size: 24px;
+  }
+  .service .serv-grid p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .service .serv-content {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px 25px;
+  }
+  .service .main-container .serv-title p.cust-serv {
+    font-size: 14px;
+    top: -10px;
+    height: 40px;
+  }
+  .service .serv-grid {
+    height: 66.803px;
+  }
+  .service .main-container .serv-title h2 {
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .service .main-container .serv-grid img {
+    width: 40px;
+    height: 40.816px !important;
+  }
+  .service .main-container .serv-grid h3 {
+    font-size: 28px;
+  }
+  .service .main-container .serv-grid:hover h3 {
+    font-size: 24px;
+  }
+  .service .serv-grid p {
+    display: flex;
+  }
+}
