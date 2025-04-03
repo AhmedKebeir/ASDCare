@@ -5,10 +5,16 @@ import { useState } from "react";
 import axios from "axios";
 import { BaseUrl, SIGNUP } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import LoadingAnimation from "../../Components/WebSite/LoadingAnimation";
 
 export default function SignUp() {
   const cookie = Cookie();
   const nav = useNavigate();
+  const [isText, setIsText] = useState(false);
+  const [accept, setAccept] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     userName: "",
     email: "",
@@ -21,6 +27,10 @@ export default function SignUp() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  function isValidEgyptianPhone(phone) {
+    const regex = /^(\+20)?01[0125]\d{8}$/;
+    return regex.test(phone);
+  }
   // const [data, setData] = useState("");
   const [cookieData, SetCookieData] = useState({
     userName: "",
@@ -29,29 +39,44 @@ export default function SignUp() {
     token: "",
   });
   async function handleSubmit(e) {
+    setAccept(true);
     e.preventDefault();
+
     try {
-      const res = await axios.post(`${BaseUrl}/${SIGNUP}`, form);
+      setLoading(true);
+      if (
+        form.userName !== "" &&
+        form.email !== "" &&
+        form.password === form.confirmPassword &&
+        isValidEgyptianPhone(form.phone)
+      ) {
+        const res = await axios.post(`${BaseUrl}/${SIGNUP}`, form);
 
-      SetCookieData({
-        userName: res.data.data.userName,
-        role: res.data.data.role,
-        id: res.data.data._id,
-        token: res.data.token,
-      });
-
-      cookie.set(
-        "userDetails",
-        JSON.stringify({
+        SetCookieData({
           userName: res.data.data.userName,
           role: res.data.data.role,
           id: res.data.data._id,
           token: res.data.token,
-        })
-      );
-      nav("/signup/opt", { replace: true });
+        });
+
+        cookie.set(
+          "userDetails",
+          JSON.stringify({
+            userName: res.data.data.userName,
+            role: res.data.data.role,
+            id: res.data.data._id,
+            token: res.data.token,
+          })
+        );
+        nav("/signup/opt", { replace: true });
+        setLoading(false);
+      } else {
+        console.log("no submit");
+        setLoading(false);
+      }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   }
   console.log(cookieData);
@@ -78,6 +103,7 @@ export default function SignUp() {
                 id="username"
                 onChange={handleChange}
                 value={form.userName}
+                required
               />
             </div>
             <div className="phone">
@@ -88,8 +114,14 @@ export default function SignUp() {
                 name="phone"
                 onChange={handleChange}
                 value={form.phone}
+                required
               />
             </div>
+            {accept && isValidEgyptianPhone(form.phone) !== true ? (
+              <p className="err">Phone number is not valid!</p>
+            ) : (
+              ""
+            )}
             <div className="email">
               <input
                 type="email"
@@ -98,17 +130,30 @@ export default function SignUp() {
                 name="email"
                 onChange={handleChange}
                 value={form.email}
+                required
               />
             </div>
             <div className="password">
               <input
-                type="password"
+                type={isText ? "true" : "password"}
                 id="pasaword"
                 placeholder="Password"
                 name="password"
                 onChange={handleChange}
                 value={form.password}
+                required
               />
+              {isText === false ? (
+                <FontAwesomeIcon
+                  icon={faEye}
+                  onClick={() => setIsText((prev) => !prev)}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faEyeSlash}
+                  onClick={() => setIsText((prev) => !prev)}
+                />
+              )}
             </div>
             <div className="confirm-password">
               <input
@@ -118,8 +163,14 @@ export default function SignUp() {
                 name="confirmPassword"
                 onChange={handleChange}
                 value={form.confirmPassword}
+                required
               />
             </div>
+            {accept && form.confirmPassword !== form.password ? (
+              <p className="err">Confirm password not match password!</p>
+            ) : (
+              ""
+            )}
             <div className="gender">
               <div className="male">
                 <input
@@ -145,7 +196,7 @@ export default function SignUp() {
               </div>
             </div>
             <button className="btn-sign" type="submit">
-              Continue
+              {loading ? <LoadingAnimation /> : "Continue"}
             </button>
             <div className="or">
               <p>

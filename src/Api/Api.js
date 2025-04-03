@@ -5,3 +5,5 @@ export const SIGNUP = `auth/singupForUser`;
 export const LOGIN = `auth/login`;
 
 export const VERIFYEMAIL = "auth/verifyemail";
+
+export const CREATEPARENT = "parents";

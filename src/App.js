@@ -11,6 +11,7 @@ import CreateNewPass from "./Pages/Auth/CreateNewPass";
 import HomePage from "./Pages/WebSite/HomePage";
 import DoctorAuth from "./Pages/Auth/DoctorAuth";
 import HomeParent from "./Pages/WebSite/HomeParent";
+import LoadingAnimation from "./Components/WebSite/LoadingAnimation";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/signup/opt" element={<OPT />} />
         <Route path="/createnewpass" element={<CreateNewPass />} />
+        <Route path="/anim" element={<LoadingAnimation />} />
       </Routes>
     </div>
   );

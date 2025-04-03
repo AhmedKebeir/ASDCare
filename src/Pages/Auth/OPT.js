@@ -5,11 +5,13 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { BaseUrl, VERIFYEMAIL } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import LoadingAnimation from "../../Components/WebSite/LoadingAnimation";
 
 export default function OPT() {
   const inputRefs = [useRef(), useRef(), useRef(), useRef()];
   const [otp, setOtp] = useState(["", "", "", ""]);
   const nav = useNavigate();
+  const [loading, setLoading] = useState(false);
   const handleChange = (index, e) => {
     const value = e.target.value.replace(/\D/, ""); // السماح فقط بالأرقام
     const newOtp = [...otp];
@@ -56,6 +58,7 @@ export default function OPT() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      setLoading(true);
       // تحويل OTP إلى نص بدلاً من مصفوفة
       const otpString = otp.join(""); // ["4", "4", "4", "7"] -> "4447"
 
@@ -69,10 +72,12 @@ export default function OPT() {
           },
         }
       );
+      setLoading(false);
 
       console.log("✅ OTP تم التحقق بنجاح!", response.data);
       nav("/signup/continue", { replace: false });
     } catch (error) {
+      setLoading(false);
       console.error(
         "❌ خطأ عند إرسال OTP:",
         error.response ? error.response.data : error.message
@@ -108,7 +113,7 @@ export default function OPT() {
               ))}
             </div>
             <button className="btn-sign" type="submit">
-              Get Started
+              {loading ? <LoadingAnimation /> : "Get Started"}
             </button>
             <div className="or">
               <p>
