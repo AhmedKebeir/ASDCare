@@ -1,6 +1,9 @@
 .main-container {
   margin: 0 auto;
 }
+.app {
+  overflow: hidden;
+}
 
 @media (max-width: 767px) {
   .main-container {

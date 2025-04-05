@@ -211,7 +211,7 @@
 .service .serv-grid:hover p {
   display: flex;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
   .service .serv-content {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   }
@@ -226,7 +226,7 @@
     font-weight: 600;
   }
   .service .main-container .serv-grid h3 {
-    font-size: 38px;
+    font-size: 35px;
   }
   .service .main-container .serv-grid:hover h3 {
     font-size: 28px;
@@ -257,10 +257,10 @@
 }
 
 @media (max-width: 991px) {
-  .service .back-image {
+  .back-image {
     width: 266px;
   }
-  .service .back-image img {
+  .back-image img {
     width: 100%;
   }
   .service .serv-content {
@@ -292,32 +292,284 @@
 
 @media (max-width: 767px) {
   .service .serv-content {
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px 25px;
   }
   .service .main-container .serv-title p.cust-serv {
     font-size: 14px;
-    top: -10px;
+    top: -30px;
     height: 40px;
   }
   .service .serv-grid {
     height: 66.803px;
+    gap: 5px;
+    padding: 36px 15px;
   }
   .service .main-container .serv-title h2 {
     font-size: 40px;
     font-weight: 700;
+    margin-top: 20px;
   }
   .service .main-container .serv-grid img {
-    width: 40px;
-    height: 40.816px !important;
+    width: 36px;
+    height: 36px !important;
+  }
+  .service .main-container .serv-grid div {
+    flex: 1;
   }
   .service .main-container .serv-grid h3 {
-    font-size: 28px;
+    font-size: 20px;
   }
   .service .main-container .serv-grid:hover h3 {
-    font-size: 24px;
+    font-size: 20px;
   }
   .service .serv-grid p {
     display: flex;
+    font-size: 11px;
   }
 }
+
+/* start slide doctor  */
+.doctors-slide {
+  background-color: rgba(204, 223, 255, 1);
+  padding: 30px 0 50px 0;
+  position: relative;
+}
+.doctors-slide .main-container .title {
+  position: relative;
+  z-index: 1;
+}
+
+.doctors-slide .main-container .title h2 {
+  font-size: 64px;
+  font-weight: 800;
+  color: rgba(8, 47, 113, 1);
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 30px !important;
+  font-weight: 900;
+  color: rgba(45, 46, 49, 1);
+}
+
+.doctors-slide .main-container .title p {
+  font-size: 36px;
+  font-weight: 400;
+  color: rgba(8, 47, 113, 1);
+}
+.doctors-slide .back-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* start slid doctors  */
+.doctors-slide .card-list .card-item .card-link {
+  /* width: 400px; */
+  display: block;
+  background-color: white;
+  /* padding: 30px; */
+  border-radius: 30px;
+  overflow: hidden;
+  /* text-decoration: none; */
+}
+.card-list .card-link .card-image {
+  width: 100%;
+  aspect-ratio: 439/496;
+  object-fit: cover;
+  background-color: #eee;
+}
+.card-list .card-link div span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 36px;
+  background-color: rgba(0, 34, 92, 1);
+  width: 53px;
+  height: 22px;
+
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  font-family: "Tajawal";
+}
+
+.card-list .card-link div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 27px;
+
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.card-list .card-link div span svg {
+  font-size: 12px;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(90deg, #ffc80b, #e89318); /* التدرج اللوني */
+  -webkit-mask-image: linear-gradient(90deg, #ffc80b, #e89318);
+  mask-image: linear-gradient(90deg, #ffc80b, #e89318);
+  -webkit-background-clip: text;
+  color: #ffc80b; /* لون افتراضي عند عدم دعم `mask-image` */
+}
+.card-list .card-link div h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: rgba(0, 34, 92, 1);
+  font-family: "Tajawal";
+}
+
+.card-list .card-link p.badge {
+  color: black;
+  font-size: 24px;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  font-family: "Tajawal";
+}
+
+.card-list .card-link button {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: calc(100% - 50px);
+  margin-bottom: 27px;
+  padding: 22px 20px;
+  background-color: rgba(19, 62, 135, 1);
+  border-radius: 9px;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  cursor: pointer;
+}
+
+.back-image-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+.swiper {
+  padding: 0 50px !important;
+}
+/* end slide doctors  */
+@media (max-width: 1600px) {
+  .doctors-slide .main-container .title h2 {
+    font-size: 48px;
+  }
+  .doctors-slide .main-container .title p {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .doctors-slide .main-container .title h2 {
+    font-size: 38px;
+  }
+  .doctors-slide .main-container .title p {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 991px) {
+  .doctors-slide .main-container .title h2 {
+    font-size: 38px;
+  }
+  .doctors-slide .main-container .title p {
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .back-image-2 img {
+    width: 260px;
+  }
+}
+@media (max-width: 767px) {
+  .doctors-slide .main-container .title h2 {
+    display: none;
+  }
+  .doctors-slide .main-container .title p {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 119%;
+    margin-top: 20px;
+  }
+  .card-list .card-link div h2 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .card-list .card-link p.badge {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .card-list .card-link button {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .card-list .card-link div span {
+    font-weight: 800;
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    display: none;
+  }
+  .swiper {
+    padding: 0 !important;
+  }
+}
+
+/* .doctors-slide .card-wrapper {
+  padding-right: -60px;
+} */
+
+/* @media (min-width: 991px) {
+  .swiper-wrapper {
+    gap: 30px;
+  }
+  .card-list {
+    padding: 0 !important;
+    margin-top: 0 !important;
+  }
+  .doctors-slide .card-list .card-item {
+    width: 300px !important;
+  }
+  .doctors-slide .card-list .card-item .card-link {
+    width: 300px;
+  }
+
+  .card-list .card-link div h2 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .card-list .card-link p.badge {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .card-list .card-link button {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .card-list .card-link div span {
+    font-weight: 800;
+  }
+  .swiper-slide {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 0 !important;
+  }
+} */
