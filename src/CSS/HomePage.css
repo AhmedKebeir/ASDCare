@@ -296,6 +296,7 @@
   .support .main-container .support-component {
     flex-direction: column;
     gap: 27px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   .support .main-container .support-component div {
     width: 318px;
