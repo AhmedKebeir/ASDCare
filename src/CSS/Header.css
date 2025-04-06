@@ -55,7 +55,7 @@
   font-size: 24px;
   font-weight: 500;
 
-  display: none;
+  /* display: none; */
 }
 
 .nav-bar .main-container .header-links li a {

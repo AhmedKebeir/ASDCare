@@ -2,7 +2,7 @@
   margin: 0 auto;
 }
 .app {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 @media (max-width: 767px) {

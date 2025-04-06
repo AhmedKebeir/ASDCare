@@ -14,6 +14,7 @@ import HomeParent from "./Pages/WebSite/HomeParent";
 // import LoadingAnimation from "./Components/WebSite/LoadingAnimation";
 import HomeSlide from "./Pages/WebSite/HomeSlide";
 import Swiperr from "./Pages/WebSite/Swiper";
+import EducationRsources from "./Pages/WebSite/EducationResources";
 
 function App() {
   return (
@@ -29,8 +30,7 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/signup/opt" element={<OPT />} />
         <Route path="/createnewpass" element={<CreateNewPass />} />
-        <Route path="/slide" element={<HomeSlide />} />
-        <Route path="/swiper" element={<Swiperr />} />
+        <Route path="/evaluate" element={<EducationRsources />} />
       </Routes>
     </div>
   );
