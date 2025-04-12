@@ -6,13 +6,15 @@ export default function Header() {
     <div className="nav-bar">
       <div className="main-container">
         <div className="logo">
-          <img
-            src={require("../../Images/photo_2024-11-18_17-52-24-removebg-preview 1 1.jpg")}
-            alt=""
-          />
-          <h1 className="nav-logo">
-            ASD<span className="nav-care">CARE</span>
-          </h1>
+          <Link to="/">
+            <img
+              src={require("../../Images/photo_2024-11-18_17-52-24-removebg-preview 1 1.jpg")}
+              alt=""
+            />
+            <h1 className="nav-logo">
+              ASD<span className="nav-care">CARE</span>
+            </h1>
+          </Link>
         </div>
         <ul className="header-links">
           <li>

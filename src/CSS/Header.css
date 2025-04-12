@@ -21,9 +21,10 @@
   align-items: center;
 }
 
-.main-container .logo {
+.main-container .logo a {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .logo img {
@@ -94,6 +95,7 @@
   .nav-bar .main-container {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     padding: 0 20px;
   }
   .nav-bar .main-container .auth-header {
