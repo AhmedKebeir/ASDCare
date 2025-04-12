@@ -33,7 +33,7 @@
 }
 
 .main-container .logo h1 {
-  position: relative;
+  /* position: relative; */
   font-size: 48px;
   font-weight: 700;
   color: var(--main-color-logo);
