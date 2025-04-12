@@ -38,6 +38,7 @@
   font-weight: 700;
   color: var(--main-color-logo);
   font-family: "Tajawal";
+  margin-top: 10px;
 }
 .main-container .logo h1 span {
   font-size: 20px;
@@ -88,6 +89,18 @@
   transition: 0.3s;
 }
 @media (max-width: 767px) {
+  .main-container .logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .main-container .logo a {
+    display: flex;
+    align-items: center;
+  }
+  .main-container .logo h1 {
+  }
   .nav-bar {
     height: 144px;
     padding: 10px 0;
