@@ -232,6 +232,7 @@
     height: 38px;
     font-size: 18px;
     padding: 0;
+    line-height: 38px;
   }
   .article .article-grids .art-grid .art .art-title h3 {
     font-size: 28px;
