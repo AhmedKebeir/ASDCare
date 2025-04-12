@@ -5,6 +5,7 @@ import EducationRsources from "./Pages/WebSite/EducationResources";
 import EvaluateArticle from "./Pages/WebSite/EvaluateArticle";
 import HomeParent from "./Pages/WebSite/HomeParent";
 import Footer from "./Components/WebSite/Footer";
+import Medican from "./Pages/WebSite/Medican";
 
 export default function WebSiteRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function WebSiteRoutes() {
         <Route path="/homeparent" element={<HomeParent />} />
         <Route path="/evaluate" element={<EducationRsources />} />
         <Route path="/evaluate/article" element={<EvaluateArticle />} />
+        <Route path="/medican" element={<Medican />} />
       </Routes>
       <Footer />
     </>
