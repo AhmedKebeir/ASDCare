@@ -1,4 +1,3 @@
-import Header from "../../Components/WebSite/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faStar } from "@fortawesome/free-solid-svg-icons";
 import "../../CSS/HomeParent.css";
@@ -14,7 +13,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./styles.css";
 import { WindowSize } from "../../Context/WindowWidthContext";
 
 export default function HomeParent() {
@@ -47,7 +45,6 @@ export default function HomeParent() {
 
   return (
     <>
-      <Header />
       <div className="Welcome-page-parent">
         <div className="main-container">
           <section>

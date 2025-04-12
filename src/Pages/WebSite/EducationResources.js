@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import Header from "../../Components/WebSite/Header";
+
 import "../../CSS/Education.css";
 import Footer from "../../Components/WebSite/Footer";
 
 export default function EducationRsources() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="education-res">
         <div className="title">
           <div className="main-container">

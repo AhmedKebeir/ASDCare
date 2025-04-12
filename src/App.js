@@ -12,16 +12,16 @@ import HomePage from "./Pages/WebSite/HomePage";
 import DoctorAuth from "./Pages/Auth/DoctorAuth";
 import HomeParent from "./Pages/WebSite/HomeParent";
 // import LoadingAnimation from "./Components/WebSite/LoadingAnimation";
-import HomeSlide from "./Pages/WebSite/HomeSlide";
-import Swiperr from "./Pages/WebSite/Swiper";
+// import HomeSlide from "./Pages/WebSite/HomeSlide";
+// import Swiperr from "./Pages/WebSite/Swiper";
 import EducationRsources from "./Pages/WebSite/EducationResources";
+import EvaluateArticle from "./Pages/WebSite/EvaluateArticle";
+import WebSiteRoutes from "./WebSiteRoutes";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="" element={<HomePage />} />
-        <Route path="/homeparent" element={<HomeParent />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/continue" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />
@@ -30,7 +30,8 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/signup/opt" element={<OPT />} />
         <Route path="/createnewpass" element={<CreateNewPass />} />
-        <Route path="/evaluate" element={<EducationRsources />} />
+
+        <Route path="/*" element={<WebSiteRoutes />} />
       </Routes>
     </div>
   );

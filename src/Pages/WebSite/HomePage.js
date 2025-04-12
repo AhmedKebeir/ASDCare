@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Header from "../../Components/WebSite/Header";
+
 import "../../CSS/HomePage.css";
 import Footer from "../../Components/WebSite/Footer";
 import { useContext } from "react";
@@ -11,7 +11,6 @@ export default function HomePage() {
   console.log(size);
   return (
     <>
-      <Header />
       <div className="Welcome-page">
         <div className="main-container">
           <section>

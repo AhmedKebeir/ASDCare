@@ -8,12 +8,14 @@
   --main-font-tajawal: "Tajawal";
 }
 
-.education-res {
+.education-res,
+.article {
   padding-top: 55px;
   padding-bottom: 55px;
   background-color: rgba(246, 247, 251, 1);
 }
-.education-res .title {
+.education-res .title,
+.article .title {
   text-align: right;
   background: linear-gradient(90deg, rgba(156, 193, 255, 0) 45%, #9cc1ff 100%);
   display: flex;
@@ -23,25 +25,29 @@
   font-family: var(--main-font-tajawal);
   line-height: 119%;
 }
-.education-res .title h2 {
+.education-res .title h2,
+.article .title h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 25px;
 }
 
-.education-res .title p {
+.education-res .title p,
+.article .title p {
   font-size: 36px;
   font-weight: 500;
 }
 
 @media (max-width: 991px) {
-  .education-res .title h2 {
+  .education-res .title h2,
+  .article .title h2 {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 25px;
   }
 
-  .education-res .title p {
+  .education-res .title p,
+  .article .title p {
     font-size: 28px;
     font-weight: 500;
   }
@@ -53,6 +59,11 @@
     text-align: center;
     width: 100%;
   }
+  .article .title {
+    background: transparent;
+  }
+  .article .title .main-container {
+  }
   .education-res .title h2 {
     font-size: 34px;
     font-weight: 700;
@@ -61,6 +72,10 @@
   .education-res .title p {
     font-size: 18px;
     font-weight: 500;
+  }
+  .article .title h2,
+  .article .title p {
+    display: none;
   }
 }
 
@@ -156,14 +171,15 @@
   .art-grid
   .art
   .image {
-  flex-basis: 158px;
-  height: 158px;
+  width: 158px !important;
+  height: 158px !important;
   border-radius: 18px;
   background-color: #eee;
 }
 .article .article-grids .art-grid .art .image img {
-  width: 158px;
-  height: 158px;
+  width: 158px !important;
+  max-width: 158px;
+  height: 158px !important;
   border-radius: 18px;
   background-color: #eee;
 }
@@ -194,7 +210,8 @@
   }
   .article .article-grids .art-grid .art .image img {
     width: 100px;
-    height: 100px;
+    max-width: 100px;
+    height: 100px !important;
   }
   .article .article-grids .art-grid .art .art-title p {
     display: none;
@@ -215,5 +232,203 @@
   }
   .article .article-grids .art-grid .art .art-title h3 {
     font-size: 28px;
+  }
+}
+
+/* start evaluate artcle  */
+
+.article .article-content {
+  margin-top: 16px;
+}
+.article .article-content .main-container {
+  padding: 23px;
+  border-radius: 26px;
+  background-color: white;
+}
+.article .article-content .main-container .cont {
+  gap: 70px;
+}
+.article .article-content .main-container .cont .article-title .mobile-creator {
+  display: none;
+}
+
+.article .article-content .main-container .cont .article-title h2 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 119%;
+  color: var(--main-color);
+}
+.article .article-content .main-container .cont .article-title p {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 119%;
+  color: black;
+}
+
+.article .article-content .p-mobile {
+  display: none;
+}
+
+.article .article-content .main-container .cont .image-details {
+  width: 384px;
+  height: 384px;
+  border-radius: 26px;
+  background-color: #eee;
+}
+
+.article .article-content .main-container .cont .image-details img {
+  width: 384px;
+  max-width: 384px;
+  height: 384px;
+  border-radius: 26px;
+}
+
+.article .article-content .main-container .cont .image-details .creator-web {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.article
+  .article-content
+  .main-container
+  .cont
+  .image-details
+  .creator-web
+  .creator-name {
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
+  color: black;
+}
+.article
+  .article-content
+  .main-container
+  .cont
+  .image-details
+  .creator-web
+  .time {
+  font-size: 32px;
+  font-weight: 300;
+  font-style: italic;
+  color: black;
+}
+@media (width < 1200px) {
+  .article .article-content .main-container .cont .image-details {
+    width: 192px;
+    height: 192px;
+  }
+
+  .article .article-content .main-container .cont .image-details img {
+    width: 192px;
+    max-width: 192px;
+    height: 192px;
+  }
+  .article
+    .article-content
+    .main-container
+    .cont
+    .image-details
+    .creator-web
+    .creator-name {
+    font-size: 26px;
+  }
+  .article
+    .article-content
+    .main-container
+    .cont
+    .image-details
+    .creator-web
+    .time {
+    font-size: 20px;
+  }
+}
+@media (width < 992px) {
+  .article .article-content .main-container .cont {
+    gap: 40px;
+  }
+  .article .article-content .main-container .cont .article-title h2 {
+    font-size: 48px;
+  }
+  .article .article-content .main-container .cont .article-title p {
+    font-size: 28px;
+  }
+}
+
+@media (width < 768px) {
+  .article {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .article .title {
+    height: auto;
+  }
+  .article .article-content .main-container .cont {
+    gap: 5px;
+  }
+  .article .article-content .main-container .cont .article-title h2 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+  .article .article-content .main-container .cont .article-title p {
+    display: none;
+  }
+
+  .article .article-content .main-container .cont .image-details {
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+  }
+
+  .article .article-content .main-container .cont .image-details img {
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    border-radius: 18px;
+  }
+  .article .article-content .main-container .cont .image-details .creator-web {
+    display: none;
+  }
+  .article
+    .article-content
+    .main-container
+    .cont
+    .article-title
+    .mobile-creator {
+    display: flex;
+    flex-direction: column;
+  }
+  .article
+    .article-content
+    .main-container
+    .cont
+    .article-title
+    .mobile-creator
+    .creator-name {
+    font-size: 20px;
+    font-weight: 200;
+    font-style: italic;
+    color: rgba(45, 46, 49, 1);
+  }
+  .article
+    .article-content
+    .main-container
+    .cont
+    .article-title
+    .mobile-creator
+    .time {
+    font-size: 20px;
+    font-weight: 200;
+    font-style: italic;
+    color: rgba(45, 46, 49, 1);
+  }
+  .article .article-content .p-mobile {
+    display: flex;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 118.8%;
+    margin-top: 15px;
+    width: 100%;
   }
 }

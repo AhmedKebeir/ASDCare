@@ -4,8 +4,12 @@ import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
 import { useState } from "react";
 import axios from "axios";
 import { BaseUrl, LOGIN } from "../../Api/Api";
+import LoadingAnimation from "../../Components/WebSite/LoadingAnimation";
+import Cookie from "cookie-universal";
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
+  const cookie = Cookie();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -25,6 +29,7 @@ export default function Login() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(`${BaseUrl}/${LOGIN}`, form);
       setUserDetails({
@@ -33,8 +38,10 @@ export default function Login() {
         role: res.data.data.role,
         token: res.data.data.toknn,
       });
+      setLoading(false);
       console.log(res.data.data);
     } catch (err) {
+      setLoading(false);
       setErr("email or password is faild!");
     }
   }
@@ -54,6 +61,7 @@ export default function Login() {
               placeholder="Email"
               onChange={handleChange}
               value={form.email}
+              required
             />
             <input
               type="password"
@@ -62,12 +70,14 @@ export default function Login() {
               placeholder="Password"
               onChange={handleChange}
               value={form.password}
+              required
             />
+            <p className="err">{err}</p>
             <p className="forget">
               <Link to="/forgetpassword">Forget password?</Link>
             </p>
             <button className="btn-sign" type="submit">
-              Get Started
+              {loading ? <LoadingAnimation /> : "Get Started"}
             </button>
             <div className="or">
               <p>
