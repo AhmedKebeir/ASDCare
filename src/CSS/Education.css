@@ -62,8 +62,6 @@
   .article .title {
     background: transparent;
   }
-  .article .title .main-container {
-  }
   .education-res .title h2 {
     font-size: 34px;
     font-weight: 700;
@@ -103,7 +101,7 @@
   gap: 37px;
 }
 .article .article-grids .art-grid .art .art-title {
-  width: calc(100% - (158px +37px));
+  width: calc(100% - (158px + 37px));
 }
 
 .article .article-grids .art-grid .art .art-title h3 {
@@ -191,6 +189,9 @@
 }
 
 @media (max-width: 767px) {
+  .article .article-grids .art-grid .art .art-title {
+    width: 100%;
+  }
   .article .article-grids .art-grid .art-link .creator-web {
     display: none;
   }
@@ -229,6 +230,7 @@
     width: 60%;
     height: 37px;
     font-size: 18px;
+    padding: 0;
   }
   .article .article-grids .art-grid .art .art-title h3 {
     font-size: 28px;
