@@ -63,7 +63,7 @@
     background: transparent;
   }
   .education-res .title h2 {
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 700;
   }
 
@@ -190,8 +190,9 @@
 
 @media (max-width: 767px) {
   .article .article-grids .art-grid .art .art-title {
-    width: 100%;
+    width: 100% !important;
   }
+
   .article .article-grids .art-grid .art-link .creator-web {
     display: none;
   }

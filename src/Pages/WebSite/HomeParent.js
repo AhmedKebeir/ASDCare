@@ -231,7 +231,7 @@ export default function HomeParent() {
           <img src={require("../../Images/2pattern 2.png")} alt="" />
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

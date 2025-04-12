@@ -47,7 +47,7 @@ export default function EducationRsources() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
