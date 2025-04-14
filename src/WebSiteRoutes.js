@@ -6,6 +6,7 @@ import EvaluateArticle from "./Pages/WebSite/EvaluateArticle";
 import HomeParent from "./Pages/WebSite/HomeParent";
 import Footer from "./Components/WebSite/Footer";
 import Medican from "./Pages/WebSite/Medican";
+import MedicanId from "./Pages/WebSite/MedicanId";
 
 export default function WebSiteRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function WebSiteRoutes() {
         <Route path="/evaluate" element={<EducationRsources />} />
         <Route path="/evaluate/article" element={<EvaluateArticle />} />
         <Route path="/medican" element={<Medican />} />
+        <Route path="/medican/:id" element={<MedicanId />} />
       </Routes>
       <Footer />
     </>

@@ -1,5 +1,6 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export default function Medican() {
   return (
@@ -19,8 +20,23 @@ export default function Medican() {
           </div>
         </div>
       </div>
-      <div className="med-contect">
-        <div className="main-container"></div>
+      <div className="med-content mt-10">
+        <div className="main-container flex justify-between gap-20">
+          <section className="">
+            <div className="card bg-white rounded-xl  flex justify-between items-center  ">
+              <div className="card-title">
+                <h2>Medican’s Name </h2>
+                <p>Medican’s place will be here.</p>
+                <Link to="1">See Medican’s Details</Link>
+              </div>
+              <img src="" alt="" />
+            </div>
+          </section>
+          <aside>
+            <h2>Filter</h2>
+            <p>Medican</p>
+          </aside>
+        </div>
       </div>
     </div>
   );
