@@ -835,3 +835,232 @@
   }
 }
 /* end medican  */
+
+/* start evaluate  */
+
+.eval {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  position: relative;
+}
+.eval .main-container .eval-title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.eval .main-container .eval-title h2 {
+  font-size: 96px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+.eval .main-container .eval-title p {
+  color: var(--main-color);
+  font-size: 64px;
+  font-weight: 500px;
+  margin-bottom: 10px;
+}
+.eval .main-container .eval-title .eval-links {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 65px;
+  padding-bottom: 40px;
+}
+.eval .main-container .eval-title .eval-links::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 4px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #6c6c6c 0%,
+    rgba(210, 210, 210, 0) 100%
+  );
+}
+
+.eval .main-container .eval-title .eval-links a {
+  background-color: var(--main-color);
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 59px;
+  border-radius: 9px;
+  line-height: 59px;
+  text-align: center;
+  width: 440px;
+}
+.eval .main-container .eval-title .eval-links a:hover {
+  background-color: var(--color-hover);
+}
+
+.eval .last-autism {
+  margin-top: 40px;
+  background: linear-gradient(90deg, #9cc1ff 0%, rgba(156, 193, 255, 0) 55%);
+}
+.eval .last-autism h2 {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+
+.eval .done-autism .main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.eval .done-autism .main-container p {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--main-color);
+  text-align: center;
+}
+
+.choose-child-test {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.62);
+}
+.choose-child-test .choose {
+  width: 624px;
+  height: 642px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 51px;
+  /* text-align: center; */
+  margin: 120px auto;
+  position: relative;
+}
+.choose-child-test .choose h3 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+.choose-child-test .choose .child-info {
+  padding-left: 73px;
+  padding-right: 73px;
+}
+.choose-child-test .choose .child-info .child {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 28px;
+}
+.choose-child-test .choose .child-info .child:nth-of-type(odd) {
+  background-color: var(--main-color);
+}
+.choose-child-test .choose .child-info .child:nth-of-type(even) {
+  background-color: var(--second-color);
+}
+.choose-child-test .choose .child-info .child .info {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  line-height: 119%;
+}
+.choose-child-test .choose .child-info .child .info h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 13px;
+}
+.choose-child-test .choose .child-info .child .info p {
+  font-size: 32px;
+  font-weight: 500;
+  color: white;
+}
+.choose-child-test .choose .child-info .child img {
+  width: 78px;
+  max-width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background-color: white;
+}
+.choose-child-test .choose .child-info .child span.age {
+  align-self: flex-start;
+  color: white;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 600;
+}
+.choose-child-test .start {
+  margin-left: 73px;
+  margin-right: 73px;
+  width: 438px;
+  position: absolute;
+  bottom: 20px;
+}
+.choose-child-test .start a {
+  height: 59px;
+  line-height: 59px;
+  color: white;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  width: 100%;
+  transition: 0.3s;
+}
+.choose-child-test .start a:hover {
+  background-color: var(--color-hover);
+}
+@media (width < 768px) {
+  .eval {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .eval .main-container .eval-title h2 {
+    font-size: 48px;
+  }
+  .eval .main-container .eval-title p {
+    font-size: 32px;
+  }
+  .eval .main-container .eval-title .eval-links {
+    flex-direction: column;
+    padding: 0;
+    gap: 12px;
+  }
+
+  .eval .main-container .eval-title .eval-links a {
+    width: 100%;
+  }
+  .eval .main-container .eval-title .eval-links::before {
+    display: none;
+  }
+  .eval .last-autism {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      #9cc1ff 0%,
+      rgba(156, 193, 255, 0) 100%
+    );
+  }
+  .eval .done-autism .main-container {
+    align-items: start;
+  }
+  .eval .last-autism h2 {
+    font-size: 38px;
+    text-align: center;
+  }
+  .eval .done-autism .main-container p {
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
