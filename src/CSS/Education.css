@@ -18,7 +18,8 @@
 .education-res .title,
 .article .title,
 .medican .med-title,
-.medican-id .title {
+.medican-id .title,
+.charity .charity-title {
   text-align: right;
   background: linear-gradient(90deg, rgba(156, 193, 255, 0) 45%, #9cc1ff 100%);
   display: flex;
@@ -31,7 +32,8 @@
 .education-res .title h2,
 .article .title h2,
 .medican .med-title .main-container .title h2,
-.medican-id .title h2 {
+.medican-id .title h2,
+.charity .charity-title .main-container .title h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -40,7 +42,8 @@
 .education-res .title p,
 .article .title p,
 .medican .med-title .main-container .title p,
-.medican-id .title p {
+.medican-id .title p,
+.charity .charity-title .main-container .title p {
   font-size: 36px;
   font-weight: 500;
 }
@@ -49,7 +52,8 @@
   .education-res .title h2,
   .article .title h2,
   .medican .med-title .main-container .title h2,
-  .medican-id .title h2 {
+  .medican-id .title h2,
+  .charity .charity-title .main-container .title h2 {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 25px;
@@ -58,7 +62,8 @@
   .education-res .title p,
   .article .title p,
   .medican .med-title .main-container .title p,
-  .medican-id .title p {
+  .medican-id .title p,
+  .charity .charity-title .main-container .title p {
     font-size: 28px;
     font-weight: 500;
   }
@@ -67,13 +72,16 @@
 @media (max-width: 767px) {
   .education-res .title,
   .medican .med-title,
-  .medican-id .title {
+  .medican-id .title,
+  .charity .charity-title {
     background: white;
     text-align: center;
     width: 100%;
   }
   .article .title,
-  .medican-id .title {
+  .medican-id .title,
+  .charity .charity-title,
+  .medican .med-title {
     background: transparent;
   }
   .education-res .title h2 {
@@ -82,7 +90,8 @@
   }
 
   .education-res .title p,
-  .medican .med-title .main-container .title p {
+  .medican .med-title .main-container .title p,
+  .charity .charity-title .main-container .title p {
     font-size: 18px;
     font-weight: 500;
   }
@@ -486,18 +495,21 @@
 
 /* start medican  */
 
-.medican {
+.medican,
+.charity {
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: #f6f7fb;
 }
 
-.medican .med-title .main-container .search p {
+.medican .med-title .main-container .search p,
+.charity .charity-title .main-container .search p {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 15px;
 }
-.medican .med-title .main-container .search div {
+.medican .med-title .main-container .search div,
+.charity .charity-title .main-container .search div {
   width: 443px;
   border-radius: 9px;
   color: rgba(45, 46, 49, 1);
@@ -509,7 +521,8 @@
   transition: 0.3s;
 }
 
-.medican .med-title .main-container .search div input {
+.medican .med-title .main-container .search div input,
+.charity .charity-title .main-container .search div input {
   background-color: transparent;
   color: rgba(45, 46, 49, 1);
   padding: 20px;
@@ -521,29 +534,35 @@
   transition: 0.3s;
   background-color: rgba(184, 188, 196, 1);
 }
-.medican .med-title .main-container .search div input::placeholder {
+.medican .med-title .main-container .search div input::placeholder,
+.charity .charity-title .main-container .search div input::placeholder {
   color: rgba(45, 46, 49, 1);
 }
 
 .medican .med-title .main-container .search div input:focus,
-.medican .med-title .main-container .search div:has(input:focus) {
+.charity .charity-title .main-container .search div input:focus,
+.medican .med-title .main-container .search div:has(input:focus),
+.charity .charity-title .main-container .search div:has(input:focus) {
   background-color: white;
 }
-.medican .med-title .main-container .search div:has(input:focus) {
+.medican .med-title .main-container .search div:has(input:focus),
+.charity .charity-title .main-container .search div:has(input:focus) {
   border: 2px solid #00225c;
 }
 
-.medican .med-title .main-container .search div svg {
+.medican .med-title .main-container .search div svg,
+.charity .charity-title .main-container .search div svg {
   font-size: 30px;
   color: rgba(45, 46, 49, 1);
   cursor: pointer;
 }
-.medican .med-title .main-container .title {
+.medican .med-title .main-container .title,
+.charity .charity-title .main-container .title {
   margin: 0;
 }
 
 .medican .med-content .main-container {
-  padding: 10px;
+  /* padding: 10px; */
   padding-right: 0;
   border: 3px solid #898c93;
   border-radius: 15px;
@@ -551,6 +570,7 @@
 
 .medican .med-content .main-container section {
   flex-grow: 1;
+  padding: 10px;
 }
 .medican .med-content .main-container section .card {
   max-height: 200px;
@@ -604,6 +624,8 @@
 }
 .med-content aside {
   flex-basis: 200px;
+  padding: 10px;
+  padding-right: 0;
 }
 .med-content aside h2 {
   text-align: end;
@@ -710,33 +732,42 @@
 }
 .medican-id div.bg {
   background-color: rgba(246, 247, 251, 1) !important;
+  display: none;
 }
 @media (width < 1600px) {
-  .medican .med-title .main-container .title h2 {
+  .medican .med-title .main-container .title h2,
+  .charity .card-title .main-container .title h2 {
     font-size: 38px;
   }
-  .medican .med-title .main-container .title p {
+  .medican .med-title .main-container .title p,
+  .charity .card-title .main-container .title p {
     font-size: 28px;
   }
-  .medican .med-title .main-container .search p {
+  .medican .med-title .main-container .search p,
+  .charity .charity-title .main-container .search p {
     font-size: 38px;
   }
-  .medican .med-title .main-container .search div {
+  .medican .med-title .main-container .search div,
+  .charity .charity-title .main-container .search div {
     width: 350px;
   }
 }
 
 @media (width < 1200px) {
-  .medican .med-title .main-container .title h2 {
+  .medican .med-title .main-container .title h2,
+  .charity .card-title .main-container .title h2 {
     font-size: 38px;
   }
-  .medican .med-title .main-container .title p {
+  .medican .med-title .main-container .title p,
+  .charity .charity-title .main-container .title p {
     font-size: 24px;
   }
-  .medican .med-title .main-container .search p {
+  .medican .med-title .main-container .search p,
+  .charity .charity-title .main-container .search p {
     font-size: 38px;
   }
-  .medican .med-title .main-container .search div {
+  .medican .med-title .main-container .search div,
+  .charity .charity-title .main-container .search div {
     width: 350px;
   }
 
@@ -762,49 +793,62 @@
 }
 
 @media (width < 992px) {
-  .medican .med-title .main-container .title h2 {
+  .medican .med-title .main-container .title h2,
+  .charity .charity-title .main-container .title h2 {
     font-size: 38px;
   }
-  .medican .med-title .main-container .title p {
+  .medican .med-title .main-container .title p,
+  .charity .charity-title .main-container .title p {
     font-size: 18px;
   }
-  .medican .med-title .main-container .search p {
+  .medican .med-title .main-container .search p,
+  .charity .charity-title .main-container .search p {
     font-size: 38px;
   }
-  .medican .med-title .main-container .search div {
+  .medican .med-title .main-container .search div,
+  .charity .charity-title .main-container .search div {
     width: 300px;
   }
-  .medican .med-title .main-container .search div input {
+  .medican .med-title .main-container .search div input,
+  .charity .charity-title .main-container .search div input {
     font-size: 20px;
   }
-  .medican .med-title .main-container .search div svg {
+  .medican .med-title .main-container .search div svg,
+  .charity .charity-title .main-container .search div svg {
     font-size: 24px;
   }
 }
 @media (width < 768px) {
-  .medican {
+  .medican,
+  .charity {
     padding: 30px 0;
   }
-  .medican .med-title {
+  .medican .med-title,
+  .charity .charity-title {
     height: auto;
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .medican .med-title .main-container {
+  .medican .med-title .main-container,
+  .charity .charity-title .main-container {
     flex-direction: column-reverse;
   }
-  .medican .med-title .main-container .search {
+  .medican .med-title .main-container .search,
+  .charity .charity-title .main-container .search {
     width: 100%;
     text-align: center;
     margin-top: 30px;
   }
-  .medican .med-title .main-container .search div {
+  .medican .med-title .main-container .search div,
+  .charity .charity-title .main-container .search div {
     width: 100%;
   }
-  .medican .med-title .main-container .search p {
+  .medican .med-title .main-container .search p,
+  .charity .charity-title .main-container .search p {
     font-size: 30px;
   }
-  .medican .med-title .main-container .search div input {
+  .medican .med-title .main-container .search div input,
+  .charity .charity-title .main-container .search div input {
     font-size: 20px;
   }
   .medican .med-content {
@@ -813,6 +857,10 @@
   .medican .med-content .main-container {
     border: none;
   }
+  .medican .med-content .main-container section {
+    padding: 0;
+  }
+
   .medican .med-content .main-container section .card {
     padding: 10px;
   }
@@ -832,6 +880,10 @@
   .article .article-content .main-container,
   .medican-id .med-id-content .main-container {
     padding: 10px;
+  }
+  .medican-id div.bg {
+    background-color: rgba(246, 247, 251, 1) !important;
+    display: block;
   }
 }
 /* end medican  */
@@ -948,6 +1000,7 @@
   font-weight: 800;
   color: var(--main-color);
 }
+
 .choose-child-test .choose .child-info {
   padding-left: 73px;
   padding-right: 73px;
@@ -959,6 +1012,9 @@
   align-items: center;
   padding: 20px;
   border-radius: 28px;
+}
+.choose-child-test .choose .child-info .child:not(:last-of-type) {
+  margin-bottom: 10px;
 }
 .choose-child-test .choose .child-info .child:nth-of-type(odd) {
   background-color: var(--main-color);
@@ -1002,7 +1058,7 @@
   margin-right: 73px;
   width: 438px;
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
 }
 .choose-child-test .start a {
   height: 59px;
@@ -1062,5 +1118,45 @@
   .eval .done-autism .main-container p {
     font-size: 30px;
     font-weight: 500;
+  }
+
+  .choose-child-test .choose {
+    width: calc(100% - 40px);
+    height: 400px;
+    border-radius: 18px;
+  }
+  .choose-child-test .choose h3 {
+    font-size: 28px;
+  }
+  .choose-child-test .choose .child-info {
+    padding: 0px;
+  }
+  .choose-child-test .choose .child-info .child img {
+    width: 70px;
+    height: 70px;
+    max-width: 70px;
+  }
+  .choose-child-test .choose .child-info .child .info {
+    gap: 5px;
+  }
+  .choose-child-test .choose .child-info .child .info h2 {
+    font-size: 18px;
+  }
+  .choose-child-test .choose .child-info .child .info p {
+    font-size: 16px;
+  }
+  .choose-child-test .choose .child-info .child span.age {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 3px;
+  }
+  .choose-child-test .start {
+    width: calc(100% - 30px);
+
+    margin: 0 auto;
+    bottom: 20px;
+  }
+  .choose-child-test .start a {
+    margin: 0 auto;
   }
 }

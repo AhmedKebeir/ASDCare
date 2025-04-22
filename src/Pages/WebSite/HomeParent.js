@@ -74,7 +74,7 @@ export default function HomeParent() {
             <p className="cust-serv">Customer Service</p>
             <h2>Our Service</h2>
             <div className="serv-content">
-              <Link to="">
+              <Link to="/evaluate">
                 <div className="serv-grid">
                   <img src={require("../../Images/autism (1) 1.png")} alt="" />
                   <div>
@@ -83,11 +83,11 @@ export default function HomeParent() {
                   </div>
                 </div>
               </Link>
-              <Link to="">
+              <Link to="/medican">
                 <div className="serv-grid">
                   <img
                     src={require("../../Images/icon-park-solid_medicine-bottle 1.png")}
-                    alt=""
+                    alt="medican"
                   />
                   <div>
                     <h3>Medican and Pharmacian</h3>

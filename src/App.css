@@ -7,9 +7,9 @@
 
 @media (max-width: 767px) {
   .main-container {
-    /* width: 100%; */
-    padding-left: 15px;
-    padding-right: 15px;
+    width: calc(100% - 30px);
+    /* padding-left: 15px;
+    padding-right: 15px; */
     margin-left: 15px;
     margin-right: 15px;
   }
@@ -37,4 +37,19 @@
   .main-container {
     width: 1560px;
   }
+}
+
+.bg-section {
+  background-color: #f6f7fb;
+}
+
+.pt-50 {
+  padding-top: 50px;
+}
+.pb-50 {
+  padding-bottom: 50px;
+}
+
+.main-color {
+  color: var(--main-color);
 }

@@ -38,9 +38,19 @@ export default function Evaluate() {
                 </div>
                 <span className="age">8yo</span>
               </div>
+              <div className="child">
+                <div className="info">
+                  <img src="" alt="" />
+                  <div>
+                    <h2>Child’s Name</h2>
+                    <p>Female</p>
+                  </div>
+                </div>
+                <span className="age">8yo</span>
+              </div>
             </div>
             <div className="start">
-              <Link to="">Start the test now!</Link>
+              <Link to="/autism">Start the test now!</Link>
             </div>
           </div>
         </div>

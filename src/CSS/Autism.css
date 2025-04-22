@@ -1,0 +1,99 @@
+:root {
+  --main-color-logo: rgba(9, 54, 75, 1);
+  --second-color-logo: rgba(47, 188, 215, 1);
+  --main-color: rgba(19, 62, 135, 1);
+  --second-color: rgba(143, 173, 225, 1);
+  --second-color-hover: rgba(92, 130, 195, 1);
+  --color-hover: rgba(0, 34, 92, 1);
+  --main-font-tajawal: "Tajawal";
+}
+.autism-test {
+  padding-bottom: 40px;
+  background-color: rgba(246, 247, 251, 1);
+}
+.autism-test .main-container .autism-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.autism-test .main-container h2 {
+  font-size: 96px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--main-color);
+}
+.autism-test .main-container p {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--main-color);
+  margin-top: -20px;
+}
+
+.autism-test .main-container .start-test {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 80%;
+  margin: 50px auto;
+  border-radius: 32px;
+}
+
+.autism-test .main-container .start-test a {
+  height: 59px;
+  line-height: 59px;
+  color: white;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  width: 100%;
+  transition: 0.3s;
+  width: 440px;
+}
+.autism-test .main-container .start-test a:hover {
+  background-color: var(--color-hover);
+}
+
+.autism-test .progress {
+  width: 75%;
+  overflow: hidden;
+  height: 27px;
+  border-radius: 13.5px;
+  margin: 10px auto;
+  background-color: var(--second-color);
+  position: relative;
+}
+.autism-test .progress span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 27px;
+  width: calc(100% / 3);
+  border-radius: 13.5px;
+  background-color: var(--main-color);
+}
+@media (width < 768px) {
+  .autism-test .main-container h2 {
+    font-size: 40px;
+    margin-top: 20px;
+  }
+  .autism-test .main-container p {
+    font-size: 20px;
+    margin-top: 0;
+  }
+  .autism-test .main-container .start-test {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .autism-test .progress {
+    width: 100%;
+  }
+}

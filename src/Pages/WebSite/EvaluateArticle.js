@@ -12,7 +12,7 @@ export default function EvaluateArticle() {
       <div className="article">
         <div className="title">
           <div className="main-container flex justify-between items-center">
-            <Link to="/evaluate">
+            <Link to="/evaluate/res">
               <FontAwesomeIcon
                 icon={faLessThan}
                 className="text-3xl font-black cursor-pointer"
