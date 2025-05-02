@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export default function Evaluate() {
+export default function EvaluateTest() {
   const chooseRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +32,7 @@ export default function Evaluate() {
             <h2>Evaluate</h2>
             <p>What test you need?</p>
             <div className="eval-links">
-              <Link to="?modal=autism-checker">Autism checker test</Link>
+              <Link to="">Autism checker test</Link>
               <Link to="">Autism level test</Link>
             </div>
           </div>
@@ -47,38 +47,36 @@ export default function Evaluate() {
             <p>There isn't any test you've done before.</p>
           </div>
         </div>
-        {showModal && (
-          <div className="choose-child-test">
-            <div className="choose" ref={chooseRef}>
-              <h3>Choose Child for test</h3>
-              <div className="child-info">
-                <div className="child">
-                  <div className="info">
-                    <img src="" alt="" />
-                    <div>
-                      <h2>Child’s Name</h2>
-                      <p>Female</p>
-                    </div>
+        <div className="choose-child-test">
+          <div className="choose" ref={chooseRef}>
+            <h3>Choose Child for test</h3>
+            <div className="child-info">
+              <div className="child">
+                <div className="info">
+                  <img src="" alt="" />
+                  <div>
+                    <h2>Child’s Name</h2>
+                    <p>Female</p>
                   </div>
-                  <span className="age">8yo</span>
                 </div>
-                <div className="child">
-                  <div className="info">
-                    <img src="" alt="" />
-                    <div>
-                      <h2>Child’s Name</h2>
-                      <p>Female</p>
-                    </div>
-                  </div>
-                  <span className="age">8yo</span>
-                </div>
+                <span className="age">8yo</span>
               </div>
-              <div className="start">
-                <Link to="/autism">Start the test now!</Link>
+              <div className="child">
+                <div className="info">
+                  <img src="" alt="" />
+                  <div>
+                    <h2>Child’s Name</h2>
+                    <p>Female</p>
+                  </div>
+                </div>
+                <span className="age">8yo</span>
               </div>
             </div>
+            <div className="start">
+              <Link to="/autism">Start the test now!</Link>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </>
   );

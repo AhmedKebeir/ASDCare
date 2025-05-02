@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/signup/continue" element={<AccountType />} />
+        <Route path="/account-type" element={<AccountType />} />
         <Route path="/signup/childauth" element={<ChildAuth />} />
         <Route path="/signup/doctor" element={<DoctorAuth />} />
         <Route path="/login" element={<WelcomeSlideshow />} />

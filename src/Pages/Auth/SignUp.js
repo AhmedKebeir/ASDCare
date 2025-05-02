@@ -3,7 +3,7 @@ import "./Sign.css";
 import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
 import { useState } from "react";
 import axios from "axios";
-import { BaseUrl, SIGNUP } from "../../Api/Api";
+import { BaseUrl, SIGNUPPARENT } from "../../Api/Api";
 import Cookie from "cookie-universal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,10 @@ export default function SignUp() {
     phone: "",
     password: "",
     confirmPassword: "",
+    age: "",
+    address: "ismailia",
   });
+  console.log(form);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -50,7 +53,7 @@ export default function SignUp() {
         form.password === form.confirmPassword &&
         isValidEgyptianPhone(form.phone)
       ) {
-        const res = await axios.post(`${BaseUrl}/${SIGNUP}`, form);
+        const res = await axios.post(`${BaseUrl}/${SIGNUPPARENT}`, form);
 
         SetCookieData({
           userName: res.data.data.userName,
@@ -133,44 +136,56 @@ export default function SignUp() {
                 required
               />
             </div>
-            <div className="password">
-              <input
-                type={isText ? "true" : "password"}
-                id="pasaword"
-                placeholder="Password"
-                name="password"
-                onChange={handleChange}
-                value={form.password}
-                required
-              />
-              {isText === false ? (
-                <FontAwesomeIcon
-                  icon={faEye}
-                  onClick={() => setIsText((prev) => !prev)}
+            <div className="new-details flex items-center ">
+              <div className="password">
+                <input
+                  type={isText ? "true" : "password"}
+                  id="pasaword"
+                  placeholder="Password"
+                  name="password"
+                  onChange={handleChange}
+                  value={form.password}
+                  required
                 />
+                {isText === false ? (
+                  <FontAwesomeIcon
+                    icon={faEyeSlash}
+                    onClick={() => setIsText((prev) => !prev)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    onClick={() => setIsText((prev) => !prev)}
+                  />
+                )}
+              </div>
+              <div className="confirm-password">
+                <input
+                  type="password"
+                  id="confirmpasaword"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  onChange={handleChange}
+                  value={form.confirmPassword}
+                  required
+                />
+              </div>
+              {accept && form.confirmPassword !== form.password ? (
+                <p className="err">Confirm password not match password!</p>
               ) : (
-                <FontAwesomeIcon
-                  icon={faEyeSlash}
-                  onClick={() => setIsText((prev) => !prev)}
-                />
+                ""
               )}
-            </div>
-            <div className="confirm-password">
               <input
-                type="password"
-                id="confirmpasaword"
-                placeholder="Confirm Password"
-                name="confirmPassword"
+                type="number"
+                id="age"
+                placeholder="Your Age"
+                name="age"
+                value={form.age}
                 onChange={handleChange}
-                value={form.confirmPassword}
                 required
               />
             </div>
-            {accept && form.confirmPassword !== form.password ? (
-              <p className="err">Confirm password not match password!</p>
-            ) : (
-              ""
-            )}
+
             <div className="gender">
               <div className="male">
                 <input

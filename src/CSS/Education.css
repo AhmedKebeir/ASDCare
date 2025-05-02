@@ -33,7 +33,8 @@
 .article .title h2,
 .medican .med-title .main-container .title h2,
 .medican-id .title h2,
-.charity .charity-title .main-container .title h2 {
+.charity .charity-title .main-container .title h2,
+.comments-session .title h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -43,7 +44,8 @@
 .article .title p,
 .medican .med-title .main-container .title p,
 .medican-id .title p,
-.charity .charity-title .main-container .title p {
+.charity .charity-title .main-container .title p,
+.comments-session .title p {
   font-size: 36px;
   font-weight: 500;
 }
@@ -53,7 +55,8 @@
   .article .title h2,
   .medican .med-title .main-container .title h2,
   .medican-id .title h2,
-  .charity .charity-title .main-container .title h2 {
+  .charity .charity-title .main-container .title h2,
+  .comments-session .title h2 {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 25px;
@@ -63,7 +66,8 @@
   .article .title p,
   .medican .med-title .main-container .title p,
   .medican-id .title p,
-  .charity .charity-title .main-container .title p {
+  .charity .charity-title .main-container .title p,
+  .comments-session .title p {
     font-size: 28px;
     font-weight: 500;
   }
@@ -81,7 +85,8 @@
   .article .title,
   .medican-id .title,
   .charity .charity-title,
-  .medican .med-title {
+  .medican .med-title,
+  .comments-session .title {
     background: transparent;
   }
   .education-res .title h2 {
@@ -98,7 +103,9 @@
   .article .title h2,
   .article .title p,
   .medican-id .title h2,
-  .medican-id .title p {
+  .medican-id .title p,
+  .comments-session .title h2,
+  .comments-session .title p {
     display: none;
   }
 }

@@ -13,6 +13,12 @@ import AutismTest from "./Pages/WebSite/AutismTest";
 import ChildProgress from "./Pages/WebSite/ChildProgress";
 import Charity from "./Pages/WebSite/Charity";
 import ChartiyId from "./Pages/WebSite/CharityId";
+import HomeDoctor from "./Pages/WebSite/DoctorPages/HomeDoctor";
+import AllUpcomingSessions from "./Pages/WebSite/DoctorPages/AllUpcomingSessions";
+import AllSessionsDone from "./Pages/WebSite/DoctorPages/AllSessionsDone";
+import CommentsForSession from "./Pages/WebSite/DoctorPages/CommentsForSession";
+import AllRegisteredChilds from "./Pages/WebSite/DoctorPages/AllRegisteredChilds";
+import Childregistered from "./Pages/WebSite/DoctorPages/Childregistered";
 
 export default function WebSiteRoutes() {
   return (
@@ -32,6 +38,25 @@ export default function WebSiteRoutes() {
 
         <Route path="/medican" element={<Medican />} />
         <Route path="/medican/:id" element={<MedicanId />} />
+
+        <Route path="/doctor" element={<HomeDoctor />} />
+        <Route
+          path="/doctor/allupcomingsessions"
+          element={<AllUpcomingSessions />}
+        />
+        <Route path="/doctor/allsessionsdone" element={<AllSessionsDone />} />
+        <Route
+          path="/doctor/allsessionsdone/:id"
+          element={<CommentsForSession />}
+        />
+        <Route
+          path="/doctor/registeredchilds"
+          element={<AllRegisteredChilds />}
+        />
+        <Route
+          path="/doctor/registeredchilds/:id"
+          element={<Childregistered />}
+        />
       </Routes>
       <Footer />
     </>

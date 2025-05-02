@@ -108,6 +108,84 @@
   color: var(--main-color);
 }
 
+.child-progress .prog-content {
+  border: 3px solid #898c93;
+  padding: 30px;
+  border-radius: 30px;
+}
+.child-progress .prog-content div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.child-progress .prog-content span {
+  position: relative;
+}
+.child-progress .prog-content span input {
+  opacity: 0;
+  position: absolute;
+}
+.child-progress .prog-content span label {
+  background-color: var(--second-color);
+  color: #2d2e31;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  height: 52px;
+  border-radius: 9px;
+  width: 250px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.child-progress .prog-content span input:checked + label {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.prog-main-content .doc-boxs {
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+}
+.prog-main-content .doc-boxs .doc-box {
+  background-color: #ccdfff;
+  padding: 15px;
+  border-radius: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+.prog-main-content .doc-boxs .doc-box img {
+  width: 78px;
+  max-width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background-color: white;
+}
+.prog-main-content .doc-boxs .doc-box .doc-title {
+  display: block;
+}
+.prog-main-content .doc-boxs .doc-box .doc-title h3 {
+  color: var(--main-color);
+  font-size: 36px;
+  font-weight: 800;
+}
+.prog-main-content .doc-boxs .doc-box .doc-title h3 span {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: #898c93;
+
+  font-family: "SF Pro Display";
+}
+.prog-main-content .doc-boxs .doc-box .doc-title p {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--main-color);
+  margin-top: -10px;
+}
 @media (width < 1500px) {
   .child-content .doctor-list .swiper-slide {
     font-size: 24px;

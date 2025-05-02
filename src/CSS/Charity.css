@@ -292,6 +292,115 @@
   background-color: var(--color-hover);
 }
 
+/* char-form */
+.char-form {
+  padding-top: 40px;
+}
+.char-form > h2 {
+  text-align: center;
+  font-size: 76px;
+  font-weight: 700;
+}
+.char-form .donate-theam {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: 20px;
+  border: 3px solid var(--main-color);
+  border-radius: 15px;
+}
+.char-form .donate-theam h3 {
+  font-size: 36px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.char-form .donate-theam h3 span {
+  display: flex;
+  align-items: center;
+  font-size: 64px;
+}
+.char-form .donate-theam > span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+
+  position: relative;
+  display: flex;
+  /* z-index: 1; */
+}
+.char-form .donate-theam > span::before {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-color);
+  border: 3px solid white;
+  /* z-index: 2; */
+}
+.char-form form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+.char-form form input {
+  padding: 22px 20px;
+  background-color: #b8bcc4;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  height: 59px;
+  border: 2px solid #b8bcc4;
+  font-family: "Tajawal";
+  transition: 0.3s;
+}
+.char-form form div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.char-form form div input {
+  width: calc((100% / 2) - 40px);
+}
+
+.char-form form button {
+  width: 50%;
+  height: 59px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--main-color);
+  color: white;
+  padding: 22px;
+  transition: 0.3s;
+  border-radius: 9px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.char-form form button:hover {
+  background-color: var(--color-hover);
+}
+.char-form form input:focus {
+  background-color: white;
+  border: 2px solid #00225c;
+}
 @media (width < 1600px) {
   .charity-id .main-container .char-content .title-char h2 {
     font-size: 48px;
@@ -394,5 +503,29 @@
     width: 100% !important;
     font-size: 18px;
     font-weight: 500;
+  }
+  .char-form h2 {
+    font-size: 32px;
+  }
+  .char-form .donate-theam {
+    display: none;
+  }
+  .char-form form {
+    width: 100%;
+    padding: 30px 15px;
+  }
+  .char-form form input {
+    font-size: 20px;
+    height: 39px;
+  }
+  .char-form form div {
+    gap: 5px;
+  }
+  .char-form form div input {
+    width: 50%;
+  }
+  .char-form form button {
+    width: 100%;
+    font-size: 18px;
   }
 }

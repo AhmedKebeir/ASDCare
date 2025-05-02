@@ -70,12 +70,19 @@
   color: rgba(45, 46, 49, 1);
   border-radius: 6px;
   border: 2px solid #b8bcc4;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   font-family: "Tajawal";
   transition: 0.3s;
 }
-
+.form form .new-details {
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-top: 5px;
+}
 .form form .password {
   background-color: #b8bcc4;
   color: rgba(45, 46, 49, 1);
@@ -83,12 +90,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  width: calc(50% - 2.5px);
+
   transition: 0.3s;
   padding-right: 10px;
   border: 2px solid #b8bcc4;
+  height: 59px;
+}
+.form form .confirm-password {
+  width: calc(50% - 2.5px);
+  height: 59px;
+}
+.form form .confirm-password input {
+  width: 100%;
+  /* font-size: 20px; */
+  height: 59px;
+  margin: 0;
 }
 .form form .password input {
   margin: 0;
@@ -97,7 +114,7 @@
 .form form .password svg {
   cursor: pointer;
   color: rgba(45, 46, 49, 1);
-  font-size: 24px;
+  font-size: 18px;
 }
 .form form input:focus,
 .password:has(input:focus) {
@@ -351,7 +368,9 @@ p.page-opt {
 }
 
 /* media  */
-
+.form form .new-details p.err {
+  width: 100% !important;
+}
 @media (max-width: 767px) {
   .sign .container {
     flex-direction: column-reverse;
@@ -407,12 +426,12 @@ p.page-opt {
   .form form input {
     width: 80%;
 
-    font-size: 18px;
+    font-size: 16px;
   }
   .form form .password svg {
-    font-size: 18px;
+    font-size: 16px;
   }
-  .form form .password {
+  .form form .new-details {
     width: 80%;
   }
 
@@ -427,6 +446,7 @@ p.page-opt {
     margin-bottom: 5px;
     font-size: 16px;
   }
+
   .form form .forget {
     width: 80%;
   }
@@ -519,9 +539,9 @@ p.page-opt {
   .form form input {
     width: 80%;
 
-    font-size: 18px;
+    font-size: 16px;
   }
-  .form form .password {
+  .form form .new-details {
     width: 80%;
   }
   .form form p.err {
@@ -536,7 +556,7 @@ p.page-opt {
     font-size: 16px;
   }
   .form form .password svg {
-    font-size: 18px;
+    font-size: 16px;
   }
   .form form .forget {
     width: 80%;
@@ -631,10 +651,10 @@ p.page-opt {
   .form form input {
     width: 70%;
 
-    font-size: 20px;
+    font-size: 16px;
   }
 
-  .form form .password {
+  .form form .new-details {
     width: 70%;
   }
   .form form p.err {
@@ -649,7 +669,7 @@ p.page-opt {
     font-size: 16px;
   }
   .form form .password svg {
-    font-size: 20px;
+    font-size: 18px;
   }
   .form form .forget {
     width: 70%;
@@ -789,10 +809,13 @@ p.page-opt {
   .form form input {
     width: 60%;
 
-    font-size: 24px;
+    font-size: 20px;
+  }
+  .form form .new-details {
+    width: 60%;
   }
   .form form .password {
-    width: 60%;
+    width: calc(50% - 2.5px);
   }
   .form form p.err {
     color: red;

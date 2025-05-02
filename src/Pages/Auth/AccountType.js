@@ -13,7 +13,7 @@ export default function AccountType() {
   function handleSubmit(e) {
     e.preventDefault();
     if (type !== "") {
-      if (type === "parent") nav("/signup/childauth", { replace: false });
+      if (type === "parent") nav("/signup", { replace: false });
       else nav("/signup/doctor", { replace: false });
     }
   }

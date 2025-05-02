@@ -40,7 +40,7 @@ export default function Header() {
         </ul>
         <div className="auth-header">
           <Link to="/login">Log In</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/account-type">Sign Up</Link>
         </div>
       </div>
     </div>
