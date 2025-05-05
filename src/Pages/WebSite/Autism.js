@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../CSS/Autism.css";
 
 export default function Autism() {
+  const params = useParams();
+  console.log(params.content);
   return (
     <>
       <div className="autism-test">
@@ -11,7 +13,13 @@ export default function Autism() {
             <p>An autism test checks for ASD traits.</p>
           </div>
           <div className="start-test">
-            <Link to="test">Start the test now!</Link>
+            <Link
+              to={`${
+                params.content === "checker" ? "/autism/test" : "/test/level"
+              }`}
+            >
+              Start the test now!
+            </Link>
           </div>
         </div>
       </div>

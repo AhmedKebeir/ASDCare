@@ -8,8 +8,12 @@ export default function Evaluate() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(location.search);
+
   const query = new URLSearchParams(location.search);
-  const showModal = query.get("modal") === "autism-checker";
+  const showModal =
+    query.get("modal") === "autism-checker" ||
+    query.get("modal") === "autism-level";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,7 +40,7 @@ export default function Evaluate() {
             <p>What test you need?</p>
             <div className="eval-links">
               <Link to="?modal=autism-checker">Autism checker test</Link>
-              <Link to="">Autism level test</Link>
+              <Link to="?modal=autism-level">Autism level test</Link>
             </div>
           </div>
         </div>
@@ -77,7 +81,15 @@ export default function Evaluate() {
                 </div>
               </div>
               <div className="start">
-                <Link to="/autism">Start the test now!</Link>
+                <Link
+                  to={`${
+                    location.search === "?modal=autism-level"
+                      ? "/autism/level"
+                      : "/autism/checker"
+                  }`}
+                >
+                  Start the test now!
+                </Link>
               </div>
             </div>
           </div>

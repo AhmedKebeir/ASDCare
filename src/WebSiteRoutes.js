@@ -20,6 +20,7 @@ import CommentsForSession from "./Pages/WebSite/DoctorPages/CommentsForSession";
 import AllRegisteredChilds from "./Pages/WebSite/DoctorPages/AllRegisteredChilds";
 import Childregistered from "./Pages/WebSite/DoctorPages/Childregistered";
 import AutismResult from "./Pages/WebSite/AutismTestResult";
+import AutismLevel from "./Pages/WebSite/AutismLevel";
 
 export default function WebSiteRoutes() {
   return (
@@ -29,8 +30,9 @@ export default function WebSiteRoutes() {
         <Route path="" element={<HomePage />} />
         <Route path="/homeparent" element={<HomeParent />} />
         <Route path="/evaluate" element={<Evaluate />} />
-        <Route path="/autism" element={<Autism />} />
+        <Route path="/autism/:content" element={<Autism />} />
         <Route path="/autism/test" element={<AutismTest />} />
+        <Route path="/test/level" element={<AutismLevel />} />
         <Route path="/autism/test/result" element={<AutismResult />} />
 
         <Route path="/evaluate/res" element={<EducationRsources />} />
