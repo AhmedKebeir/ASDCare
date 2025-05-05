@@ -36,16 +36,26 @@ export default function Login() {
         email: res.data.data.email,
         userName: res.data.data.userName,
         role: res.data.data.role,
-        token: res.data.data.toknn,
+        token: res.data.token,
       });
       setLoading(false);
-      console.log(res.data.data);
+      cookie.set(
+        "userDetails",
+        JSON.stringify({
+          userName: res.data.data.userName,
+          role: res.data.data.role,
+          id: res.data.data._id,
+          token: res.data.token,
+        })
+      );
+      nav("/homeparent", { replace: false });
+      setLoading(false);
     } catch (err) {
       setLoading(false);
       setErr("email or password is faild!");
     }
   }
-  console.log(userDetails);
+
   return (
     <div className="sign">
       <div className="container">

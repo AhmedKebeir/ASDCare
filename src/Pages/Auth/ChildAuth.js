@@ -14,8 +14,7 @@ export default function ChildAuth() {
     childName: "",
     birthday: "",
     gender: "",
-    address: "",
-    user: "",
+    age: 10,
   });
 
   const cookie = Cookie();
@@ -47,21 +46,23 @@ export default function ChildAuth() {
   async function handleSubmit(e) {
     setAccept(true);
     e.preventDefault();
-    setForm({ ...form, user: parsedUser.id });
+    // setForm({ ...form, user: parsedUser.id });
 
     try {
       setLoading(true);
       if (
         form.childName !== "" &&
         isValidDate(form.birthday) &&
-        form.address !== "" &&
         form.gender !== ""
       ) {
-        const res = await axios.post(`${BaseUrl}/${CREATEPARENT}`, form, {
-          headers: { Authorization: "Bearer " + parsedUser.token },
+        const res = await axios.post(`${BaseUrl}/childs`, form, {
+          headers: {
+            Authorization: "Bearer " + parsedUser.token,
+            "Content-Type": "application/json",
+          },
         });
-        // console.log(res.status);
-        if (res.status === 201) {
+        console.log(res.status);
+        if (res.status === 200) {
           setLoading(false);
           nav("/homeparent");
         }
@@ -111,14 +112,14 @@ export default function ChildAuth() {
               ""
             )}
 
-            <input
+            {/* <input
               type="text"
-              name="address"
-              id="address"
-              placeholder="Address"
+              name="age"
+              id="age"
+              placeholder="Age"
               onChange={handleChange}
               required
-            />
+            /> */}
             <div className="gender-child">
               <p>Child's Gender:</p>
               <div className="male">

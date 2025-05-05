@@ -75,7 +75,7 @@ export default function OPT() {
       setLoading(false);
 
       console.log("✅ OTP تم التحقق بنجاح!", response.data);
-      nav("/homeparent", { replace: false });
+      nav("/signup/childauth", { replace: false });
     } catch (error) {
       setLoading(false);
       console.error(

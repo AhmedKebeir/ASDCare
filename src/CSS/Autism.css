@@ -75,9 +75,138 @@
   top: 0;
   left: 0;
   height: 27px;
-  width: calc(100% / 3);
+  width: calc(1 / 14 * 100%);
   border-radius: 13.5px;
   background-color: var(--main-color);
+}
+
+.autism-test .main-container .box-test {
+  width: 75%;
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 30px;
+  text-align: center;
+  border-radius: 32px;
+}
+.autism-test .main-container .box-test h3 {
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 100px;
+}
+.autism-test .main-container .box-test .other-ques {
+  width: 90%;
+  margin: 0 auto 100px auto;
+}
+.autism-test .main-container .box-test .other-ques input {
+  outline: none;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: #898c93;
+  width: 80%;
+  border-radius: 32px;
+  padding: 10px 20px;
+  border: 1px solid var(--Background-Background-200, #5a5c62);
+}
+
+.autism-test .btn-test {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+.autism-test .btn-test button {
+  width: 440px;
+  background-color: var(--main-color);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 9px;
+  transition: 0.3s;
+  height: 59px;
+}
+.autism-test .btn-test button:first-of-type {
+  background-color: #8fade1;
+  color: #2d2e31;
+}
+.autism-test .btn-test button:first-of-type:hover {
+  background-color: var(--second-color-hover);
+}
+.autism-test .btn-test button:last-of-type {
+  color: white;
+}
+.autism-test .btn-test button:last-of-type :hover {
+  background-color: var(--color-hover);
+}
+.autism-test .age-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  gap: 40px;
+}
+.autism-test .age-child p {
+  margin: 0;
+  color: #000;
+}
+.autism-test .age-child button:first-of-type {
+  transform: scale(1.4);
+  margin-top: 10px;
+}
+.autism-test .age-child button:last-of-type {
+  transform: rotate(180deg) scale(1.4);
+  /* margin-top: -10px; */
+}
+.autism-test .sex-child {
+  margin-bottom: 50px;
+}
+.autism-test .sex-child div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.autism-test .sex-child div label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  border-radius: 20px;
+  background-color: #ccdfff;
+  height: 65px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--main-color);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.autism-test .sex-child div input {
+  position: absolute;
+  opacity: 0;
+}
+.autism-test .sex-child div input:checked + label {
+  background-color: var(--main-color);
+  color: white;
+}
+@media (width <1200px) {
+  .autism-test .main-container .box-test .other-ques {
+    width: 100%;
+  }
+  .autism-test .main-container .box-test .other-ques input {
+    width: 100%;
+  }
+  .autism-test .btn-test {
+    gap: 10px;
+    justify-content: space-between;
+  }
 }
 @media (width < 768px) {
   .autism-test .main-container h2 {
@@ -95,5 +224,339 @@
 
   .autism-test .progress {
     width: 100%;
+  }
+
+  .autism-test .main-container .box-test {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .autism-test .main-container .box-test h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  .autism-test .main-container .box-test .other-ques {
+    margin-bottom: 30px;
+  }
+  .autism-test .main-container .box-test .other-ques input {
+    width: 100%;
+    font-size: 20px;
+  }
+  .autism-test .main-container .box-test .btn-test {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .autism-test .main-container .box-test .btn-test button {
+    width: 100%;
+  }
+  .autism-test .age-child {
+    margin-top: 50px;
+  }
+
+  .autism-test .age-child button:first-of-type {
+    transform: scale(1);
+    margin-top: 5px;
+  }
+  .autism-test .age-child button:last-of-type {
+    transform: rotate(180deg) scale(1);
+    /* margin-top: -10px; */
+  }
+  .autism-test .sex-child div label {
+    width: 70%;
+    font-size: 24px;
+  }
+}
+
+/* autism result  */
+
+.autism-result .title {
+  background: var(--linear-gradient-left);
+}
+
+.autism-result .title h2 {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+
+.autism-result > .main-container .result-notes section {
+  padding-top: 50px;
+}
+.autism-result > .main-container .result-notes section h3 {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+
+.autism-result > .main-container .result-notes section ul {
+  list-style: disc;
+  margin-left: 35px;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--main-color);
+}
+.autism-result > .main-container .result-notes aside > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  position: relative;
+}
+.autism-result > .main-container .result-notes aside span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-color: #f6f7fb;
+  font-size: 130px;
+  font-weight: 500;
+  position: relative;
+
+  margin: -90px auto 30px;
+  /* z-index: ; */
+}
+
+.autism-result > .main-container .result-notes aside span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  /* background-color: #f6f7fb; */
+  /* background: linear-gradient(180deg, #000faf 0%, #000649 100%); */
+  z-index: -1;
+}
+
+.level.level-1 {
+  color: #010ea8;
+}
+.level.level-2 {
+  color: #493000;
+}
+.level.level-3 {
+  color: #4f0001;
+}
+.level.level-1::before {
+  /* content: "Mild - "; */
+  background: linear-gradient(180deg, #000faf 0%, #000649 100%);
+  box-shadow: 0px 4px 15.4px 2px rgba(0, 0, 0, 0.11) inset;
+}
+.level.level-2::before {
+  background: linear-gradient(180deg, #af7200 0%, #493000 100%);
+  box-shadow: 0px 8px 15.2px 2px rgba(0, 0, 0, 0.45) inset;
+}
+.level.level-3::before {
+  background: linear-gradient(180deg, #b80003 0%, #4f0001 100%);
+  box-shadow: 0px 4px 15.4px 2px rgba(0, 0, 0, 0.52) inset;
+}
+.autism-result > .main-container .result-notes aside h3 {
+  text-align: center;
+  /* margin-right: 50px; */
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--main-color);
+}
+.autism-result > .main-container .recommend-doctor {
+  margin-top: 30px;
+}
+
+.autism-result > .main-container .recommend-doctor h3 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+.autism-result > .main-container .recommend-doctor .doc-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 40px;
+}
+.autism-result > .main-container .recommend-doctor .doc-box div {
+  background-color: #d9d9d9;
+  border-radius: 24px;
+  height: 230px;
+}
+
+@media (width<1600px) {
+  .autism-result > .main-container .result-notes aside span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+
+    font-size: 96px;
+
+    margin: -90px auto 30px;
+    /* z-index: ; */
+  }
+
+  .autism-result > .main-container .result-notes aside span::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* background-color: #f6f7fb; */
+    /* background: linear-gradient(180deg, #000faf 0%, #000649 100%); */
+    z-index: -1;
+  }
+  .autism-result > .main-container .result-notes aside h3 {
+    text-align: center;
+
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--main-color);
+  }
+}
+
+@media (width<1200px) {
+  .autism-result > .main-container .result-notes aside span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+
+    font-size: 96px;
+
+    margin: -90px auto 30px;
+    /* z-index: ; */
+  }
+
+  .autism-result > .main-container .result-notes aside span::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* background-color: #f6f7fb; */
+    background: linear-gradient(180deg, #000faf 0%, #000649 100%);
+    z-index: -1;
+  }
+  .autism-result > .main-container .result-notes aside h3 {
+    text-align: center;
+
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--main-color);
+  }
+  .autism-result > .main-container .result-notes section h3 {
+    font-size: 32px;
+  }
+  .autism-result > .main-container .result-notes section ul {
+    font-size: 24px;
+  }
+}
+@media (width < 992px) {
+  .autism-result .title h2 {
+    font-size: 40px;
+  }
+  .autism-result > .main-container .result-notes section h3 {
+    font-size: 28px;
+  }
+  .autism-result > .main-container .result-notes section ul {
+    font-size: 18px;
+  }
+
+  .autism-result > .main-container .result-notes aside span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+
+    font-size: 80px;
+
+    margin: -50px auto 30px;
+    /* z-index: ; */
+  }
+
+  .autism-result > .main-container .result-notes aside span::before {
+    width: 130px;
+    height: 130px;
+  }
+  .autism-result > .main-container .result-notes aside h3 {
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--main-color);
+  }
+  .autism-result > .main-container .recommend-doctor h3 {
+    font-size: 28px;
+  }
+}
+
+@media (width < 768px) {
+  .autism-result {
+    padding: 20px 0;
+  }
+  .autism-result .title {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      #9cc1ff 0%,
+      rgba(156, 193, 255, 0) 100%
+    );
+  }
+  .autism-result .title h2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .autism-result > .main-container .result-notes {
+    flex-direction: column-reverse;
+  }
+  .autism-result > .main-container .result-notes aside .child-level,
+  .autism-result > .main-container .result-notes aside {
+    width: 100%;
+  }
+  .autism-result > .main-container .result-notes aside .child-level div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .autism-result > .main-container .result-notes aside span {
+    margin: 0px 0 0 10px;
+    width: 70px;
+    height: 70px;
+    font-size: 48px;
+  }
+  .autism-result > .main-container .result-notes aside span::before {
+    width: 90px;
+    height: 90px;
+  }
+  .autism-result > .main-container .result-notes aside h3 {
+    font-size: 24px;
+  }
+  .autism-result > .main-container .result-notes section {
+    padding-top: 30px;
+  }
+  .autism-result > .main-container .result-notes section h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .autism-result > .main-container .result-notes section ul {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  .autism-result > .main-container .recommend-doctor h3 {
+    font-size: 24px;
+    text-align: center;
   }
 }
