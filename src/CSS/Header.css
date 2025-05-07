@@ -49,7 +49,7 @@
 
 .nav-bar .main-container .header-links {
   list-style: none;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 37px;
@@ -88,7 +88,49 @@
   cursor: pointer;
   transition: 0.3s;
 }
+.nav-bar .user-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-bar .user-box h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d2e31;
+}
+.nav-bar .user-box svg {
+  font-size: 40px;
+  background-color: white;
+}
+@media (width < 992px) {
+  .nav-bar {
+    height: auto;
+  }
+  .nav-bar .main-container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav-bar .main-container .logo {
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .nav-bar .main-container .header-links {
+    -ms-flex-order: 3;
+    order: 3;
+    align-self: center;
+    width: 100%;
+  }
+  .nav-bar .main-container > a {
+    -ms-flex-order: 2;
+    order: 2;
+  }
+  .nav-bar .main-container .auth-header {
+    order: 4;
+  }
+}
 @media (max-width: 767px) {
+  .nav-bar .main-container {
+  }
   .main-container .logo {
     display: flex;
     align-items: center;
@@ -98,26 +140,63 @@
   .main-container .logo a {
     display: flex;
     align-items: center;
+    width: auto;
   }
   .main-container .logo h1 {
     margin-top: 15px;
   }
   .nav-bar {
-    height: 144px;
-    padding: 10px 0;
+    height: auto;
+    padding: 5px 0;
+    position: relative;
+    z-index: 1;
+    overflow: visible !important;
   }
   .nav-bar .main-container {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     /* padding: 0 20px; */
     width: 100%;
+    flex-wrap: wrap;
+  }
+  .nav-bar .main-container .logo {
+    width: auto;
   }
   .nav-bar .main-container .auth-header {
     width: 100%;
   }
   .nav-bar .main-container .auth-header a {
     width: calc(100%);
+  }
+  .nav-bar .main-container .header-links {
+    position: absolute;
+    flex-direction: column;
+    background-color: #e7ebf4;
+    top: 101.5%;
+    left: 0;
+    z-index: 1;
+    gap: 1px;
+    transition: 0.3s;
+  }
+  .nav-bar .main-container .header-links li {
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 3px solid #bfbfbf;
+  }
+  .nav-bar .main-container .header-links li a {
+    color: var(--main-color);
+    font-size: 32px;
+    font-weight: 800;
+  }
+  .nav-bar .main-container .header-links button {
+    color: #630000;
+    width: 100%;
+    text-align: start;
+  }
+  .nav-bar .main-container > svg {
+    order: 4;
+    font-size: 40px;
   }
 }
 .nav-bar .main-container .auth-header a:first-of-type {
