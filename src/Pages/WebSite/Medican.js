@@ -1,8 +1,18 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getmedicans } from "../../store/actions/medican-actions";
 
 export default function Medican() {
+  const dispatch = useDispatch();
+  const medican = useSelector((state) => state.medicans?.medicans || []);
+  console.log(medican);
+
+  useEffect(() => {
+    dispatch(getmedicans());
+  }, [dispatch]);
   return (
     <div className="medican">
       <div className="med-title">

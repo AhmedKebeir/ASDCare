@@ -433,7 +433,7 @@
   font-family: "Tajawal";
 }
 
-.card-list .card-link button {
+.card-list .card-link .card-button {
   margin-left: 25px;
   margin-right: 25px;
   width: calc(100% - 50px);
@@ -452,6 +452,10 @@
   justify-content: center;
   height: 15px;
   cursor: pointer;
+  transition: 0.3s;
+}
+.card-list .card-link .card-button:hover {
+  background-color: var(--color-hover);
 }
 
 .back-image-2 {

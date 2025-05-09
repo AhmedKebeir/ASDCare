@@ -425,6 +425,7 @@ p.page-opt {
 
   .form form input {
     width: 80%;
+    padding-right: 6px;
 
     font-size: 16px;
   }

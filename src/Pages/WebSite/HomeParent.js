@@ -4,7 +4,7 @@ import "../../CSS/HomeParent.css";
 import Footer from "../../Components/WebSite/Footer";
 import { Link } from "react-router-dom";
 
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,6 +14,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { WindowSize } from "../../Context/WindowWidthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getuser } from "../../store/actions/user-actions";
+import { getdoctors } from "../../store/actions/doctors-actions";
 
 export default function HomeParent() {
   const WindowWidth = useContext(WindowSize);
@@ -43,13 +46,45 @@ export default function HomeParent() {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user?.children?.data?.data || []);
+
+  const doctors = useSelector(
+    (state) => state.doctors?.doctors?.data?.data || []
+  );
+  console.log(doctors);
+
+  useEffect(() => {
+    dispatch(getuser());
+    dispatch(getdoctors());
+  }, [dispatch]);
+
+  const showDoctors = doctors.map((doctor, index) => (
+    <SwiperSlide className="card-item">
+      <Link to={`${doctor.id}`} className="card-link">
+        <img src="" alt="" className="card-image" />
+
+        <div>
+          <h2 className="card-title">{doctor?.parent?.userName}</h2>
+          <span>
+            <FontAwesomeIcon icon={faStar} />
+            {doctor.ratingQuantity}
+          </span>
+        </div>
+        <p className="badge">Department Name</p>
+        <Link className="card-button">Book Now!</Link>
+      </Link>
+    </SwiperSlide>
+  ));
+
+  // console.log(user);
   return (
     <>
       <div className="Welcome-page-parent">
         <div className="main-container">
           <section>
             <div className="title">
-              <h2>Hello, Name!</h2>
+              <h2>Hello, {user?.userName}!</h2>
               <p>What are you looking for?</p>
             </div>
             <div className="search-box">
@@ -104,7 +139,7 @@ export default function HomeParent() {
                   </div>
                 </div>
               </Link>
-              <Link to="">
+              <Link to="/charity">
                 <div className="serv-grid">
                   <img
                     src={require("../../Images/volunteering 1 1.png")}
@@ -116,7 +151,7 @@ export default function HomeParent() {
                   </div>
                 </div>
               </Link>
-              <Link to="">
+              <Link to="/educational-resources">
                 <div className="serv-grid">
                   <img src={require("../../Images/Group 35.png")} alt="" />
                   <div>
@@ -125,7 +160,7 @@ export default function HomeParent() {
                   </div>
                 </div>
               </Link>
-              <Link to="">
+              <Link to="/child-progress">
                 <div className="serv-grid">
                   <img src={require("../../Images/Group 34 1.png")} alt="" />
                   <div>
@@ -164,66 +199,7 @@ export default function HomeParent() {
               virtual
               className="mySwiper card-list"
             >
-              <SwiperSlide className="card-item">
-                <Link to="" className="card-link">
-                  <img src="" alt="" className="card-image" />
-
-                  <div>
-                    <h2 className="card-title">Doctor Name</h2>
-                    <span>
-                      <FontAwesomeIcon icon={faStar} />
-                      3.0
-                    </span>
-                  </div>
-                  <p className="badge">Department Name</p>
-                  <button className="card-button">Book Now!</button>
-                </Link>
-              </SwiperSlide>
-              <SwiperSlide className="card-item">
-                <Link to="" className="card-link">
-                  <img src="" alt="" className="card-image" />
-
-                  <div>
-                    <h2 className="card-title">Doctor Name</h2>
-                    <span>
-                      <FontAwesomeIcon icon={faStar} />
-                      3.0
-                    </span>
-                  </div>
-                  <p className="badge">Department Name</p>
-                  <button className="card-button">Book Now!</button>
-                </Link>
-              </SwiperSlide>
-              <SwiperSlide className="card-item">
-                <Link to="" className="card-link">
-                  <img src="" alt="" className="card-image" />
-
-                  <div>
-                    <h2 className="card-title">Doctor Name</h2>
-                    <span>
-                      <FontAwesomeIcon icon={faStar} />
-                      3.0
-                    </span>
-                  </div>
-                  <p className="badge">Department Name</p>
-                  <button className="card-button">Book Now!</button>
-                </Link>
-              </SwiperSlide>
-              <SwiperSlide className="card-item">
-                <Link to="" className="card-link">
-                  <img src="" alt="" className="card-image" />
-
-                  <div>
-                    <h2 className="card-title">Doctor Name</h2>
-                    <span>
-                      <FontAwesomeIcon icon={faStar} />
-                      3.0
-                    </span>
-                  </div>
-                  <p className="badge">Department Name</p>
-                  <button className="card-button">Book Now!</button>
-                </Link>
-              </SwiperSlide>
+              {showDoctors}
             </Swiper>
           </div>
         </div>

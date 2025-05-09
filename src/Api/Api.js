@@ -15,3 +15,7 @@ export const GETCHILDFORUSER = "childs";
 export const FINALPREDICTION = "ai/finalPredication";
 
 export const DEGREEAI = "ai/finalPredication_degree";
+
+export const GETAllDOCTORS = "doctors";
+
+export const GETALLMEDICAN = "medican";

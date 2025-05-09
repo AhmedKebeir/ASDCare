@@ -76,7 +76,7 @@
 .nav-bar .main-container .auth-header a {
   width: 164px;
   border-radius: 9px;
-  padding: 22px 20px;
+  /* padding: 22px 20px; */
 
   height: 45px;
   display: flex;

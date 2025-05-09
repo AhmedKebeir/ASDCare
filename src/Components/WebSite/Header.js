@@ -26,11 +26,11 @@ export default function Header() {
   }, [location.pathname]);
 
   const [activUser, setActiveUser] = useState("");
-  console.log(activUser);
+  // console.log(activUser);
 
   const [show, setShow] = useState(false);
-  console.log(user);
-  console.log(size);
+  // console.log(user);
+  // console.log(size);
   return (
     <div className="nav-bar">
       <div className="main-container">
@@ -47,7 +47,7 @@ export default function Header() {
         </div>
         {user !== "" ? (
           <>
-            {show ? (
+            {show || size > 767 ? (
               <ul className="header-links">
                 <li>
                   <NavLink to="/homeparent" activeClassName="active">
@@ -66,18 +66,22 @@ export default function Header() {
                 </li>
 
                 <li>
-                  <NavLink to="/progress" activeClassName="active">
+                  <NavLink to="/child-progress" activeClassName="active">
                     Progress
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/charities" activeClassName="active">
+                  <NavLink to="/charity" activeClassName="active">
                     Charities
                   </NavLink>
                 </li>
-                <li>
-                  <button>Log Out</button>
-                </li>
+                {size < 768 ? (
+                  <li>
+                    <button>Log Out</button>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
             ) : (
               ""
