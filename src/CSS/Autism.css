@@ -442,7 +442,7 @@
     height: 150px;
     border-radius: 50%;
     /* background-color: #f6f7fb; */
-    background: linear-gradient(180deg, #000faf 0%, #000649 100%);
+    /* background: linear-gradient(180deg, #000faf 0%, #000649 100%); */
     z-index: -1;
   }
   .autism-result > .main-container .result-notes aside h3 {

@@ -1,0 +1,234 @@
+.chat-bot {
+  padding-bottom: 50px;
+}
+.chat-bot .main-container {
+  text-align: center;
+}
+
+.chat-bot .main-container .title {
+  margin-bottom: 20px;
+}
+.chat-bot .main-container .title h2 {
+  color: var(--main-color);
+  font-size: 96px;
+  font-weight: 800;
+}
+
+.chat-bot .main-container .title p {
+  color: var(--main-color);
+  font-size: 48px;
+  font-weight: 500;
+  margin-top: -20px;
+}
+
+.chat-bot .main-container .chat-box {
+  background-color: white;
+  padding: 15px;
+  border-radius: 32px;
+  margin-bottom: 40px;
+  min-height: 450px;
+  max-height: 450px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-bot .main-container .chat-box .user {
+  text-align: right;
+  max-width: 400px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 32px;
+  color: white;
+
+  margin-left: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  align-items: center;
+}
+.chat-bot .main-container .chat-box .bot {
+  text-align: left;
+  max-width: 400px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 32px;
+  color: white;
+
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: flex;
+
+  gap: 10px;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+.chat-bot .main-container .chat-box .bot p {
+  text-align: left;
+  max-width: 400px;
+  background-color: #ccdfff;
+  padding: 20px;
+  border-radius: 32px;
+  color: var(--main-color);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 118.8%;
+  margin-bottom: 20px;
+  white-space: pre-wrap; /* يحافظ على التنسيق */
+  word-wrap: break-word;
+}
+.chat-bot .main-container .chat-box .user p {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 118.8%;
+  background-color: var(--main-color);
+  max-width: 400px;
+  min-width: 200px;
+  padding: 20px;
+  border-radius: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: end;
+  white-space: pre-wrap; /* يحافظ على التنسيق */
+  word-wrap: break-word;
+}
+.chat-bot .main-container .chat-box .user svg {
+  color: var(--main-color);
+  font-size: 40px;
+}
+.chat-bot .main-container .chat-box .bot svg {
+  color: var(--color-hover);
+  font-size: 40px;
+}
+.chat-bot .chat-input {
+  width: 75%;
+  margin: 0 auto;
+  border-radius: 32px;
+  padding-right: 20px;
+  background-color: white;
+}
+.chat-bot .chat-input form {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+}
+.chat-bot .chat-input form input {
+  flex: 1;
+  padding: 20px;
+  border-radius: 32px;
+  outline: none;
+  color: #898c93;
+  font-size: 28px;
+  font-weight: 300;
+}
+.chat-bot .chat-input form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  color: white;
+  width: 130px;
+  height: 49px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 53px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.chat-bot .chat-input form button:hover {
+  background-color: var(--color-hover);
+}
+
+@media (width < 1200px) {
+  .chat-bot .main-container .title h2 {
+    font-size: 64px;
+  }
+  .chat-bot .main-container .title p {
+    font-size: 38px;
+  }
+}
+
+@media (width <992px) {
+  .chat-bot .main-container .title h2 {
+    font-size: 48px;
+  }
+  .chat-bot .main-container .title p {
+    font-size: 32px;
+  }
+
+  .chat-bot .main-container .chat-box {
+    width: 100%;
+  }
+
+  .chat-bot .chat-input {
+    width: 100%;
+  }
+}
+
+@media (width < 768px) {
+  .chat-bot .main-container .title h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .chat-bot .main-container .title p {
+    font-size: 24px;
+    line-height: 118.8%;
+    width: 100%;
+    white-space: pre-wrap; /* يحافظ على التنسيق */
+    word-wrap: break-word; /* يكسر السطر عند الحاجة */
+  }
+
+  .chat-bot .main-container .chat-box {
+    width: 100%;
+  }
+  .chat-bot .chat-input {
+    padding-right: 10px;
+  }
+  .chat-bot .chat-input {
+    width: 100%;
+  }
+  .chat-bot .chat-input form input {
+    font-size: 24px;
+    width: 80%;
+    max-width: 80%;
+    overflow-y: scroll;
+    height: 76px;
+    text-wrap: wrap;
+    padding: 10px 10px;
+  }
+  .chat-bot .chat-input form button {
+    width: 80px;
+    font-size: 18px;
+  }
+
+  .chat-bot .main-container .chat-box {
+    width: 100%;
+  }
+  .chat-bot .main-container .chat-box .user,
+  .chat-bot .main-container .chat-box .bot {
+    max-width: 100%;
+    min-width: 100%;
+    padding: 0;
+  }
+  .chat-bot .main-container .chat-box .user svg,
+  .chat-bot .main-container .chat-box .bot svg {
+    font-size: 30px;
+  }
+  .chat-bot .main-container .chat-box .user p,
+  .chat-bot .main-container .chat-box .bot p {
+    min-width: 150px;
+    max-width: 100%;
+    font-size: 18px;
+    /* يكسر السطر عند الحاجة */
+  }
+}

@@ -1,14 +1,17 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../../CSS/Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getuser } from "../../store/actions/user-actions";
+import { getuser, logOut } from "../../store/actions/user-actions";
 import { useContext, useEffect, useState } from "react";
 import { WindowSize } from "../../Context/WindowWidthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import Cookie from "cookie-universal";
 
 export default function Header() {
+  const cookie = Cookie();
   const location = useLocation();
+  const nav = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.children?.data?.data || "");
 
@@ -77,7 +80,15 @@ export default function Header() {
                 </li>
                 {size < 768 ? (
                   <li>
-                    <button>Log Out</button>
+                    <button
+                      onClick={() => {
+                        cookie.remove("userDetails");
+                        nav("/");
+                        dispatch(logOut);
+                      }}
+                    >
+                      Log Out
+                    </button>
                   </li>
                 ) : (
                   ""

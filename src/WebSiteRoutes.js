@@ -21,6 +21,7 @@ import AllRegisteredChilds from "./Pages/WebSite/DoctorPages/AllRegisteredChilds
 import Childregistered from "./Pages/WebSite/DoctorPages/Childregistered";
 import AutismResult from "./Pages/WebSite/AutismTestResult";
 import AutismLevel from "./Pages/WebSite/AutismLevel";
+import ChatBot from "./Pages/WebSite/ChatBot";
 
 export default function WebSiteRoutes() {
   return (
@@ -43,6 +44,7 @@ export default function WebSiteRoutes() {
 
         <Route path="/medican" element={<Medican />} />
         <Route path="/medican/:id" element={<MedicanId />} />
+        <Route path="/chatbot" element={<ChatBot />} />
 
         <Route path="/doctor" element={<HomeDoctor />} />
         <Route

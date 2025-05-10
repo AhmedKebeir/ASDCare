@@ -62,10 +62,12 @@ export default function HomeParent() {
   const showDoctors = doctors.map((doctor, index) => (
     <SwiperSlide className="card-item">
       <Link to={`${doctor.id}`} className="card-link">
-        <img src="" alt="" className="card-image" />
+        <img src={doctor.image} alt="" className="card-image" />
 
         <div>
-          <h2 className="card-title">{doctor?.parent?.userName}</h2>
+          <h2 title={`${doctor?.parent?.userName}`} className="card-title">
+            {doctor?.parent?.userName}
+          </h2>
           <span>
             <FontAwesomeIcon icon={faStar} />
             {doctor.ratingQuantity}
@@ -130,7 +132,7 @@ export default function HomeParent() {
                   </div>
                 </div>
               </Link>
-              <Link to="">
+              <Link to="/chatbot">
                 <div className="serv-grid">
                   <img src={require("../../Images/bot 1.png")} alt="" />
                   <div>

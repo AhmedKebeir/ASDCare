@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { BaseUrl, GETCHILDFORUSER } from "../../Api/Api";
+import { BaseUrl, GETCHILDFORUSER, GETHESTORYAUTISM } from "../../Api/Api";
+import Cookie from "cookie-universal";
 
 export default function Evaluate() {
   const chooseRef = useRef(null);
@@ -30,6 +31,31 @@ export default function Evaluate() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showModal, navigate]);
+
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+
+  const nav = useNavigate();
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+
+  useEffect(() => {
+    const res = axios.get(`${BaseUrl}/${GETHESTORYAUTISM}`, {
+      headers: { Authorization: "Bearer " + parsedUser.token },
+    });
+  }, []);
 
   return (
     <>

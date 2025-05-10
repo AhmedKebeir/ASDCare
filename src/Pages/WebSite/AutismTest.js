@@ -82,7 +82,7 @@ export default function AutismTest() {
       });
 
       if (res.status === 200) {
-        if (answerr.index === 8) {
+        if (answerr.index === 13) {
           nav("/autism/test/result");
         }
         setAnswer({ index: answerr.index + 1, answer: "" });

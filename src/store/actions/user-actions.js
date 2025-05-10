@@ -7,6 +7,8 @@ export const GETUSERCHILDS = "GET-CHILDS";
 export const GET_CHILDS_FOR_USER = "GET_CHILDS_FOR_USER";
 export const SET_CHILDS_FOR_USER = "SET_CHILDS_FOR_USER";
 
+export const Log_Out = "LogOut";
+
 export const getuser = () => {
   return async (dispatch) => {
     try {
@@ -39,5 +41,11 @@ export const getuser = () => {
         payload: res,
       });
     } catch (err) {}
+  };
+};
+
+export const logOut = () => {
+  return {
+    type: Log_Out,
   };
 };
