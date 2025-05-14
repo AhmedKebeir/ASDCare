@@ -104,7 +104,7 @@ export default function Header() {
                 icon={faBars}
               />
             ) : (
-              <Link>
+              <Link to="/my-profile">
                 <div className="user-box">
                   <h3>{user.userName}</h3>
                   <FontAwesomeIcon icon={faCircleUser} />

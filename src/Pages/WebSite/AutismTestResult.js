@@ -6,7 +6,7 @@ import { getuser } from "../../store/actions/user-actions";
 export default function AutismResult() {
   const dispatch = useDispatch();
   const children = useSelector(
-    (state) => state.user?.children?.data?.data?.childs[0]?.autism_level || []
+    (state) => state.user?.children?.data?.data?.childs[0] || []
   );
 
   useEffect(() => {
@@ -18,8 +18,21 @@ export default function AutismResult() {
       <div className="title">
         <div className="main-container">
           <h2>Autism test result</h2>
+          <p>
+            {Number(children.autism_level) === 1
+              ? "Your child shows signs of autism."
+              : ""}
+          </p>
         </div>
       </div>
+
+      <p className="result-for-mobile">
+        <div className="main-container">
+          {Number(children.autism_level) === 1
+            ? "Your child shows signs of autism."
+            : ""}
+        </div>
+      </p>
 
       <div className="main-container">
         <div className="result-notes flex justify-between items-start">
@@ -34,8 +47,12 @@ export default function AutismResult() {
           <aside>
             <div className="child-level">
               <div>
-                <span className={`level level-${Number(children) + 1}`}>
-                  {Number(children) + 1}
+                <span
+                  className={`level level-${
+                    Number(children?.degree_level) + 1
+                  }`}
+                >
+                  {Number(children?.degree_level) + 1}
                 </span>
                 <h3>Your Autism Level</h3>
               </div>

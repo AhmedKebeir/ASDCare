@@ -40,7 +40,9 @@ export const getuser = () => {
         type: SET_CHILDS_FOR_USER,
         payload: res,
       });
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

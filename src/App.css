@@ -11,6 +11,11 @@
     #9cc1ff 0%,
     rgba(156, 193, 255, 0) 55%
   );
+  --linear-gradient-right: linear-gradient(
+    90deg,
+    rgba(156, 193, 255, 0) 45%,
+    #9cc1ff 100%
+  );
 }
 
 .main-container {

@@ -51,11 +51,11 @@ export default function Evaluate() {
     parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
   }
 
-  useEffect(() => {
-    const res = axios.get(`${BaseUrl}/${GETHESTORYAUTISM}`, {
-      headers: { Authorization: "Bearer " + parsedUser.token },
-    });
-  }, []);
+  // useEffect(() => {
+  //   const res = axios.get(`${BaseUrl}/${GETHESTORYAUTISM}`, {
+  //     headers: { Authorization: "Bearer " + parsedUser.token },
+  //   });
+  // }, []);
 
   return (
     <>
