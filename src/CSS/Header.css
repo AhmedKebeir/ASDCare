@@ -77,15 +77,8 @@
   width: 164px;
   border-radius: 9px;
   padding: 0px 20px;
-
   height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
 }
 .nav-bar .user-box {
   display: flex;
@@ -167,7 +160,6 @@
   }
   .nav-bar .main-container .auth-header a {
     width: calc(100%);
-    font-size: clamp(16px, 4vw, 24px) !important;
     line-height: 45px;
   }
   .nav-bar .main-container .header-links {

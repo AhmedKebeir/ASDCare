@@ -46,15 +46,7 @@
 .auth-join a {
   width: 440px;
   height: 59px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* padding: 22px 20px; */
   border-radius: 9px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: "Tajawal";
-  transition: 0.3s;
 }
 .Welcome-page .main-container .auth-welcome a:first-of-type,
 .auth-join a:first-of-type {

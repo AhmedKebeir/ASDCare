@@ -22,12 +22,12 @@ export default function HomePage() {
               </h1>
             </div>
             <div className="auth-welcome">
-              <Link to="/account-type">
+              <Link className="btn" to="/account-type">
                 {size < 768
                   ? "Create Account"
                   : "Don't Have an account? Craete one!"}
               </Link>
-              <Link to="/login">
+              <Link className="btn" to="/login">
                 {size < 768 ? "Log In" : "Let’s continue your progress!"}
               </Link>
             </div>
@@ -154,8 +154,12 @@ export default function HomePage() {
           </div>
           <h1>Join us for better autism care!</h1>
           <div className="auth-join">
-            <Link to="/account-type">Sign Up Now!</Link>
-            <Link to="/login">Login Now!</Link>
+            <Link className="btn" to="/account-type">
+              Sign Up Now!
+            </Link>
+            <Link className="btn" to="/login">
+              Login Now!
+            </Link>
           </div>
         </div>
       </div>

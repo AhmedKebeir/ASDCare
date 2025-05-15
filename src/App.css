@@ -18,9 +18,14 @@
   );
 }
 
-a,
-button {
-  font-family: var(--main-font-tajawal, sans-serif) !important;
+.btn {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
 }
 
 .main-container {

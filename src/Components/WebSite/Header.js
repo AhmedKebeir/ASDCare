@@ -114,8 +114,12 @@ export default function Header() {
           </>
         ) : (
           <div className="auth-header">
-            <Link to="/login">Log In</Link>
-            <Link to="/account-type">Sign Up</Link>
+            <Link className="btn" to="/login">
+              Log In
+            </Link>
+            <Link className="btn" to="/account-type">
+              Sign Up
+            </Link>
           </div>
         )}
       </div>
