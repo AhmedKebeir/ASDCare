@@ -168,7 +168,7 @@
   }
   .nav-bar .main-container .auth-header a {
     width: calc(100%);
-    font-size: clamp(14px, 4vw, 24px);
+    font-size: clamp(16px, 4vw, 24px) !important;
     line-height: 45px;
   }
   .nav-bar .main-container .header-links {
