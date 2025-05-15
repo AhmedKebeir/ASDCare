@@ -18,6 +18,11 @@
   );
 }
 
+a,
+button {
+  font-family: var(--main-font-tajawal, sans-serif) !important;
+}
+
 .main-container {
   margin: 0 auto;
 }
