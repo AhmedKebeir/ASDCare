@@ -1,17 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { BaseUrl, CHARITES } from "../../Api/Api";
+import axios from "axios";
+import Cookie from "cookie-universal";
 
 export default function ChartiyId() {
+  const [char, setChar] = useState([]);
+
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+  const params = useParams();
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+  useEffect(() => {
+    axios
+      .get(`${BaseUrl}/${CHARITES}/${params.id}`, {
+        headers: {
+          Authorization: "Bearer " + parsedUser.token,
+        },
+      })
+      .then((res) => {
+        setChar(res.data.data);
+      })
+      .catch((err) => {
+        console.error("❌ خطأ أثناء جلب المقالات:", err);
+      });
+  }, []);
+  console.log(char);
   return (
     <div className="charity-id pt-50 pb-50 bg-section">
       <div className="main-container">
         <div className="char-content bg-white flex justify-between items-center">
           <div className="title-char flex items-center">
-            <img src="" alt="" className="" />
+            <img src={char?.logo} alt="" className="" />
             <div className="main-color">
-              <h2>Charity’s Name</h2>
-              <p>Address will be here.</p>
+              <h2>{char?.charity_name}</h2>
+              <p>{char?.charity_address}</p>
               <p>Charity’s Owner name</p>
             </div>
           </div>

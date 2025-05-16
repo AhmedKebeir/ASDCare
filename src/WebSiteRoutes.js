@@ -39,10 +39,13 @@ export default function WebSiteRoutes() {
         <Route path="/autism/test/result" element={<AutismResult />} />
 
         <Route path="/educational-resources" element={<EducationRsources />} />
-        <Route path="/evaluate/article" element={<EvaluateArticle />} />
+        <Route
+          path="/educational-resources/:id"
+          element={<EvaluateArticle />}
+        />
         <Route path="/child-progress" element={<ChildProgress />} />
         <Route path="/charity" element={<Charity />} />
-        <Route path="/charity/id" element={<ChartiyId />} />
+        <Route path="/charity/:id" element={<ChartiyId />} />
 
         <Route path="/medican" element={<Medican />} />
         <Route path="/medican/:id" element={<MedicanId />} />

@@ -173,6 +173,7 @@
   font-size: 24px;
   font-weight: 700;
   transition: 0.3s;
+  font-family: sans-serif;
 }
 .article .article-grids .art-grid .art-link a:hover {
   background-color: var(--color-hover);
@@ -227,7 +228,7 @@
 
 @media (max-width: 767px) {
   .article .article-grids .art-grid .art .art-title {
-    width: 100% !important;
+    width: 65% !important;
   }
 
   .article .article-grids .art-grid .art-link .creator-web {
@@ -272,7 +273,7 @@
     line-height: 38px;
   }
   .article .article-grids .art-grid .art .art-title h3 {
-    font-size: 28px;
+    font-size: 18px;
   }
 }
 
@@ -296,6 +297,9 @@
   display: none;
 }
 
+.article .article-content .main-container .cont .article-title {
+  flex: 1;
+}
 .article .article-content .main-container .cont .article-title h2,
 .medican-id .med-id-content .main-container .cont section h2 {
   font-size: 64px;
@@ -320,22 +324,38 @@
   width: 384px;
   height: 384px;
   border-radius: 26px;
-  background-color: #eee;
+  /* background-color: #eee; */
 }
 
 .article .article-content .main-container .cont .image-details img,
 .medican-id .med-id-content .main-container .cont aside .main-img {
   width: 384px;
   max-width: 384px;
-  height: 384px;
+  height: 250px;
   border-radius: 26px;
   background-color: #eee;
+  margin-left: auto;
 }
 
 .article .article-content .main-container .cont .image-details .creator-web {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media (width>1600) {
+  .article .article-content .main-container .cont .image-details {
+    /* background-color: #eee; */
+    flex: 0.5;
+    text-align: center;
+  }
+  .article .article-content .main-container .cont .image-details .creator-web {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    text-align: center;
+  }
 }
 
 .article
@@ -619,6 +639,7 @@
   transition: 0.3s;
   cursor: pointer;
   border-radius: 9px;
+  font-family: sans-serif;
 }
 .medican .med-content .main-container section .card .card-title a:hover {
   background-color: var(--color-hover);

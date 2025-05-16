@@ -2,8 +2,71 @@ import { Link } from "react-router-dom";
 
 import "../../CSS/Education.css";
 import Footer from "../../Components/WebSite/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ARTICLES, BaseUrl } from "../../Api/Api";
+import Cookie from "cookie-universal";
 
 export default function EducationRsources() {
+  const [articles, setArticles] = useState([]);
+
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+  useEffect(() => {
+    axios
+      .get(`${BaseUrl}/${ARTICLES}`, {
+        headers: {
+          Authorization: "Bearer " + parsedUser.token,
+        },
+      })
+      .then((res) => {
+        setArticles(res.data.data);
+      })
+      .catch((err) => {
+        console.error("❌ خطأ أثناء جلب المقالات:", err);
+      });
+  }, []);
+  console.log(articles);
+
+  const articleShow = articles.map((art, index) => {
+    return (
+      <div key={index} className="art-grid">
+        <div className="art">
+          <div className="art-title">
+            <h3>{art?.title || ""} </h3>
+            <p>{art?.info || ""}</p>
+            <span className="creator-web">
+              <span className="creator-name">By Article creator</span>
+            </span>
+          </div>
+          <div className="image">
+            <img src={art.image} alt="" />
+          </div>
+        </div>
+        <div className="art-link">
+          <Link to={`${art._id}`}>Read the article</Link>
+          <span className="creator-web">
+            <span className="creator-name">By Article creator</span>
+            <span className="time">2024, 10, 25</span>
+          </span>
+        </div>
+      </div>
+    );
+  });
   return (
     <>
       {/* <Header /> */}
@@ -16,34 +79,7 @@ export default function EducationRsources() {
         </div>
         <div className="article">
           <div className="main-container">
-            <div className="article-grids">
-              <div className="art-grid">
-                <div className="art">
-                  <div className="art-title">
-                    <h3>Article’s Title </h3>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit Ut
-                      et massa mi. Aliquam in hendrerit urna. Pellentesque sit
-                      amet sapien fringilla, mattis ligula consectetur, ultrices
-                      mauris. Maecenas vitae mattis tellus..
-                    </p>
-                    <span className="creator-web">
-                      <span className="creator-name">By Article creator</span>
-                    </span>
-                  </div>
-                  <div className="image">
-                    <img src="" alt="" />
-                  </div>
-                </div>
-                <div className="art-link">
-                  <Link to="/evaluate/article">Read the article</Link>
-                  <span className="creator-web">
-                    <span className="creator-name">By Article creator</span>
-                    <span className="time">2024, 10, 25</span>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <div className="article-grids">{articleShow}</div>
           </div>
         </div>
       </div>

@@ -22,4 +22,8 @@ export const GETAllDOCTORS = "doctors";
 
 export const GETALLMEDICAN = "medican";
 
+export const ARTICLES = "articles";
+
+export const CHARITES = "charities";
+
 export const GETHESTORYAUTISM = "ai/autism_history";
