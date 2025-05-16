@@ -56,6 +56,7 @@
   width: 100%;
   transition: 0.3s;
   width: 440px;
+  font-family: sans-serif;
 }
 .autism-test .main-container .start-test a:hover {
   background-color: var(--color-hover);
@@ -129,6 +130,7 @@
   border-radius: 9px;
   transition: 0.3s;
   height: 59px;
+  font-family: sans-serif;
 }
 .autism-test .btn-test button:first-of-type {
   background-color: #8fade1;
@@ -224,8 +226,11 @@
 
   .autism-test .progress {
     width: 100%;
+    height: 15px;
   }
-
+  .autism-test .progress span {
+    height: 15px;
+  }
   .autism-test .main-container .box-test {
     width: 100%;
     padding-left: 10px;

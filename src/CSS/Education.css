@@ -954,6 +954,7 @@
   line-height: 59px;
   text-align: center;
   width: 440px;
+  font-family: sans-serif;
 }
 .eval .main-container .eval-title .eval-links a:hover {
   background-color: var(--color-hover);
@@ -1081,6 +1082,7 @@
   background-color: var(--main-color);
   width: 100%;
   transition: 0.3s;
+  font-family: sans-serif;
 }
 .choose-child-test .start a:hover {
   background-color: var(--color-hover);
