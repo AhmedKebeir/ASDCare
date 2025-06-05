@@ -23,6 +23,8 @@ import AutismResult from "./Pages/WebSite/AutismTestResult";
 import AutismLevel from "./Pages/WebSite/AutismLevel";
 import ChatBot from "./Pages/WebSite/ChatBot";
 import MyProfile from "./Components/WebSite/MyProfile";
+import DoctorForParentView from "./Pages/WebSite/DoctorForParentView";
+import DoctorProfileForParentView from "./Pages/WebSite/DoctorProfileForParentView";
 
 export default function WebSiteRoutes() {
   return (
@@ -50,6 +52,8 @@ export default function WebSiteRoutes() {
         <Route path="/medican" element={<Medican />} />
         <Route path="/medican/:id" element={<MedicanId />} />
         <Route path="/chatbot" element={<ChatBot />} />
+        <Route path="/doctors" element={<DoctorForParentView />} />
+        <Route path="/doctors/:id" element={<DoctorProfileForParentView />} />
 
         <Route path="/doctor" element={<HomeDoctor />} />
         <Route

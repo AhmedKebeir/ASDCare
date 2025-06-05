@@ -377,8 +377,9 @@
   width: 100%;
   aspect-ratio: 439/496;
   object-fit: fill;
-  background-color: #eee;
+  background: #eee;
 }
+
 .card-list .card-link div span {
   display: flex;
   align-items: center;
@@ -393,7 +394,7 @@
   font-size: 15px;
   font-weight: 800;
   color: white;
-  font-family: "Tajawal";
+  font-family: sans-serif;
 }
 
 .card-list .card-link div {
