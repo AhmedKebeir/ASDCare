@@ -1,110 +1,120 @@
 import { faLessThan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { BaseUrl, GETALLMEDICAN } from "../../Api/Api";
+import Cookie from "cookie-universal";
+import Header from "../../Components/WebSite/Header";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function MedicanId() {
+  const [medican, setMedican] = useState("");
+  const params = useParams();
+
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+  useEffect(() => {
+    const fetchMedicans = async () => {
+      try {
+        const res = await axios.get(
+          `${BaseUrl}/${GETALLMEDICAN}/${params.id}`,
+          {
+            headers: { Authorization: "Bearer " + parsedUser.token },
+          }
+        );
+        setMedican(res.data.data);
+        console.log(res.data.data);
+      } catch (error) {
+        console.error("Error fetching medicans:", error);
+      }
+    };
+    fetchMedicans();
+  }, []);
   return (
-    <div className="medican-id">
-      <div className="title">
-        <div className="main-container flex justify-between items-center">
-          <Link to="/medican">
-            <FontAwesomeIcon
-              icon={faLessThan}
-              className="text-3xl font-black cursor-pointer"
-            />
-          </Link>
-          <div className="text-right">
-            <h2>Educational Resources</h2>
-            <p>Education resources support learning</p>
+    <>
+      <Header />
+
+      <div className="medican-id">
+        <div className="title">
+          <div className="main-container flex justify-between items-center">
+            <Link to="/medican">
+              <FontAwesomeIcon
+                icon={faLessThan}
+                className="text-3xl font-black cursor-pointer"
+              />
+            </Link>
+            <div className="text-right">
+              <h2>Medican</h2>
+              <p>Search for medicine and pharmacy to find treatment</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="med-id-content">
-        <div className="main-container">
-          <div className="cont flex justify-between ">
-            <section>
-              <h2>Medicine’s name</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
-                massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                Maecenas vitae mattis tellus. Nullam quis imperdiet augue.
-                Vestibulum auctor ornare leo, non suscipit magna interdum eu.
-                Curabitur pellentesque nibh nibh, at maximus ante fermentum sit
-                amet. Pellentesque commodo lacus at sodales sodales. Quisque
-                sagittis orci ut diam condimentum, vel euismod erat placerat. In
-                iaculis arcu eros, eget tempus orci facilisis id. Praesent lorem
-                orci, mattis non efficitur id, ultricies vel nibh. Sed volutpat
-                lacus vitae gravida viverra. Fusce vel tempor elit. Proin
-                tempus, magna id scelerisque vestibulum, nulla ex pharetra
-                sapien, tempor posuere massa neque nec felis. Aliquam sem ipsum,
-                vehicula ac tortor vel, egestas ullamcorper dui. Curabitur at
-                risus sodales, tristique est id, euismod justo. Mauris nec leo
-                non libero sodales lobortis. Quisque a neque pretium, dictum
-                tellus vitae, euismod neque. Nulla facilisi. Phasellus ultricies
-                dignissim nibh ut cursus. Nam et quam sit amet turpis finibus
-                maximus tempor eget augue. Aenean at ultricies lorem. Sed
-                egestas ligula tortor, sit amet mattis ex feugiat non. Duis
-                purus diam, dictum et ante at, commodo iaculis urna. Aenean
-                lacinia, nisl id vehicula condimentum, enim massa tempor nibh,
-                vitae volutpat sapien metus aliquet nisl. Etiam dui eros,
-                tincidunt tristique blandit id, gravida vitae augue. Proin
-                imperdiet mi nec justo convallis gravida.
-              </p>
-            </section>
-            <aside>
-              <img className="main-img" src="" alt="" />
-              <div className="available">
-                <h3>Available at </h3>
-                <div className="pharmacine flex items-center">
-                  <img src="" alt="" />
-                  <div className="pharm-content">
-                    <h3>Pharmacine</h3>
-                    <p>Location</p>
+        <div className="med-id-content">
+          <div className="main-container">
+            <div className="cont flex justify-between ">
+              <section>
+                <h2>{medican?.medican_name}</h2>
+                <p>
+                  {medican?.medican_info || "Medican’s place will be here."}
+                </p>
+              </section>
+              <aside>
+                <img
+                  className="main-img"
+                  src={`${medican?.medican_image}`}
+                  alt=""
+                />
+                <div className="available">
+                  <h3>Available at </h3>
+                  <div className="pharmacine flex items-center">
+                    <img src={`${medican?.medican_image}`} alt="" />
+                    <div className="pharm-content">
+                      <h3>{medican?.pharmacy?.p_name}</h3>
+                      <p>
+                        {medican?.pharmacy?.p_location ||
+                          "Location not available"}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </aside>
+              </aside>
+            </div>
+            <p className="p-mobile">
+              {medican?.medican_info || "Medican’s place will be here."}
+            </p>
           </div>
-          <p className="p-mobile">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa
-            mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien
-            fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
-            vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor
-            ornare leo, non suscipit magna interdum eu. Curabitur pellentesque
-            nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo
-            lacus at sodales sodales. Quisque sagittis orci ut diam condimentum,
-            vel euismod erat placerat. In iaculis arcu eros, eget tempus orci
-            facilisis id. Praesent lorem orci, mattis non efficitur id,
-            ultricies vel nibh. Sed volutpat lacus vitae gravida viverra. Fusce
-            vel tempor elit. Proin tempus, magna id scelerisque vestibulum,
-            nulla ex pharetra sapien, tempor posuere massa neque nec felis.
-            Aliquam sem ipsum, vehicula ac tortor vel, egestas ullamcorper dui.
-            Curabitur at risus sodales, tristique est id, euismod justo. Mauris
-            nec leo non libero sodales lobortis. Quisque a neque pretium, dictum
-            tellus vitae, euismod neque. Nulla facilisi. Phasellus ultricies
-            dignissim nibh ut cursus. Nam et quam sit amet turpis finibus
-            maximus tempor eget augue. Aenean at ultricies lorem. Sed egestas
-            ligula tortor, sit amet mattis ex feugiat non. Duis purus diam,
-            dictum et ante at, commodo iaculis urna. Aenean lacinia, nisl id
-            vehicula condimentum, enim massa tempor nibh, vitae volutpat sapien
-            metus aliquet nisl. Etiam dui eros, tincidunt tristique blandit id,
-            gravida vitae augue. Proin imperdiet mi nec justo convallis gravida.
-          </p>
-        </div>
-        <div className="main-container bg">
-          <div className="available-mobile">
-            <h3>Available at </h3>
-            <div className="pharmacine flex items-center">
-              <img src="" alt="" />
-              <div className="pharm-content">
-                <h3>Pharmacine</h3>
-                <p>Location</p>
+          <div className="main-container bg">
+            <div className="available-mobile">
+              <h3>Available at </h3>
+              <div className="pharmacine flex items-center">
+                <img src={`${medican?.medican_image}`} alt="" />
+                <div className="pharm-content">
+                  <h3>{medican?.pharmacy?.p_name}</h3>
+                  <p>
+                    {medican?.pharmacy?.p_location || "Location not available"}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

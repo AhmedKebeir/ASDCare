@@ -4,6 +4,7 @@ import "../../CSS/HomePage.css";
 import Footer from "../../Components/WebSite/Footer";
 import { useContext } from "react";
 import { WindowSize } from "../../Context/WindowWidthContext";
+import Header from "../../Components/WebSite/Header";
 
 export default function HomePage() {
   const WindowWidth = useContext(WindowSize);
@@ -11,6 +12,7 @@ export default function HomePage() {
   console.log(size);
   return (
     <>
+      <Header />
       <div className="Welcome-page">
         <div className="main-container">
           <section>
@@ -22,7 +24,7 @@ export default function HomePage() {
               </h1>
             </div>
             <div className="auth-welcome">
-              <Link className="btn" to="/account-type">
+              <Link className="btn" to="/signup">
                 {size < 768
                   ? "Create Account"
                   : "Don't Have an account? Craete one!"}
@@ -154,7 +156,7 @@ export default function HomePage() {
           </div>
           <h1>Join us for better autism care!</h1>
           <div className="auth-join">
-            <Link className="btn" to="/account-type">
+            <Link className="btn" to="/signup">
               Sign Up Now!
             </Link>
             <Link className="btn" to="/login">
@@ -164,7 +166,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

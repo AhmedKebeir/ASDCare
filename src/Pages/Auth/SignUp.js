@@ -56,19 +56,20 @@ export default function SignUp() {
         const res = await axios.post(`${BaseUrl}/${SIGNUPPARENT}`, form);
 
         SetCookieData({
-          userName: res.data.data.userName,
-          role: res.data.data.role,
-          id: res.data.data._id,
-          token: res.data.token,
+          userName: res?.data?.parent?.userName,
+          role: res?.data?.parent?.role,
+          id: res?.data?.parent?._id,
+          token: res?.data?.token,
         });
+        console.log(res);
 
         cookie.set(
           "userDetails",
           JSON.stringify({
-            userName: res.data.data.userName,
-            role: res.data.data.role,
-            id: res.data.data._id,
-            token: res.data.token,
+            userName: res?.data?.parent?.userName,
+            role: res?.data?.parent?.role,
+            id: res?.data?.parent?._id,
+            token: res?.data?.token,
           })
         );
         nav("/signup/opt", { replace: true });

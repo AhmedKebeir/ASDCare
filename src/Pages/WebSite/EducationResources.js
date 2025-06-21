@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ARTICLES, BaseUrl } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import Header from "../../Components/WebSite/Header";
 
 export default function EducationRsources() {
   const [articles, setArticles] = useState([]);
@@ -69,7 +70,7 @@ export default function EducationRsources() {
   });
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="education-res">
         <div className="title">
           <div className="main-container">
@@ -83,7 +84,7 @@ export default function EducationRsources() {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

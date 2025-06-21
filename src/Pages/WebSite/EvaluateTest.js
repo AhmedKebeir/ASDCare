@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function EvaluateTest() {
   const chooseRef = useRef(null);

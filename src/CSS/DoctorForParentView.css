@@ -256,7 +256,7 @@
   }
   .doctor-for-parent-view .main-container .doctors-content .doctor-search {
     /* height: fit-content; */
-    flex-basis: auto;
+    flex-basis: 0;
   }
   .doctor-for-parent-view
     .main-container

@@ -22,7 +22,7 @@
   text-align: center;
   color: var(--main-color);
 }
-.autism-test .main-container p {
+.autism-test .main-container .autism-title p {
   text-align: center;
   font-size: 48px;
   font-weight: 500;
@@ -198,6 +198,16 @@
   background-color: var(--main-color);
   color: white;
 }
+
+.autism-test .main-container .box-test p.err {
+  color: red;
+  font-size: 18px;
+  text-align: left;
+
+  width: 70%;
+  margin: 0 auto 10px;
+}
+
 @media (width <1200px) {
   .autism-test .main-container .box-test .other-ques {
     width: 100%;
@@ -205,6 +215,10 @@
   .autism-test .main-container .box-test .other-ques input {
     width: 100%;
   }
+  .autism-test .main-container .box-test p.err {
+    width: 100%;
+  }
+
   .autism-test .btn-test {
     gap: 10px;
     justify-content: space-between;
@@ -243,10 +257,12 @@
   .autism-test .main-container .box-test .other-ques {
     margin-bottom: 30px;
   }
+
   .autism-test .main-container .box-test .other-ques input {
     width: 100%;
     font-size: 20px;
   }
+
   .autism-test .main-container .box-test .btn-test {
     flex-direction: column;
     gap: 20px;

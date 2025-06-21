@@ -602,6 +602,7 @@
 .medican .med-content .main-container section .card {
   max-height: 200px;
   padding: 20px;
+  margin-bottom: 20px;
 }
 .medican
   .med-content
@@ -1042,6 +1043,22 @@
   padding: 20px;
   border-radius: 28px;
 }
+.choose-child-test .choose > a {
+  height: 59px;
+  background-color: var(--main-color);
+  color: white;
+  margin-left: 73px;
+  margin-right: 73px;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 9px;
+  transition: 0.3s;
+}
+.choose-child-test .choose > a:hover {
+  background-color: var(--color-hover);
+}
 .choose-child-test .choose .child-info .child:not(:last-of-type) {
   margin-bottom: 10px;
 }
@@ -1185,6 +1202,10 @@
 
     margin: 0 auto;
     bottom: 20px;
+  }
+  .choose-child-test .choose > a {
+    width: 100%;
+    margin: 0 auto;
   }
   .choose-child-test .start a {
     margin: 0 auto;

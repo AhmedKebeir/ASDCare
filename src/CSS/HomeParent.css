@@ -22,10 +22,28 @@
 .Welcome-page-parent .main-container .title h2 {
   font-size: 76px;
   font-weight: 700;
-  font-family: "Tajawal";
-  line-height: 90.29px;
+  font-family: "Tajawal", sans-serif;
   width: 600px;
-  color: white;
+
+  background-image: url("../Images/Parent_BW.png");
+  background-size: -200% auto;
+  background-position: 0% 50%;
+  background-repeat: repeat;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  animation: moveBg 15s linear infinite;
+}
+@keyframes moveBg {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
 }
 .Welcome-page-parent .main-container .title p {
   font-size: 48px;
@@ -106,7 +124,7 @@
     width: 100%;
   }
   .Welcome-page-parent .main-container .title h2 {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 700;
   }
   .Welcome-page-parent .main-container .title p {
@@ -185,7 +203,7 @@
   padding: 36px;
   border-radius: 36px;
   height: 169px;
-  transition: 0.3s;
+  transition: all 0.3s;
 }
 .service .serv-grid h3 {
   font-size: 48px;
@@ -580,3 +598,16 @@
     padding-top: 0 !important;
   }
 } */
+
+.welcome-page-loading {
+  height: calc(100vh - 68.99px) !important;
+}
+@media (width < 992px) {
+  .welcome-page-loading {
+    height: calc(100vh - 130.43px) !important;
+  }
+  /* .welcome-title-loadind {
+    width: 90% !important;
+    min-width: 90% !important;
+  } */
+}

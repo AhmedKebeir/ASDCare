@@ -48,7 +48,11 @@ export default function Login() {
           token: res.data.token,
         })
       );
-      nav("/homeparent", { replace: false });
+      if (res.data.data.role === "parent") {
+        nav("/homeparent", { replace: false });
+      } else {
+        nav("/doctor", { replace: false });
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);

@@ -6,6 +6,8 @@ import { WindowSize } from "../../Context/WindowWidthContext";
 import axios from "axios";
 import { ARTICLES, BaseUrl } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import Header from "../../Components/WebSite/Header";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function EvaluateArticle() {
   const WindowWidth = useContext(WindowSize);
@@ -47,6 +49,7 @@ export default function EvaluateArticle() {
   console.log(article);
   return (
     <>
+      <Header />
       <div className="article">
         <div className="title">
           <div className="main-container flex justify-between items-center">
@@ -85,6 +88,7 @@ export default function EvaluateArticle() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

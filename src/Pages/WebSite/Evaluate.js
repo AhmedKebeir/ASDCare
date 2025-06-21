@@ -1,8 +1,15 @@
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BaseUrl, GETCHILDFORUSER, GETHESTORYAUTISM } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import Header from "../../Components/WebSite/Header";
+import Footer from "../../Components/WebSite/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { getuser } from "../../store/actions/user-actions";
+import EvaluateLoading from "../../Components/SceletonsLoading/EvaluateLoading";
+import HeaderLoading from "../../Components/SceletonsLoading/HeaderLoading";
+import { IoAdd } from "react-icons/io5";
 
 export default function Evaluate() {
   const chooseRef = useRef(null);
@@ -51,14 +58,49 @@ export default function Evaluate() {
     parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
   }
 
-  // useEffect(() => {
-  //   const res = axios.get(`${BaseUrl}/${GETHESTORYAUTISM}`, {
-  //     headers: { Authorization: "Bearer " + parsedUser.token },
-  //   });
-  // }, []);
+  const dispatch = useDispatch();
+  const children = useSelector(
+    (state) => state.user?.children?.data?.data?.childs || []
+  );
+  const [loading, setLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(getuser());
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [dispatch]);
+  console.log(children);
+
+  const childShow = children.map((child, index) => {
+    return (
+      <div key={index} className="child">
+        <div className="info">
+          <img src="" alt="" />
+          <div>
+            <h2>{child?.childName}</h2>
+            <p>{child?.gender}</p>
+          </div>
+        </div>
+        <span className="age">{child?.age} yo</span>
+      </div>
+    );
+  });
+
+  return loading ? (
     <>
+      <Header />
+      <EvaluateLoading />
+    </>
+  ) : (
+    <>
+      <Header />
       <div className="eval">
         <div className="main-container">
           <div className="eval-title">
@@ -85,42 +127,34 @@ export default function Evaluate() {
             <div className="choose" ref={chooseRef}>
               <h3>Choose Child for test</h3>
               <div className="child-info">
-                <div className="child">
-                  <div className="info">
-                    <img src="" alt="" />
-                    <div>
-                      <h2>Child’s Name</h2>
-                      <p>Female</p>
-                    </div>
-                  </div>
-                  <span className="age">8yo</span>
-                </div>
-                <div className="child">
-                  <div className="info">
-                    <img src="" alt="" />
-                    <div>
-                      <h2>Child’s Name</h2>
-                      <p>Female</p>
-                    </div>
-                  </div>
-                  <span className="age">8yo</span>
-                </div>
+                {children.length > 0 ? childShow : ""}
               </div>
               <div className="start">
-                <Link
-                  to={`${
-                    location.search === "?modal=autism-level"
-                      ? "/autism/level"
-                      : "/autism/checker"
-                  }`}
-                >
-                  Start the test now!
-                </Link>
+                {children.length > 0 ? (
+                  <Link
+                    to={`${
+                      location.search === "?modal=autism-level"
+                        ? "/evaluate/autism/level"
+                        : "/evaluate/autism/checker"
+                    }`}
+                  >
+                    Start the test now!
+                  </Link>
+                ) : (
+                  <Link
+                    to="/signup/childauth"
+                    className="flex items-center justify-between"
+                  >
+                    <span>Add Child</span>
+                    <IoAdd />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

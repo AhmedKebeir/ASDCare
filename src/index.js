@@ -8,12 +8,15 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import WindowWidthContext from "./Context/WindowWidthContext";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import ScrollToTop from "./ScrollToTop";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <WindowWidthContext>
       <BrowserRouter>
+        <ScrollToTop />
         <Provider store={store}>
           <App />
         </Provider>

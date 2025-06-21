@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getdoctors } from "../../store/actions/doctors-actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faStar } from "@fortawesome/free-solid-svg-icons";
+import Header from "../../Components/WebSite/Header";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function DoctorForParentView() {
   const doctors = useSelector(
@@ -62,26 +64,30 @@ export default function DoctorForParentView() {
     );
   });
   return (
-    <div className="doctor-for-parent-view pt-50 pb-50 bg-section">
-      <div className="main-container">
-        <h1 className="title">Doctors</h1>
-        <div className="doctors-content">
-          <div className="doctor-list">{doctorList}</div>
-          <div className="doctor-search">
-            <h2>Looking for a doctor?</h2>
-            <div className="search-box">
-              <input type="text" placeholder="Search here" name="search" />
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </div>
+    <>
+      <Header />
+      <div className="doctor-for-parent-view pt-50 pb-50 bg-section">
+        <div className="main-container">
+          <h1 className="title">Doctors</h1>
+          <div className="doctors-content">
+            <div className="doctor-list">{doctorList}</div>
+            <div className="doctor-search">
+              <h2>Looking for a doctor?</h2>
+              <div className="search-box">
+                <input type="text" placeholder="Search here" name="search" />
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </div>
 
-            <div className="dont-know-doctor">
-              <p>Don't know</p>
-              <p>which doctor to choose</p>
-              <Link to="/evaluate">Go to autism test</Link>
+              <div className="dont-know-doctor">
+                <p>Don't know</p>
+                <p>which doctor to choose</p>
+                <Link to="/evaluate">Go to autism test</Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

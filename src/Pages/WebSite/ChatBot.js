@@ -6,6 +6,8 @@ import Cookie from "cookie-universal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot, faUser } from "@fortawesome/free-solid-svg-icons";
 import ChatLoading from "../../Components/WebSite/ChatLoading";
+import Header from "../../Components/WebSite/Header";
+import Footer from "../../Components/WebSite/Footer";
 
 export default function ChatBot() {
   const cookie = Cookie();
@@ -79,45 +81,50 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="chat-bot bg-section">
-      <div className="main-container">
-        <div className="title">
-          <h2>Chat Bot</h2>
-          <p>A chatbot is an AI that assists through conversation.</p>
-        </div>
-        {messages.length !== 0 ? (
-          <div className="chat-box">
-            {messages.map((msg, index) => (
-              <div key={index} className={`message ${msg.type}`}>
-                {msg.type === "bot" && msg.text !== "__loading__" && (
-                  <FontAwesomeIcon icon={faRobot} />
-                )}
-                {msg.type === "user" && <FontAwesomeIcon icon={faUser} />}
-                {msg.text === "__loading__" ? (
-                  <ChatLoading />
-                ) : (
-                  <p>{msg.text}</p>
-                )}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
+    <>
+      <Header />
+      <div className="chat-bot bg-section">
+        <div className="main-container">
+          <div className="title">
+            <h2>Chat Bot</h2>
+            <p>A chatbot is an AI that assists through conversation.</p>
           </div>
-        ) : (
-          ""
-        )}
+          {messages.length !== 0 ? (
+            <div className="chat-box">
+              {messages.map((msg, index) => (
+                <div key={index} className={`message ${msg.type}`}>
+                  {msg.type === "bot" && msg.text !== "__loading__" && (
+                    <FontAwesomeIcon icon={faRobot} />
+                  )}
+                  {msg.type === "user" && <FontAwesomeIcon icon={faUser} />}
+                  {msg.text === "__loading__" ? (
+                    <ChatLoading />
+                  ) : (
+                    <p>{msg.text}</p>
+                  )}
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+          ) : (
+            ""
+          )}
 
-        <div className="chat-input">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="What can I help you?"
-              onChange={(e) => setInput(e.target.value)}
-              value={input}
-            />
-            <button type="submit">Send</button>
-          </form>
+          <div className="chat-input">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="What can I help you?"
+                onChange={(e) => setInput(e.target.value)}
+                value={input}
+              />
+              <button type="submit">Send</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 }

@@ -17,6 +17,12 @@ import { WindowSize } from "../../Context/WindowWidthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getuser } from "../../store/actions/user-actions";
 import { getdoctors } from "../../store/actions/doctors-actions";
+import Header from "../../Components/WebSite/Header";
+import axios from "axios";
+import { BaseUrl, GETAllDOCTORS } from "../../Api/Api";
+import Cookie from "cookie-universal";
+import HeaderLoading from "../../Components/SceletonsLoading/HeaderLoading";
+import HomeParentLoading from "../../Components/SceletonsLoading/HomeParentLoading";
 
 export default function HomeParent() {
   const WindowWidth = useContext(WindowSize);
@@ -25,6 +31,7 @@ export default function HomeParent() {
   const [swiperRef, setSwiperRef] = useState(null);
   const appendNumber = useRef(400);
   const prependNumber = useRef(1);
+  const [doctors, setDoctors] = useState([]);
   // const [slides, setSlides] = useState(
   //   Array.from({ length: 10 }).map((_, index) => `Slide ${index + 1}`)
   // );
@@ -46,22 +53,60 @@ export default function HomeParent() {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
+  const cookie = Cookie();
+
+  const userr = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof userr === "string") {
+    try {
+      parsedUser = JSON.parse(userr);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof userr === "object" && userr !== null) {
+    parsedUser = userr; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.children?.data?.data || []);
 
-  const doctors = useSelector(
-    (state) => state.doctors?.doctors?.data?.data || []
-  );
-  console.log(doctors);
+  // const doctors = useSelector(
+  //   (state) => state.doctors?.doctors?.data?.data || []
+  // );
+  // console.log(doctors);
 
+  const getDoctors = async () => {
+    const res = await axios.get(
+      `${BaseUrl}/${GETAllDOCTORS}?sort=-ratingsAverage`,
+      {
+        headers: { Authorization: "Bearer " + parsedUser.token },
+      }
+    );
+    setDoctors(res.data.data);
+  };
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    dispatch(getuser());
-    dispatch(getdoctors());
+    const fetchData = async () => {
+      try {
+        dispatch(getuser());
+        await getDoctors(); // ← انتظر انتهاء جلب الأطباء
+      } catch (err) {
+        console.error("حدث خطأ:", err);
+      } finally {
+        setLoading(false); // ← بعد الجلب، سواء نجح أو فشل، أخفِ اللودينج
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const showDoctors = doctors.map((doctor, index) => (
-    <SwiperSlide className="card-item">
-      <Link to={`${doctor.id}`} className="card-link">
+    <SwiperSlide key={index} className="card-item">
+      <Link to={`/doctors/${doctor.id}`} className="card-link">
         <img src={doctor.image} alt="" className="card-image" />
 
         <div>
@@ -70,18 +115,24 @@ export default function HomeParent() {
           </h2>
           <span>
             <FontAwesomeIcon icon={faStar} />
-            {doctor.ratingQuantity}
+            {doctor?.ratingsAverage || 0}
           </span>
         </div>
-        <p className="badge">Department Name</p>
+        <p className="badge">Speciailization: {doctor?.speciailization}</p>
         <Link className="card-button">Book Now!</Link>
       </Link>
     </SwiperSlide>
   ));
 
   // console.log(user);
-  return (
+  return loading ? (
     <>
+      <HeaderLoading />
+      <HomeParentLoading />
+    </>
+  ) : (
+    <>
+      <Header />
       <div className="Welcome-page-parent">
         <div className="main-container">
           <section>
@@ -209,7 +260,7 @@ export default function HomeParent() {
           <img src={require("../../Images/2pattern 2.png")} alt="" />
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
