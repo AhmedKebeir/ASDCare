@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faStar } from "@fortawesome/free-solid-svg-icons";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { ScaleLoader } from "react-spinners";
 
 export default function DoctorForParentView() {
   const doctors = useSelector(
@@ -14,7 +15,7 @@ export default function DoctorForParentView() {
   );
 
   const dispatch = useDispatch();
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
 
   console.log(doctors);
   console.log(load);
@@ -70,7 +71,14 @@ export default function DoctorForParentView() {
         <div className="main-container">
           <h1 className="title">Doctors</h1>
           <div className="doctors-content">
-            <div className="doctor-list">{doctorList}</div>
+            {load ? (
+              <div className="medican-loading">
+                <ScaleLoader color="#133e87" height={50} width={7} />
+              </div>
+            ) : (
+              <div className="doctor-list">{doctorList}</div>
+            )}
+
             <div className="doctor-search">
               <h2>Looking for a doctor?</h2>
               <div className="search-box">

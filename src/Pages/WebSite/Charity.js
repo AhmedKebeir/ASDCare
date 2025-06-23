@@ -8,9 +8,11 @@ import { BaseUrl, CHARITES } from "../../Api/Api";
 import Cookie from "cookie-universal";
 import Footer from "../../Components/WebSite/Footer";
 import Header from "../../Components/WebSite/Header";
+import { ScaleLoader } from "react-spinners";
 
 export default function Charity() {
   const [charities, setCharities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const cookie = Cookie();
 
@@ -29,18 +31,21 @@ export default function Charity() {
     parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
   }
   useEffect(() => {
-    axios
-      .get(`${BaseUrl}/${CHARITES}`, {
-        headers: {
-          Authorization: "Bearer " + parsedUser.token,
-        },
-      })
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${BaseUrl}/${CHARITES}`, {
+          headers: {
+            Authorization: "Bearer " + parsedUser.token,
+          },
+        });
         setCharities(res.data.data);
-      })
-      .catch((err) => {
-        console.error("❌ خطأ أثناء جلب المقالات:", err);
-      });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
   console.log(charities);
 
@@ -78,7 +83,15 @@ export default function Charity() {
         <div className="charity-result">
           <div className="main-container">
             <p>Search results </p>
-            <div className="charity-boxs">{charShow}</div>
+            <div className="charity-boxs">
+              {loading ? (
+                <div className="medican-loading">
+                  <ScaleLoader color="#133e87" height={50} width={7} />
+                </div>
+              ) : (
+                charShow
+              )}
+            </div>
           </div>
         </div>
       </div>

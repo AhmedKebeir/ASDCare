@@ -1,13 +1,15 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getmedicans } from "../../store/actions/medican-actions";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { ScaleLoader } from "react-spinners";
 
 export default function Medican() {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const medican = useSelector(
     (state) => state.medicans?.medicans?.data?.data || []
@@ -15,11 +17,17 @@ export default function Medican() {
   console.log(medican);
 
   useEffect(() => {
-    try {
-      dispatch(getmedicans());
-    } catch (error) {
-      console.error("Error fetching medicans:", error);
-    }
+    const fetchData = async () => {
+      try {
+        await dispatch(getmedicans());
+      } catch (error) {
+        console.error("Error fetching medicans:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
   return (
     <>
@@ -44,14 +52,18 @@ export default function Medican() {
         <div className="med-content mt-10">
           <div className="main-container flex justify-between gap-20">
             <section className="">
-              {medican.map((item, index) => {
-                return (
+              {loading ? (
+                <div className="medican-loading">
+                  <ScaleLoader color="#133e87" height={50} width={7} />
+                </div>
+              ) : (
+                medican.map((item, index) => (
                   <div
                     key={index}
-                    className="card bg-white rounded-xl  flex justify-between items-center  "
+                    className="card bg-white rounded-xl flex justify-between items-center"
                   >
                     <div className="card-title">
-                      <h2>{item?.medican_name || "Medican’s Name"} </h2>
+                      <h2>{item?.medican_name || "Medican’s Name"}</h2>
                       <p>
                         {item?.medican_info || "Medican’s place will be here."}
                       </p>
@@ -59,10 +71,10 @@ export default function Medican() {
                         See Medican’s Details
                       </Link>
                     </div>
-                    <img src={`${item?.medican_image}`} alt="" />
+                    <img src={item?.medican_image} alt="medican" />
                   </div>
-                );
-              })}
+                ))
+              )}
             </section>
             <aside>
               <h2>Filter</h2>

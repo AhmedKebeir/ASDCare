@@ -27,3 +27,5 @@ export const ARTICLES = "articles";
 export const CHARITES = "charities";
 
 export const GETHESTORYAUTISM = "ai/autism_history";
+
+export const GETALLDOCTORSFORSPECIFICUSER = "appointment/my_doctor";

@@ -8,12 +8,14 @@ import { ARTICLES, BaseUrl } from "../../Api/Api";
 import Cookie from "cookie-universal";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { ScaleLoader } from "react-spinners";
 
 export default function EvaluateArticle() {
   const WindowWidth = useContext(WindowSize);
   const size = WindowWidth.windowSize;
 
   const [article, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const cookie = Cookie();
 
@@ -33,18 +35,21 @@ export default function EvaluateArticle() {
     parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
   }
   useEffect(() => {
-    axios
-      .get(`${BaseUrl}/${ARTICLES}/${params.id}`, {
-        headers: {
-          Authorization: "Bearer " + parsedUser.token,
-        },
-      })
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${BaseUrl}/${ARTICLES}/${params.id}`, {
+          headers: {
+            Authorization: "Bearer " + parsedUser.token,
+          },
+        });
         setArticle(res.data.data);
-      })
-      .catch((err) => {
-        console.error("❌ خطأ أثناء جلب المقالات:", err);
-      });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
   console.log(article);
   return (
@@ -65,28 +70,34 @@ export default function EvaluateArticle() {
             </div>
           </div>
         </div>
-        <div className="article-content ">
-          <div className="main-container  ">
-            <div className="cont flex justify-between">
-              <div className="article-title">
-                <h2>{article?.title}</h2>
-                <span className="mobile-creator">
-                  <span className="creator-name">Author Name</span>
-                  <span className="time">Create Date</span>
-                </span>
-                <p>{article?.info}</p>
-              </div>
-              <div className="image-details">
-                <img src={article?.image} alt="" />
-                <span className="creator-web">
-                  <span className="creator-name">By Article creator</span>
-                  <span className="time">2024, 10, 25</span>
-                </span>
-              </div>
-            </div>
-            <p className="p-mobile">{article.info}</p>
+        {loading ? (
+          <div className="medican-loading">
+            <ScaleLoader color="#133e87" height={50} width={7} />
           </div>
-        </div>
+        ) : (
+          <div className="article-content ">
+            <div className="main-container  ">
+              <div className="cont flex justify-between">
+                <div className="article-title">
+                  <h2>{article?.title}</h2>
+                  <span className="mobile-creator">
+                    <span className="creator-name">Author Name</span>
+                    <span className="time">Create Date</span>
+                  </span>
+                  <p>{article?.info}</p>
+                </div>
+                <div className="image-details">
+                  <img src={article?.image} alt="" />
+                  <span className="creator-web">
+                    <span className="creator-name">By Article creator</span>
+                    <span className="time">2024, 10, 25</span>
+                  </span>
+                </div>
+              </div>
+              <p className="p-mobile">{article.info}</p>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </>

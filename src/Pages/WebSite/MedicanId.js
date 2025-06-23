@@ -7,9 +7,11 @@ import { BaseUrl, GETALLMEDICAN } from "../../Api/Api";
 import Cookie from "cookie-universal";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { ScaleLoader } from "react-spinners";
 
 export default function MedicanId() {
   const [medican, setMedican] = useState("");
+  const [loading, setLoading] = useState(true);
   const params = useParams();
 
   const cookie = Cookie();
@@ -41,6 +43,8 @@ export default function MedicanId() {
         console.log(res.data.data);
       } catch (error) {
         console.error("Error fetching medicans:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMedicans();
@@ -64,55 +68,62 @@ export default function MedicanId() {
             </div>
           </div>
         </div>
-        <div className="med-id-content">
-          <div className="main-container">
-            <div className="cont flex justify-between ">
-              <section>
-                <h2>{medican?.medican_name}</h2>
-                <p>
-                  {medican?.medican_info || "Medican’s place will be here."}
-                </p>
-              </section>
-              <aside>
-                <img
-                  className="main-img"
-                  src={`${medican?.medican_image}`}
-                  alt=""
-                />
-                <div className="available">
-                  <h3>Available at </h3>
-                  <div className="pharmacine flex items-center">
-                    <img src={`${medican?.medican_image}`} alt="" />
-                    <div className="pharm-content">
-                      <h3>{medican?.pharmacy?.p_name}</h3>
-                      <p>
-                        {medican?.pharmacy?.p_location ||
-                          "Location not available"}
-                      </p>
+        {loading ? (
+          <div className="medican-loading">
+            <ScaleLoader color="#133e87" height={50} width={7} />
+          </div>
+        ) : (
+          <div className="med-id-content">
+            <div className="main-container">
+              <div className="cont flex justify-between ">
+                <section>
+                  <h2>{medican?.medican_name}</h2>
+                  <p>
+                    {medican?.medican_info || "Medican’s place will be here."}
+                  </p>
+                </section>
+                <aside>
+                  <img
+                    className="main-img"
+                    src={`${medican?.medican_image}`}
+                    alt=""
+                  />
+                  <div className="available">
+                    <h3>Available at </h3>
+                    <div className="pharmacine flex items-center">
+                      <img src={`${medican?.medican_image}`} alt="" />
+                      <div className="pharm-content">
+                        <h3>{medican?.pharmacy?.p_name}</h3>
+                        <p>
+                          {medican?.pharmacy?.p_location ||
+                            "Location not available"}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </aside>
+                </aside>
+              </div>
+              <p className="p-mobile">
+                {medican?.medican_info || "Medican’s place will be here."}
+              </p>
             </div>
-            <p className="p-mobile">
-              {medican?.medican_info || "Medican’s place will be here."}
-            </p>
-          </div>
-          <div className="main-container bg">
-            <div className="available-mobile">
-              <h3>Available at </h3>
-              <div className="pharmacine flex items-center">
-                <img src={`${medican?.medican_image}`} alt="" />
-                <div className="pharm-content">
-                  <h3>{medican?.pharmacy?.p_name}</h3>
-                  <p>
-                    {medican?.pharmacy?.p_location || "Location not available"}
-                  </p>
+            <div className="main-container bg">
+              <div className="available-mobile">
+                <h3>Available at </h3>
+                <div className="pharmacine flex items-center">
+                  <img src={`${medican?.medican_image}`} alt="" />
+                  <div className="pharm-content">
+                    <h3>{medican?.pharmacy?.p_name}</h3>
+                    <p>
+                      {medican?.pharmacy?.p_location ||
+                        "Location not available"}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <Footer />
     </>

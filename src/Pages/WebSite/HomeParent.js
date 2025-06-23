@@ -92,7 +92,7 @@ export default function HomeParent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        dispatch(getuser());
+        await dispatch(getuser());
         await getDoctors(); // ← انتظر انتهاء جلب الأطباء
       } catch (err) {
         console.error("حدث خطأ:", err);

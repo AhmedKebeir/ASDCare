@@ -7,9 +7,11 @@ import axios from "axios";
 import { ARTICLES, BaseUrl } from "../../Api/Api";
 import Cookie from "cookie-universal";
 import Header from "../../Components/WebSite/Header";
+import { ScaleLoader } from "react-spinners";
 
 export default function EducationRsources() {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const cookie = Cookie();
 
@@ -28,20 +30,22 @@ export default function EducationRsources() {
     parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
   }
   useEffect(() => {
-    axios
-      .get(`${BaseUrl}/${ARTICLES}`, {
-        headers: {
-          Authorization: "Bearer " + parsedUser.token,
-        },
-      })
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${BaseUrl}/${ARTICLES}`, {
+          headers: {
+            Authorization: "Bearer " + parsedUser.token,
+          },
+        });
         setArticles(res.data.data);
-      })
-      .catch((err) => {
-        console.error("❌ خطأ أثناء جلب المقالات:", err);
-      });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
-  console.log(articles);
 
   const articleShow = articles.map((art, index) => {
     return (
@@ -80,7 +84,15 @@ export default function EducationRsources() {
         </div>
         <div className="article">
           <div className="main-container">
-            <div className="article-grids">{articleShow}</div>
+            <div className="article-grids">
+              {loading ? (
+                <div className="medican-loading">
+                  <ScaleLoader color="#133e87" height={50} width={7} />
+                </div>
+              ) : (
+                articleShow
+              )}
+            </div>
           </div>
         </div>
       </div>

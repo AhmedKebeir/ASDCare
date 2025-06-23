@@ -11,24 +11,128 @@ import { useDispatch, useSelector } from "react-redux";
 import { getuser } from "../../store/actions/user-actions";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { WindowSize } from "../../Context/WindowWidthContext";
+import axios from "axios";
+import { BaseUrl, GETALLDOCTORSFORSPECIFICUSER } from "../../Api/Api";
+
+import Cookie from "cookie-universal";
+import { Link, useParams } from "react-router-dom";
+import { IoAdd } from "react-icons/io5";
 
 export default function ChildProgress() {
+  const WindowWidth = useContext(WindowSize);
+  const size = WindowWidth.windowSize;
   const [swiperRef, setSwiperRef] = useState(null);
   const appendNumber = useRef(186);
   const prependNumber = useRef(1);
+  const [signWithDoctors, setSignWithDoctors] = useState([]);
+  const [selectDoctor, setSelectDoctor] = useState("");
 
+  const cookie = Cookie();
+
+  const user = cookie.get("userDetails");
+  const params = useParams();
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof user === "string") {
+    try {
+      parsedUser = JSON.parse(user);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof user === "object" && user !== null) {
+    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
   const [radio, setRadio] = useState("lastnotes");
 
   const dispatch = useDispatch();
   const children = useSelector(
-    (state) => state.user?.children?.data?.data?.childs[0] || []
+    (state) => state.user?.children?.data?.data?.childs || []
   );
 
   useEffect(() => {
-    dispatch(getuser());
+    const fetchData = async () => {
+      try {
+        await dispatch(getuser());
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
-  // console.log(radio);
-  console.log(children);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `${BaseUrl}/${GETALLDOCTORSFORSPECIFICUSER}`,
+          {
+            headers: {
+              Authorization: `Bearer ${parsedUser.token}`,
+            },
+          }
+        );
+        setSignWithDoctors(res.data.doctors);
+      } catch (error) {
+        if (
+          error.response?.status === 403 &&
+          error.response?.data?.message ===
+            "You have not verified your account yet."
+        ) {
+          alert("لم يتم تفعيل حسابك بعد. تحقق من بريدك الإلكتروني.");
+          // navigate("/verify-account");
+        } else {
+          console.error("Error fetching appointments:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    if (signWithDoctors.length > 0) {
+      setSelectDoctor(signWithDoctors[0]._id); // تحديد أول دكتور تلقائيًا
+    }
+  }, [signWithDoctors]);
+
+  const [sessions, setSessions] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!selectDoctor) return; // لا ترسل الطلب إذا لم يتم تحديد دكتور
+
+      try {
+        const res = await axios.get(
+          `${BaseUrl}/sessions/ForParent/${selectDoctor}${
+            radio === "lastnotes"
+              ? ""
+              : radio === "sessiondone"
+              ? "/status/done"
+              : "/status/coming"
+          }`,
+          { headers: { Authorization: `Bearer ${parsedUser.token}` } }
+        );
+        setSessions(res.data.data);
+        console.log(res.data.data);
+      } catch (err) {
+        console.error("❌ Error fetching sessions:", err);
+      }
+    };
+    fetchData();
+  }, [selectDoctor, radio]);
+
+  console.log(radio);
+  // console.log(parsedUser);
+
+  const getDaysAgo = (createdAt) => {
+    const createdDate = new Date(createdAt);
+    const now = new Date();
+    const diffTime = Math.abs(now - createdDate);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays === 0 ? "Today" : `${diffDays} days ago`;
+  };
   return (
     <>
       <Header />
@@ -44,28 +148,31 @@ export default function ChildProgress() {
             <section>
               <Swiper
                 modules={[Virtual, Navigation]}
-                slidesPerView={3}
+                slidesPerView={size < 768 ? 1 : size < 992 ? 2 : 3}
                 spaceBetween={30}
                 navigation={true}
                 virtual
                 className="mySwiper doctor-list"
               >
-                <SwiperSlide className="doctor-name">
-                  <input type="radio" id="doctor1" name="doctor" />
-                  <label htmlFor="doctor1">Doctor’s Name</label>
-                </SwiperSlide>
-                <SwiperSlide className="doctor-name">
-                  <input type="radio" id="doctor1" name="doctor" />
-                  <label htmlFor="doctor1">Doctor’s Name</label>
-                </SwiperSlide>
-                <SwiperSlide className="doctor-name">
-                  <input type="radio" id="doctor1" name="doctor" />
-                  <label htmlFor="doctor1">Doctor’s Name</label>
-                </SwiperSlide>
-                <SwiperSlide className="doctor-name">
-                  <input type="radio" id="doctor1" name="doctor" />
-                  <label htmlFor="doctor1">Doctor’s Name</label>
-                </SwiperSlide>
+                {signWithDoctors.map((doctor, index) => {
+                  return (
+                    <SwiperSlide key={index} className="doctor-name">
+                      <input
+                        type="radio"
+                        id={`${doctor?._id}`}
+                        name="select-doctor"
+                        value={`${doctor?._id}`}
+                        checked={selectDoctor === doctor._id}
+                        onChange={(e) => {
+                          setSelectDoctor(e.target.value);
+                        }}
+                      />
+                      <label htmlFor={`${doctor?._id}`}>
+                        {doctor?.parent?.userName}
+                      </label>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
 
               <div className="prog-content">
@@ -106,22 +213,61 @@ export default function ChildProgress() {
 
                 <div className="prog-main-content">
                   {radio === "lastnotes" ? (
-                    <div className="doc-boxs">
-                      <div className="doc-box">
-                        <img src="" alt="" />
-                        <div className="doc-title">
-                          <h3>
-                            Doctor’s Name <span>5 days ago</span>
-                          </h3>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing
-                            elit.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    <>
+                      {sessions.map((session, index) => {
+                        return (
+                          <div key={index} className="doc-boxs">
+                            <div className="doc-box">
+                              <div className="image">
+                                <img src="" alt="" />
+                                <h3 className="mobile">
+                                  Doctor’s Name
+                                  <span>{getDaysAgo(session?.createdAt)}</span>
+                                </h3>
+                              </div>
+                              <div className="doc-title">
+                                <h3>
+                                  Doctor’s Name
+                                  <span>{getDaysAgo(session?.createdAt)}</span>
+                                </h3>
+                                {/* <p>{session.comments.join(<br />)}</p> */}
+                                {session?.comments.map((comment, index) => {
+                                  return <p key={index}>{comment}</p>;
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
                   ) : radio === "sessiondone" ? (
-                    <div className="session-boxs"></div>
+                    <>
+                      {sessions.map((session, index) => {
+                        return (
+                          <div key={index} className="doc-boxs">
+                            <div className="doc-box">
+                              <div className="image">
+                                <img src="" alt="" />
+                                <h3 className="mobile">
+                                  Session {session?.session_number}
+                                  <span>{getDaysAgo(session?.createdAt)}</span>
+                                </h3>
+                              </div>
+                              <div className="doc-title">
+                                <h3>
+                                  Session {session?.session_number}
+                                  <span>{getDaysAgo(session?.createdAt)}</span>
+                                </h3>
+                                {/* <p>{session.comments.join(<br />)}</p> */}
+                                {session?.comments.map((comment, index) => {
+                                  return <p key={index}>{comment}</p>;
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
                   ) : radio === "upcoming" ? (
                     <div className="upcoming"></div>
                   ) : (
@@ -149,6 +295,32 @@ export default function ChildProgress() {
                   )}
                 </div>
               </div>
+
+              <ul>
+                <li className="new-child">
+                  <Link
+                    to="/signup/childauth"
+                    className="flex items-center justify-between"
+                  >
+                    <span>Add Child</span>
+                    <IoAdd />
+                  </Link>
+                </li>
+                {children.map((childrn, index) => {
+                  return (
+                    <li key={index}>
+                      <div className="child-info">
+                        <img src="" alt="" />
+                        <div>
+                          <h3>{childrn?.childName || ""}</h3>
+                          <span>{childrn?.gender || ""}</span>
+                        </div>
+                      </div>
+                      <span>{childrn?.age || ""} yo</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </aside>
           </div>
         </div>
