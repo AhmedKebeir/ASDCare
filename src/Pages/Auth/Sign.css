@@ -833,6 +833,7 @@ p.page-opt {
 .form form .password,
 .form form .confirm-password {
   height: 56px;
+  overflow: hidden;
 }
 @media (min-width: 1400px) {
   .sign .container .slide {

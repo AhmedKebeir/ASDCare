@@ -13,6 +13,7 @@ export default function Header() {
   const location = useLocation();
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const [typeRole, setTypeRole] = useState("");
   const user = useSelector((state) => state.user?.children?.data?.data || "");
 
   const WindowWidth = useContext(WindowSize);
@@ -23,6 +24,7 @@ export default function Header() {
 
   useEffect(() => {
     setActiveUser(user);
+    setTypeRole(user.role);
   }, [user]);
   useEffect(() => {
     setShow(false); // أغلق المينيو
@@ -33,7 +35,63 @@ export default function Header() {
 
   const [show, setShow] = useState(false);
   // console.log(user);
-  // console.log(size);
+  // console.log(typeRole);
+  const parentLiks = (
+    <>
+      <li>
+        <NavLink to="/homeparent" activeClassName="active">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/doctors" activeClassName="active">
+          Doctors
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/evaluate" activeClassName="active">
+          Evaluate
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/child-progress" activeClassName="active">
+          Progress
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/charity" activeClassName="active">
+          Charities
+        </NavLink>
+      </li>
+    </>
+  );
+
+  const doctorLinks = (
+    <>
+      <li>
+        <NavLink to="/doctor" activeClassName="active">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/doctor-profile" activeClassName="active">
+          My Clinic
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/evaluate" activeClassName="active">
+          Messages
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/charity" activeClassName="active">
+          Charity
+        </NavLink>
+      </li>
+    </>
+  );
   return (
     <div className="nav-bar">
       <div className="main-container">
@@ -60,32 +118,11 @@ export default function Header() {
           <>
             {show || size > 767 ? (
               <ul className="header-links">
-                <li>
-                  <NavLink to="/homeparent" activeClassName="active">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/doctors" activeClassName="active">
-                    Doctors
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/evaluate" activeClassName="active">
-                    Evaluate
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink to="/child-progress" activeClassName="active">
-                    Progress
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/charity" activeClassName="active">
-                    Charities
-                  </NavLink>
-                </li>
+                {typeRole === "parent"
+                  ? parentLiks
+                  : typeRole === "doctor"
+                  ? doctorLinks
+                  : ""}
                 {size < 768 ? (
                   <li>
                     <button
@@ -112,10 +149,28 @@ export default function Header() {
                 icon={faBars}
               />
             ) : (
-              <Link to="/my-profile">
+              <Link
+                to={
+                  activUser?.role === "parent"
+                    ? "/my-profile"
+                    : "/doctor-profile"
+                }
+              >
                 <div className="user-box">
-                  <h3>{user.userName}</h3>
-                  <FontAwesomeIcon icon={faCircleUser} />
+                  <h3>
+                    {typeRole === "parent"
+                      ? user.userName
+                      : user?.parent?.userName}
+                  </h3>
+                  {user?.image ? (
+                    <img
+                      src={user.image}
+                      alt="User"
+                      className="header-user-image"
+                    />
+                  ) : (
+                    <FontAwesomeIcon icon={faCircleUser} />
+                  )}
                 </div>
               </Link>
             )}

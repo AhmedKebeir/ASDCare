@@ -1,6 +1,7 @@
 export const BaseUrl = `https://asd-final-project-soat.vercel.app/api/v1`;
 
 export const SIGNUPPARENT = `auth/singupForParent`;
+export const SIGNINFORDOCTOR = "auth/singupForDoctor";
 
 export const LOGIN = `auth/login`;
 
@@ -29,3 +30,5 @@ export const CHARITES = "charities";
 export const GETHESTORYAUTISM = "ai/autism_history";
 
 export const GETALLDOCTORSFORSPECIFICUSER = "appointment/my_doctor";
+
+export const CREATEDATETIMEDOCTOR = "appointment/createAppointment";

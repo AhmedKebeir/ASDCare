@@ -29,7 +29,9 @@ export const getuser = () => {
         parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
       }
       const res = await axios.get(
-        `${BaseUrl}/${CREATEPARENT}/${parsedUser.id}`,
+        `${BaseUrl}/${
+          parsedUser.role === "doctor" ? "doctors" : CREATEPARENT
+        }/${parsedUser.id}`,
         {
           headers: {
             Authorization: `Bearer ${parsedUser.token}`,

@@ -10,15 +10,24 @@ import "../../../CSS/DoctorStyle/HomeDoctor.css";
 import { Link } from "react-router-dom";
 import Header from "../../../Components/WebSite/Header";
 import Footer from "../../../Components/WebSite/Footer";
+import { useEffect } from "react";
+import { getuser } from "../../../store/actions/user-actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function HomeDoctor() {
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user?.children?.data?.data || "");
+  useEffect(() => {
+    dispatch(getuser());
+  }, [dispatch]);
   return (
     <>
       <Header />
 
       <div className="home-doc bg-section">
         <div className="main-container">
-          <h2>Welcome ,Dr.Doctor’s Name!</h2>
+          <h2>Welcome ,Dr.{user?.parent?.userName}</h2>
           <p>
             <FontAwesomeIcon icon={faLayerGroup} /> Quick Access
           </p>

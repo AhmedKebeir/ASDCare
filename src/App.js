@@ -40,6 +40,9 @@ import MyProfile from "./Components/WebSite/MyProfile";
 import HeaderLoading from "./Components/SceletonsLoading/HeaderLoading";
 import AutismLoading from "./Components/SceletonsLoading/AutismLoading";
 import AutismTestloading from "./Components/SceletonsLoading/AutismTestLoading";
+import DoctorIsProfile from "./Pages/WebSite/DoctorPages/DoctorIsProfile";
+import PaymentCheck from "./Pages/WebSite/PaymentCheck";
+import PaymentCheckOut from "./Pages/WebSite/PaymentCheckOut";
 
 function App() {
   return (
@@ -80,11 +83,15 @@ function App() {
         <Route path="/medican/:id" element={<MedicanId />} />
         <Route path="/chatbot" element={<ChatBot />} />
         <Route path="/doctors" element={<DoctorForParentView />} />
-        <Route path="/doctors/:id" element={<DoctorProfileForParentView />} />
+        <Route path="/doctors/:id" element={<DoctorProfileForParentView />}>
+          <Route path="" element={<PaymentCheck />} />
+          <Route path="payment" element={<PaymentCheckOut />} />
+        </Route>
 
         {/* Doctor Pages  */}
 
         <Route path="/doctor" element={<HomeDoctor />} />
+        <Route path="/doctor-profile" element={<DoctorIsProfile />} />
         <Route
           path="/doctor/allupcomingsessions"
           element={<AllUpcomingSessions />}

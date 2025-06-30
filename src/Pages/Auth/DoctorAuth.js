@@ -5,13 +5,23 @@ import SlideShowAuth from "../../Components/WebSite/SlideShowAuth";
 import { FaCamera } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { BaseUrl } from "../../Api/Api";
+import { BaseUrl, SIGNINFORDOCTOR } from "../../Api/Api";
 import Cookie from "cookie-universal";
+import LoadingAnimation from "../../Components/WebSite/LoadingAnimation";
 
 export default function DoctorAuth() {
+  const [loading, setLoading] = useState(false);
+
   const cookie = Cookie();
 
   const user = cookie.get("userDetails");
+
+  const [cookieData, SetCookieData] = useState({
+    userName: "",
+    role: "",
+    id: "",
+    token: "",
+  });
 
   const nav = useNavigate();
 
@@ -42,6 +52,7 @@ export default function DoctorAuth() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("speciailization", form.speciailization);
     formData.append("address", form.address);
@@ -49,22 +60,39 @@ export default function DoctorAuth() {
     formData.append("qualifications", form.qualifications); // يجب أن يكون ملف
     formData.append("medicalLicense", form.medicalLicense);
     try {
-      const res = await axios.post(
-        `${BaseUrl}/auth/singupForDoctor`,
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + parsedUser.token,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const res = await axios.post(`${BaseUrl}/${SIGNINFORDOCTOR}`, formData, {
+        headers: {
+          Authorization: "Bearer " + parsedUser.token,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res.status === 201) {
+        SetCookieData({
+          userName: parsedUser?.userName,
+          role: res?.data?.data?.role,
+          id: res?.data?.data?._id,
+          token: res?.data?.token,
+        });
+
+        cookie.set(
+          "userDetails",
+          JSON.stringify({
+            userName: parsedUser?.userName,
+            role: res?.data?.data?.role,
+            id: res?.data?.data?._id,
+            token: res?.data?.token,
+          })
+        );
+        nav("/doctor");
+      }
+      setLoading(false);
       console.log(res);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   }
-  console.log(form);
+  console.log(cookieData);
   return (
     <div className="sign">
       <div className="container">
@@ -92,13 +120,13 @@ export default function DoctorAuth() {
               {/* <label htmlFor="Education">
                 Educational Qualification
               </label> */}
-              <FaCamera />
+              {/* <FaCamera /> */}
               <input
-                type="file"
+                type="text"
                 name="qualifications"
-                onChange={(e) =>
-                  setForm({ ...form, qualifications: e.target.files[0] })
-                }
+                placeholder="Educational Qualification"
+                value={form.qualifications}
+                onChange={handleChange}
               />
             </div>
             <div className="Edu">
@@ -130,7 +158,7 @@ export default function DoctorAuth() {
               />
             </div>
             <button className="btn-sign" type="submit">
-              Sign Up
+              {loading ? <LoadingAnimation /> : "Sign Up"}
             </button>
           </form>
         </div>

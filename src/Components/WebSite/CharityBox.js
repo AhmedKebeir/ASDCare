@@ -6,7 +6,7 @@ export default function CharityBax(props) {
       <div className="box-content">
         <h3>{props.name}</h3>
         <p className="char-address">{props.address}</p>
-        <p className="char-available">{props.medican}</p>
+        <p className="char-available">{props?.medican?.join(" | ")}</p>
         <Link to={props.link}>Details and Donation progress</Link>
       </div>
       <div className="image-logo">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../CSS/MyProfile.css";
 import { IoChevronBackOutline } from "react-icons/io5";
+import { BsPencilSquare } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { IoAdd } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +16,18 @@ export default function MyProfile() {
   const user = useSelector((state) => state.user?.children?.data?.data);
   const child = user?.childs || [];
   const dispatch = useDispatch();
-  console.log(child);
+
+  const [curUser, setCurUser] = useState({});
 
   useEffect(() => {
     dispatch(getuser());
   }, []);
+  useEffect(() => {
+    if (user) {
+      setCurUser(user);
+    }
+  }, [user]);
+  console.log(curUser);
   const nav = useNavigate();
 
   const cookie = Cookie();
@@ -36,6 +44,10 @@ export default function MyProfile() {
     dispatch(logOut());
 
     nav("/");
+  }
+
+  function handleChange(e) {
+    setCurUser({ ...curUser, [e.target.name]: e.target.value });
   }
   return (
     <>
@@ -103,7 +115,9 @@ export default function MyProfile() {
                     <ul className="flex items-center ">
                       <li>
                         <h3>Name</h3>
-                        <span>{user?.userName || ""}</span>
+                        <span>
+                          <input type="text" value={user?.phone || ""} />
+                        </span>
                       </li>
                       <li>
                         <h3>Gender</h3>
@@ -111,19 +125,28 @@ export default function MyProfile() {
                       </li>
                       <li>
                         <h3>Phone Number</h3>
-                        <span>{user?.phone || ""}</span>
+                        <span>
+                          <input type="text" value={user?.phone || ""} />
+                        </span>
                       </li>
                       <li>
                         <h3>Age</h3>
-                        <span>{user?.age || ""} yo</span>
+                        <span>
+                          <input type="text" value={`${user?.age} yo` || ""} />
+                        </span>
                       </li>
                       <li>
                         <h3>Email Address</h3>
-                        <span>{user?.email || ""}</span>
+                        <span>
+                          <input type="text" value={user?.email || ""} />
+                        </span>
                       </li>
                       <li>
                         <h3>Address</h3>
-                        <span>Egypt - {user?.address || ""}</span>
+                        <span>
+                          Egypt-
+                          <input type="text" value={user?.address || ""} />
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -139,7 +162,26 @@ export default function MyProfile() {
             </section>
             <aside>
               <div className="proff">
-                <img src="" alt="" />
+                <div className="image">
+                  <div className="change-image">
+                    <input
+                      type="file"
+                      id="profile-image"
+                      name="image"
+                      onChange={(e) =>
+                        setCurUser({
+                          ...curUser,
+                          image: URL.createObjectURL(e.target.files[0]),
+                        })
+                      }
+                    />
+                    <label htmlFor="profile-image">
+                      <BsPencilSquare />
+                    </label>
+                  </div>
+
+                  <img src={curUser?.image} alt="" />
+                </div>
                 <div className="personal-data">
                   <h3>{user?.userName || ""}</h3>
                   <span>Balance: 0:00 EGP</span>

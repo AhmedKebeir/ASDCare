@@ -219,15 +219,15 @@ export default function ChildProgress() {
                           <div key={index} className="doc-boxs">
                             <div className="doc-box">
                               <div className="image">
-                                <img src="" alt="" />
+                                <img src={session?.doctorId?.image} alt="" />
                                 <h3 className="mobile">
-                                  Doctor’s Name
+                                  {session?.doctorId?.parent?.userName}
                                   <span>{getDaysAgo(session?.createdAt)}</span>
                                 </h3>
                               </div>
                               <div className="doc-title">
                                 <h3>
-                                  Doctor’s Name
+                                  {session?.doctorId?.parent?.userName}
                                   <span>{getDaysAgo(session?.createdAt)}</span>
                                 </h3>
                                 {/* <p>{session.comments.join(<br />)}</p> */}
@@ -247,7 +247,7 @@ export default function ChildProgress() {
                           <div key={index} className="doc-boxs">
                             <div className="doc-box">
                               <div className="image">
-                                <img src="" alt="" />
+                                <img src={session?.doctorId?.image} alt="" />
                                 <h3 className="mobile">
                                   Session {session?.session_number}
                                   <span>{getDaysAgo(session?.createdAt)}</span>

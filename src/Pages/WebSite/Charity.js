@@ -52,11 +52,12 @@ export default function Charity() {
   const charShow = charities.map((char, index) => {
     return (
       <CharityBax
+        key={index}
         name={`${char?.charity_name}`}
         address={`${char?.charity_address}`}
-        medican={`${char?.charity_medican?.join(" | ")}`}
+        medican={char?.charity_medican?.map((med) => med?.medican_name)}
         img={`${char?.logo}`}
-        alt=""
+        alt="medican"
         link={`${char?._id}`}
       />
     );

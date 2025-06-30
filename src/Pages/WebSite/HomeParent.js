@@ -119,7 +119,9 @@ export default function HomeParent() {
           </span>
         </div>
         <p className="badge">Speciailization: {doctor?.speciailization}</p>
-        <Link className="card-button">Book Now!</Link>
+        <Link className="card-button" to={`/doctors/${doctor.id}`}>
+          Book Now!
+        </Link>
       </Link>
     </SwiperSlide>
   ));

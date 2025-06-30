@@ -208,3 +208,11 @@
 .nav-bar .main-container .auth-header a:last-of-type:hover {
   background-color: var(--color-hover);
 }
+
+.header-user-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: fill;
+  /* margin-right: 10px; */
+}
