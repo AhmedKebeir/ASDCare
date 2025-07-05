@@ -97,10 +97,7 @@ function App() {
           element={<AllUpcomingSessions />}
         />
         <Route path="/doctor/allsessionsdone" element={<AllSessionsDone />} />
-        <Route
-          path="/doctor/allsessionsdone/:id"
-          element={<CommentsForSession />}
-        />
+        <Route path="/doctor/session/:id" element={<CommentsForSession />} />
         <Route
           path="/doctor/registeredchilds"
           element={<AllRegisteredChilds />}

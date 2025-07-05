@@ -150,6 +150,7 @@ export default function DoctorProfileForParentView() {
 
     fetchData();
   }, [dayAndDate]);
+  console.log(doctor);
   return (
     <>
       <Header />

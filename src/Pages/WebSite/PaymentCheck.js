@@ -273,7 +273,7 @@ export default function PaymentCheck() {
             ))}
           </div>
           <div className="booking">
-            <p>The price will be: 1000 EGP</p>
+            <p>The price will be: {doctor?.Session_price || "000"} EGP</p>
             <button onClick={handelBooking}>Book Now</button>
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function DoctorForParentView() {
   }, [dispatch]);
 
   // console.log(doctors[1].parent.userName.split("_").slice(0, 2).join("_"));
-
+  console.log(doctors);
   const doctorList = doctors?.map((doctor, index) => {
     return (
       <div key={index} className="doctor-item">
@@ -51,7 +51,7 @@ export default function DoctorForParentView() {
           </div>
           <div className="doctor-rate">
             <FontAwesomeIcon icon={faStar} />
-            {doctor?.ratingsAverage}
+            {doctor?.ratingsAverage || 0}
           </div>
         </div>
         <p className="doctor-address">

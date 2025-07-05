@@ -1,7 +1,42 @@
+import { useEffect, useState } from "react";
 import Footer from "../../../Components/WebSite/Footer";
 import Header from "../../../Components/WebSite/Header";
+import { BaseUrl } from "../../../Api/Api";
+import Cookie from "cookie-universal";
+import axios from "axios";
 
 export default function AllUpcomingSessions() {
+  const [sessions, setSessions] = useState([]);
+  const cookie = Cookie();
+
+  const doctor = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof doctor === "string") {
+    try {
+      parsedUser = JSON.parse(doctor);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof doctor === "object" && doctor !== null) {
+    parsedUser = doctor; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+  useEffect(() => {
+    async function fetchSessions() {
+      try {
+        const res = await axios.get(
+          `${BaseUrl}/sessions/allSessionsForDoctor/status/coming`,
+          { headers: { Authorization: `Bearer ${parsedUser.token}` } }
+        );
+        setSessions(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchSessions();
+  }, []);
   return (
     <>
       <Header />

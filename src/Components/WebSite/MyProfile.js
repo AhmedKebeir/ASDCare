@@ -9,8 +9,27 @@ import { getuser, logOut } from "../../store/actions/user-actions";
 import Cookie from "cookie-universal";
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from "axios";
+import { BaseUrl } from "../../Api/Api";
 
 export default function MyProfile() {
+  const cookie = Cookie();
+
+  const userr = cookie.get("userDetails");
+
+  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
+  let parsedUser = {};
+
+  if (typeof userr === "string") {
+    try {
+      parsedUser = JSON.parse(userr);
+    } catch (error) {
+      console.error("❌ خطأ في تحويل JSON:", error);
+    }
+  } else if (typeof userr === "object" && userr !== null) {
+    parsedUser = userr; // إذا كان بالفعل كائن، استخدمه كما هو
+  }
+
   const [radioData, setRadioData] = useState("payment");
 
   const user = useSelector((state) => state.user?.children?.data?.data);
@@ -30,8 +49,6 @@ export default function MyProfile() {
   console.log(curUser);
   const nav = useNavigate();
 
-  const cookie = Cookie();
-
   function handleRadioChange(e) {
     setRadioData(e.target.value);
   }
@@ -48,6 +65,19 @@ export default function MyProfile() {
 
   function handleChange(e) {
     setCurUser({ ...curUser, [e.target.name]: e.target.value });
+  }
+  console.log(curUser);
+  async function handleChangeInfo() {
+    try {
+      const res = await axios.put(
+        `${BaseUrl}/parents/${parsedUser.id}`,
+        curUser,
+        { headers: { Authorization: `Bearer ${parsedUser.token}` } }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <>
@@ -116,7 +146,12 @@ export default function MyProfile() {
                       <li>
                         <h3>Name</h3>
                         <span>
-                          <input type="text" value={user?.phone || ""} />
+                          <input
+                            name="userName"
+                            type="text"
+                            onChange={handleChange}
+                            value={curUser?.userName || ""}
+                          />
                         </span>
                       </li>
                       <li>
@@ -126,32 +161,51 @@ export default function MyProfile() {
                       <li>
                         <h3>Phone Number</h3>
                         <span>
-                          <input type="text" value={user?.phone || ""} />
+                          <input
+                            type="text"
+                            name="phone"
+                            onChange={handleChange}
+                            value={curUser?.phone || ""}
+                          />
                         </span>
                       </li>
                       <li>
                         <h3>Age</h3>
                         <span>
-                          <input type="text" value={`${user?.age} yo` || ""} />
+                          <input
+                            type="text"
+                            name="age"
+                            value={`${curUser?.age}` || ""}
+                            onChange={handleChange}
+                          />
                         </span>
                       </li>
                       <li>
                         <h3>Email Address</h3>
                         <span>
-                          <input type="text" value={user?.email || ""} />
+                          <input
+                            type="text"
+                            name="email"
+                            value={user?.email || ""}
+                            readOnly
+                          />
                         </span>
                       </li>
                       <li>
                         <h3>Address</h3>
                         <span>
-                          Egypt-
-                          <input type="text" value={user?.address || ""} />
+                          <input
+                            type="text"
+                            name="address"
+                            value={curUser?.address || ""}
+                            onChange={handleChange}
+                          />
                         </span>
                       </li>
                     </ul>
                   </div>
                   <div className="buttons">
-                    <Link>Change Info</Link>
+                    <button onClick={handleChangeInfo}>Change Info</button>
 
                     <Link>Change Password</Link>
 

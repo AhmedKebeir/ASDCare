@@ -12,6 +12,7 @@ import axios from "axios";
 import { BaseUrl, CREATEDATETIMEDOCTOR } from "../../../Api/Api";
 import Cookie from "cookie-universal";
 import { ScaleLoader } from "react-spinners";
+import { BsPencilSquare } from "react-icons/bs";
 
 export default function DoctorIsProfile() {
   const [radioDay, setRadioDay] = useState(null);
@@ -19,6 +20,7 @@ export default function DoctorIsProfile() {
   const [radioActive, setRadioActive] = useState(null);
   const [radioTime, setRadioTime] = useState(false);
   const [inpTime, setInpTime] = useState("");
+  const [curUser, setCurUser] = useState({});
 
   const [loading, setLoading] = useState(false);
 
@@ -55,6 +57,12 @@ export default function DoctorIsProfile() {
     };
     fetchUser();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      setCurUser(user);
+    }
+  }, [user]);
 
   function getNext7Days() {
     const days = [];
@@ -154,13 +162,10 @@ export default function DoctorIsProfile() {
 
   async function CreateDateTime() {
     setLoading(true);
+
     if (inpTime !== "") {
       const time12 = formatTo12Hour(inpTime);
-      setTime([...time, time12]);
-      setAvailableSlots({
-        ...availableSlots,
-        time: time12,
-      });
+
       const slotToSend = {
         ...availableSlots,
         time: time12,
@@ -170,22 +175,32 @@ export default function DoctorIsProfile() {
         const res = await axios.post(
           `${BaseUrl}/${CREATEDATETIMEDOCTOR}`,
           {
-            availableSlots: [slotToSend], // ✅ المصفوفة هنا
+            availableSlots: [slotToSend],
           },
           { headers: { Authorization: `Bearer ${parsedUser.token}` } }
         );
-        console.log(res);
-        setAvailableSlots({ ...availableSlots, time: res.data.data });
+
+        // ✅ أضف الوقت الجديد يدويًا للمصفوفة:
+        setTime((prev) => [...prev, time12]);
+
+        // ✅ امسح حقل الوقت بعد الإضافة
+        setInpTime("");
+
+        console.log("تمت الإضافة:", res.data);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     }
   }
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       if (!availableSlots?.date || !availableSlots?.day) {
         console.warn("❌ البيانات غير كاملة:", availableSlots);
+        setLoading(false);
         return;
       }
 
@@ -221,6 +236,21 @@ export default function DoctorIsProfile() {
 
     fetchData();
   }, [availableSlots]);
+  console.log(curUser);
+  function handleChange(e) {
+    setCurUser({ ...curUser, [e.target.name]: e.target.value });
+  }
+
+  async function handleChangeInfo() {
+    try {
+      const res = await axios.put(`${BaseUrl}/doctors/updateMe`, curUser, {
+        headers: { Authorization: `Bearer ${parsedUser.token}` },
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <>
@@ -237,7 +267,26 @@ export default function DoctorIsProfile() {
             <div className="doctor-details">
               <div className="doctor-info">
                 <div className="image">
-                  <img src={user?.image || ""} alt="" />
+                  <div className="doctor-profile-image">
+                    <div className="change-image">
+                      <input
+                        type="file"
+                        id="profile-image"
+                        name="image"
+                        onChange={(e) =>
+                          setCurUser({
+                            ...curUser,
+                            image: URL.createObjectURL(e.target.files[0]),
+                          })
+                        }
+                      />
+                      <label htmlFor="profile-image">
+                        <BsPencilSquare />
+                      </label>
+                    </div>
+
+                    <img src={curUser?.image} alt="" />
+                  </div>
                   <span className="doctor-rate-mobile">
                     {Array.from({
                       length: Math.round(user?.ratingsAverage || 0),
@@ -248,17 +297,17 @@ export default function DoctorIsProfile() {
                 </div>
                 <div>
                   <h2 title="Doctor Name">
-                    <span>{user?.parent?.userName || ""}</span>
+                    <span>{curUser?.parent?.userName || ""}</span>
                     <span className="doctor-rate-web">
                       {Array.from({
-                        length: Math.round(user?.ratingsAverage || 0),
+                        length: Math.round(curUser?.ratingsAverage || 0),
                       }).map((_, index) => (
                         <FontAwesomeIcon key={index} icon={faStar} />
                       ))}
                     </span>
                   </h2>
-                  <p>Department: {user?.speciailization || ""}</p>
-                  <p>Address: {user?.qualifications || ""}</p>
+                  <p>Department: {curUser?.speciailization || ""}</p>
+                  <p>Address: {curUser?.qualifications || ""}</p>
                 </div>
               </div>
             </div>
@@ -272,9 +321,10 @@ export default function DoctorIsProfile() {
                 <p>Consultation fee</p>
                 <input
                   type="text"
-                  placeholder={`${user?.Session_price} EGP` || "Price"}
-                  value={`${user?.Session_price} EGP` || "Price"}
-                  readOnly
+                  placeholder={`${curUser?.Session_price} EGP` || "Price"}
+                  value={`${curUser?.Session_price}` || "Price"}
+                  name="Session_price"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -343,7 +393,17 @@ export default function DoctorIsProfile() {
                             <input
                               type="text"
                               placeholder="Name will be here."
-                              value={user?.parent?.userName || ""}
+                              value={curUser?.parent?.userName || ""}
+                              name="userName"
+                              onChange={(e) => {
+                                setCurUser({
+                                  ...curUser,
+                                  parent: {
+                                    ...curUser.parent,
+                                    userName: e.target.value,
+                                  },
+                                });
+                              }}
                             />
                           </span>
                         </li>
@@ -393,7 +453,9 @@ export default function DoctorIsProfile() {
                           <span>
                             <input
                               type="text"
-                              value={user?.speciailization || ""}
+                              value={curUser?.speciailization || ""}
+                              name="speciailization"
+                              onChange={handleChange}
                               placeholder="Department here"
                             />
                           </span>
@@ -403,12 +465,13 @@ export default function DoctorIsProfile() {
                     <div className="data-item">
                       <ul className="">
                         <li>
-                          <h4>Address</h4>
+                          <h4>Qualifications</h4>
                           <span>
                             <input
                               type="text"
-                              value={user?.qualifications || ""}
+                              value={curUser?.qualifications || ""}
                               placeholder="XXXXXXXXXXXXX"
+                              onChange={handleChange}
                             />
                           </span>
                         </li>
@@ -416,7 +479,7 @@ export default function DoctorIsProfile() {
                     </div>
                     <div className="data-item">
                       <div className="buttons">
-                        <Link>Change Info</Link>
+                        <button onClick={handleChangeInfo}>Change Info</button>
 
                         <Link>Change Password</Link>
 
