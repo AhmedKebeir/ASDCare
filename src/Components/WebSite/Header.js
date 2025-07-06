@@ -80,8 +80,8 @@ export default function Header() {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/evaluate" activeClassName="active">
-          Messages
+        <NavLink to="/doctor/registeredchilds" activeClassName="active">
+          My Clients
         </NavLink>
       </li>
 
@@ -159,8 +159,8 @@ export default function Header() {
                 <div className="user-box">
                   <h3>
                     {typeRole === "parent"
-                      ? user.userName
-                      : user?.parent?.userName}
+                      ? user.userName.split(" ").slice(0, 2).join(" ")
+                      : user?.parent?.userName.split(" ").slice(0, 2).join(" ")}
                   </h3>
                   {user?.image ? (
                     <img

@@ -123,9 +123,8 @@ export default function CommentsForSession() {
                     <h3>Parent's name:{sessions?.parentId?.userName}</h3>
                     <p>Child:{sessions?.parentId?.childs[0]?.childName}</p>
                     <p className="child-data">
-                      <span>Age:{sessions?.parentId?.childs[0]?.age} </span>{" "}
+                      <span>Age:{sessions?.parentId?.childs[0]?.age} </span>
                       <span>
-                        {" "}
                         Gender: {sessions?.parentId?.childs[0]?.gender}
                       </span>
                     </p>
@@ -140,8 +139,8 @@ export default function CommentsForSession() {
                 <h3>Parent: {sessions?.parentId?.userName}</h3>
                 <p>Child:{sessions?.parentId?.childs[0]?.childName}</p>
                 <p className="child-data">
-                  <span>Age:{sessions?.parentId?.childs[0]?.age} </span>{" "}
-                  <span> Gender: {sessions?.parentId?.childs[0]?.gender}</span>
+                  <span>Age:{sessions?.parentId?.childs[0]?.age} </span>
+                  <span>Gender:{sessions?.parentId?.childs[0]?.gender}</span>
                 </p>
               </div>
             </aside>

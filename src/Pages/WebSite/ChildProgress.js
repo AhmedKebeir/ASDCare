@@ -27,7 +27,7 @@ export default function ChildProgress() {
   const prependNumber = useRef(1);
   const [signWithDoctors, setSignWithDoctors] = useState([]);
   const [selectDoctor, setSelectDoctor] = useState("");
-
+  const [children, setChildren] = useState([]);
   const cookie = Cookie();
 
   const user = cookie.get("userDetails");
@@ -48,8 +48,8 @@ export default function ChildProgress() {
   const [radio, setRadio] = useState("lastnotes");
 
   const dispatch = useDispatch();
-  const children = useSelector(
-    (state) => state.user?.children?.data?.data?.childs || []
+  const child = useSelector(
+    (state) => state.user?.children?.data?.data?.childs[0] || null
   );
 
   useEffect(() => {
@@ -105,7 +105,7 @@ export default function ChildProgress() {
 
       try {
         const res = await axios.get(
-          `${BaseUrl}/sessions/ForParent/${selectDoctor}${
+          `${BaseUrl}/sessions/ForParent/${
             radio === "lastnotes"
               ? ""
               : radio === "sessiondone"
@@ -125,6 +125,22 @@ export default function ChildProgress() {
 
   console.log(radio);
   // console.log(parsedUser);
+
+  useEffect(() => {
+    async function fetchChildren() {
+      if (child && child._id) {
+        try {
+          const res = await axios.get(`${BaseUrl}/childs/${child._id}`);
+          setChildren(res.data.data);
+        } catch (err) {
+          console.error("❌ Failed to fetch child data", err);
+        }
+      }
+    }
+
+    fetchChildren();
+  }, [child]);
+  console.log(children);
 
   const getDaysAgo = (createdAt) => {
     const createdDate = new Date(createdAt);
@@ -148,7 +164,7 @@ export default function ChildProgress() {
             <section>
               <Swiper
                 modules={[Virtual, Navigation]}
-                slidesPerView={size < 768 ? 1 : size < 992 ? 2 : 3}
+                slidesPerView={size < 768 ? 1 : size < 1200 ? 2 : 3}
                 spaceBetween={30}
                 navigation={true}
                 virtual
@@ -276,7 +292,89 @@ export default function ChildProgress() {
                 </div>
               </div>
             </section>
-            <aside>
+            {Number(children?.degree_level) ? (
+              <aside>
+                <div className="child-level">
+                  <div>
+                    <span
+                      className={`level level-${
+                        Number(children?.degree_level) + 1
+                      }`}
+                    >
+                      {Number(children?.degree_level) + 1}
+                    </span>
+                    <h3>Your Autism Level</h3>
+                  </div>
+                </div>
+                <ul>
+                  <li className="new-child">
+                    <Link
+                      to="/signup/childauth"
+                      className="flex items-center justify-between"
+                    >
+                      <span>Add Child</span>
+                      <IoAdd />
+                    </Link>
+                  </li>
+
+                  <li>
+                    <div className="child-info">
+                      <img src="" alt="" />
+                      <div>
+                        <h3>{children?.childName || ""}</h3>
+                        <span>{children?.gender || ""}</span>
+                      </div>
+                    </div>
+                    <span>{children?.age || ""} yo</span>
+                  </li>
+                </ul>
+              </aside>
+            ) : (
+              <aside>
+                <div className="child-level">
+                  <div>
+                    {Number(children?.degree_level) ? (
+                      <>
+                        <span
+                          className={`level level-${
+                            Number(children?.degree_level) + 1
+                          }`}
+                        >
+                          {Number(children?.degree_level) + 1}
+                        </span>
+                        <h3>Your Autism Level</h3>
+                      </>
+                    ) : (
+                      <h3>You not do autism test!</h3>
+                    )}
+                  </div>
+                </div>
+
+                <ul>
+                  <li className="new-child">
+                    <Link
+                      to="/signup/childauth"
+                      className="flex items-center justify-between"
+                    >
+                      <span>Add Child</span>
+                      <IoAdd />
+                    </Link>
+                  </li>
+
+                  <li>
+                    <div className="child-info">
+                      <img src="" alt="" />
+                      <div>
+                        <h3>{children?.childName || ""}</h3>
+                        <span>{children?.gender || ""}</span>
+                      </div>
+                    </div>
+                    <span>{children?.age || ""} yo</span>
+                  </li>
+                </ul>
+              </aside>
+            )}
+            {/* <aside>
               <div className="child-level">
                 <div>
                   {Number(children?.degree_level) ? (
@@ -306,22 +404,19 @@ export default function ChildProgress() {
                     <IoAdd />
                   </Link>
                 </li>
-                {children.map((childrn, index) => {
-                  return (
-                    <li key={index}>
-                      <div className="child-info">
-                        <img src="" alt="" />
-                        <div>
-                          <h3>{childrn?.childName || ""}</h3>
-                          <span>{childrn?.gender || ""}</span>
-                        </div>
-                      </div>
-                      <span>{childrn?.age || ""} yo</span>
-                    </li>
-                  );
-                })}
+
+                <li>
+                  <div className="child-info">
+                    <img src="" alt="" />
+                    <div>
+                      <h3>{children?.childName || ""}</h3>
+                      <span>{children?.gender || ""}</span>
+                    </div>
+                  </div>
+                  <span>{children?.age || ""} yo</span>
+                </li>
               </ul>
-            </aside>
+            </aside> */}
           </div>
         </div>
       </div>

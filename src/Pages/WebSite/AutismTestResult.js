@@ -1,19 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getuser } from "../../store/actions/user-actions";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import axios from "axios";
+import { BaseUrl } from "../../Api/Api";
 
 export default function AutismResult() {
   const dispatch = useDispatch();
-  const children = useSelector(
-    (state) => state.user?.children?.data?.data?.childs[0] || []
+  const child = useSelector(
+    (state) => state.user?.children?.data?.data?.childs[0] || null
   );
+  const [children, setChildren] = useState({});
 
   useEffect(() => {
     dispatch(getuser());
   }, [dispatch]);
+
+  useEffect(() => {
+    async function fetchChildren() {
+      if (child && child._id) {
+        try {
+          const res = await axios.get(`${BaseUrl}/childs/${child._id}`);
+          setChildren(res.data.data);
+        } catch (err) {
+          console.error("❌ Failed to fetch child data", err);
+        }
+      }
+    }
+
+    fetchChildren();
+  }, [child]);
+
   console.log(children);
   return (
     <>
@@ -22,11 +41,14 @@ export default function AutismResult() {
         <div className="title">
           <div className="main-container">
             <h2>Autism test result</h2>
-            <p>
-              {Number(children.autism_level) === 1
-                ? "Your child shows signs of autism."
-                : "Your child does not show signs of autism."}
-            </p>
+            {children && (
+              <p>
+                {Number(children.autism_level) === 1 ||
+                children.degree_level !== null
+                  ? "Your child shows signs of autism."
+                  : "Your child does not show signs of autism."}
+              </p>
+            )}
           </div>
         </div>
 

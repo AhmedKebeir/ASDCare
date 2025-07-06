@@ -34,6 +34,7 @@ export default function AutismLevel() {
   const [answers, setAnswers] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [butLoading, setButLoading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);

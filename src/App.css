@@ -108,3 +108,55 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
+
+.sessions .main-container .sessions-list .session-item .doctor-rate-mobile svg {
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(90deg, #ffc80b, #e89318); /* التدرج اللوني */
+  -webkit-mask-image: linear-gradient(90deg, #ffc80b, #e89318);
+  mask-image: linear-gradient(90deg, #ffc80b, #e89318);
+  -webkit-background-clip: text;
+  color: #ffc80b;
+  margin-right: 3px;
+}
+@media (width <768px) {
+  .sessions
+    .main-container
+    .sessions-list
+    .session-item
+    .doctor-rate-mobile
+    svg {
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+p.not-data {
+  width: 100%;
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  background-color: orangered;
+  text-align: center;
+}
+.add-review-doctor {
+  background-color: var(--main-color) !important;
+  transition: 0.3s;
+}
+.add-review-doctor:hover {
+  background-color: var(--color-hover) !important;
+}
+
+.add-review-doctor p {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+.add-review-doctor svg {
+  font-size: 40px;
+  color: white;
+}

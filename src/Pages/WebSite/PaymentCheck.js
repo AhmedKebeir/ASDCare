@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getuser } from "../../store/actions/user-actions";
 import Header from "../../Components/WebSite/Header";
 import Footer from "../../Components/WebSite/Footer";
+import { IoAdd } from "react-icons/io5";
 
 export default function PaymentCheck() {
   const [dayAndDate, setDayAndDate] = useState({
@@ -242,7 +243,7 @@ export default function PaymentCheck() {
                 );
               })
             ) : (
-              <>Not available time</>
+              <p className="not-data">Not available time</p>
             )}
           </div>
         </div>
@@ -281,6 +282,12 @@ export default function PaymentCheck() {
         <div className="doctor-reviews">
           <h2>Reviews</h2>
           <div className="review-list">
+            <Link>
+              <div className="review-item flex justify-between items-center add-review-doctor  ">
+                <p>Add Review</p>
+                <IoAdd />
+              </div>
+            </Link>
             {doctor?.reviews?.map((review, index) => (
               <div
                 key={review._id || index}

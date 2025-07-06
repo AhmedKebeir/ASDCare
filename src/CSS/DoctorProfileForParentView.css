@@ -60,13 +60,7 @@
   gap: 10px;
 }
 
-.doctor-profile-content
-  .main-container
-  .doctor-details
-  .doctor-info
-  > div
-  h2
-  .doctor-rate-web {
+.doctor-rate-web {
   font-size: 18px;
   display: flex;
   align-items: center;

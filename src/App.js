@@ -43,6 +43,7 @@ import AutismTestloading from "./Components/SceletonsLoading/AutismTestLoading";
 import DoctorIsProfile from "./Pages/WebSite/DoctorPages/DoctorIsProfile";
 import PaymentCheck from "./Pages/WebSite/PaymentCheck";
 import PaymentCheckOut from "./Pages/WebSite/PaymentCheckOut";
+import AllDoctorFeedback from "./Pages/WebSite/DoctorPages/AllDoctorFeedback";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
           path="/doctor/registeredchilds/:id"
           element={<Childregistered />}
         />
+        <Route path="/doctor/feedbacks" element={<AllDoctorFeedback />} />
 
         {/* <Route path="/*" element={<WebSiteRoutes />} /> */}
 

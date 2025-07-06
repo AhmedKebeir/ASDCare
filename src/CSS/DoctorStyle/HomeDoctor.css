@@ -971,7 +971,7 @@
   font-size: 96px;
   font-weight: 500;
   position: relative;
-  color: #010ea8;
+  /* color: #010ea8; */
   /* z-index: ; */
 }
 
@@ -985,7 +985,7 @@
   height: 150px;
   border-radius: 50%;
   /* background-color: #f6f7fb; */
-  background: linear-gradient(180deg, #000faf 0%, #000649 100%);
+  /* background: linear-gradient(180deg, #000faf 0%, #000649 100%); */
   z-index: -1;
 }
 

@@ -23,11 +23,14 @@ export const getdoctors = () => {
       } else if (typeof user === "object" && user !== null) {
         parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
       }
-      const res = await axios.get(`${BaseUrl}/${GETAllDOCTORS}`, {
-        headers: {
-          Authorization: `Bearer ${parsedUser.token}`,
-        },
-      });
+      const res = await axios.get(
+        `${BaseUrl}/${GETAllDOCTORS}?sort=-ratingsAverage`,
+        {
+          headers: {
+            Authorization: `Bearer ${parsedUser.token}`,
+          },
+        }
+      );
       dispatch({
         type: Get_All_Doctors,
         payload: res,

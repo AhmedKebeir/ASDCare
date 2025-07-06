@@ -7,6 +7,7 @@ import Cookie from "cookie-universal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BaseUrl } from "../../../Api/Api";
+import "../../../CSS/Autism.css";
 
 export default function Childregistered() {
   const params = useParams();
@@ -61,7 +62,7 @@ export default function Childregistered() {
   console.log(sessionsParent);
   const sessionParentShow = sessionsParent.map((session, index) => {
     return (
-      <Link to={`${session?._id}`} key={index}>
+      <Link to={`/doctor/session/${session?._id}`} key={index}>
         <div className="child-session flex items-center justify-between">
           <div className="session-info flex items-center gap-10">
             <img src="" alt="" />
@@ -122,7 +123,7 @@ export default function Childregistered() {
           <div className="main-container">
             <div className="child-level">
               <div>
-                <span className="level">1</span>
+                <span className={`level level-${2 + 1}`}>{1 + 1}</span>
                 <h3>Child’s Autism level</h3>
               </div>
               <Link to="">Change Autism Level</Link>

@@ -69,9 +69,17 @@ export default function MyProfile() {
   console.log(curUser);
   async function handleChangeInfo() {
     try {
+      const formData = new FormData();
+
+      // أضف كل الخصائص النصية من curUser
+      for (const key in curUser) {
+        if (curUser[key] !== undefined && curUser[key] !== null) {
+          formData.append(key, curUser[key]);
+        }
+      }
       const res = await axios.put(
         `${BaseUrl}/parents/${parsedUser.id}`,
-        curUser,
+        formData,
         { headers: { Authorization: `Bearer ${parsedUser.token}` } }
       );
       console.log(res);
@@ -97,7 +105,7 @@ export default function MyProfile() {
                   radioData === "payment" ? "rad-payment" : "rad-profile"
                 }`}
               >
-                <div className="payment-info">
+                {/* <div className="payment-info">
                   <input
                     type="radio"
                     id="pay-info"
@@ -107,7 +115,7 @@ export default function MyProfile() {
                     onChange={handleRadioChange}
                   />
                   <label htmlFor="pay-info">Payment Info</label>
-                </div>
+                </div> */}
                 <div className="profile-info">
                   <input
                     type="radio"
@@ -127,7 +135,7 @@ export default function MyProfile() {
                     : "profile-content"
                 }`}
               >
-                <div className="payment-content">
+                {/* <div className="payment-content">
                   <ul>
                     <li>There is no any payment</li>
 
@@ -139,7 +147,7 @@ export default function MyProfile() {
                       <span>Date Hare</span>
                     </li>
                   </ul>
-                </div>
+                </div> */}
                 <div className="profile-content">
                   <div className="info">
                     <ul className="flex items-center ">
@@ -225,7 +233,7 @@ export default function MyProfile() {
                       onChange={(e) =>
                         setCurUser({
                           ...curUser,
-                          image: URL.createObjectURL(e.target.files[0]),
+                          image: e.target.files[0],
                         })
                       }
                     />
@@ -234,7 +242,14 @@ export default function MyProfile() {
                     </label>
                   </div>
 
-                  <img src={curUser?.image} alt="" />
+                  <img
+                    src={
+                      curUser?.image instanceof File
+                        ? URL.createObjectURL(curUser.image)
+                        : curUser?.image
+                    }
+                    alt=""
+                  />
                 </div>
                 <div className="personal-data">
                   <h3>{user?.userName || ""}</h3>

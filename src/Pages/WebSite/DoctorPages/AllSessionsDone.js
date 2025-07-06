@@ -43,7 +43,10 @@ export default function AllSessionsDone() {
 
   const sesssionsShow = sessions.map((sessions, index) => {
     return (
-      <div className="session-item flex justify-between items-center">
+      <div
+        key={index}
+        className="session-item flex justify-between items-center"
+      >
         <div className="session-title">
           <img src="" alt="" />
           <div>

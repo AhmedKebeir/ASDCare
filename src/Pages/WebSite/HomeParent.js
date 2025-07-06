@@ -139,7 +139,7 @@ export default function HomeParent() {
         <div className="main-container">
           <section>
             <div className="title">
-              <h2>Hello, {user?.userName}!</h2>
+              <h2>Hello, {user?.userName.split(" ").slice(0, 1).join(" ")}!</h2>
               <p>What are you looking for?</p>
             </div>
             <div className="search-box">

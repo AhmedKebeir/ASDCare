@@ -4,6 +4,7 @@ import Header from "../../../Components/WebSite/Header";
 import { BaseUrl } from "../../../Api/Api";
 import Cookie from "cookie-universal";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function AllUpcomingSessions() {
   const [sessions, setSessions] = useState([]);
@@ -37,6 +38,31 @@ export default function AllUpcomingSessions() {
     }
     fetchSessions();
   }, []);
+  console.log(sessions);
+
+  const sesssionsShow = sessions.map((sessions, index) => {
+    return (
+      <div
+        key={index}
+        className="session-item flex justify-between items-center"
+      >
+        <div className="session-title">
+          <img src="" alt="" />
+          <div>
+            <h3>Session:{sessions?.session_number}</h3>
+            <p>Child: {sessions?.parentId?.childs[0]?.childName}</p>
+            <p className="child-data">
+              Session Status: {sessions?.statusOfSession}
+            </p>
+          </div>
+        </div>
+        <div className="session-info">
+          <span className="session-date">Date: {sessions?.session_date}</span>
+          <Link to={`/doctor/session/${sessions?._id}`}>Session Comments</Link>
+        </div>
+      </div>
+    );
+  });
   return (
     <>
       <Header />
@@ -50,21 +76,7 @@ export default function AllUpcomingSessions() {
         <div className="sessions">
           <div className="main-container">
             <p>Note: The sessions are sort by nearest date</p>
-            <div className="sessions-list">
-              <div className="session-item flex justify-between items-center">
-                <div className="session-title">
-                  <img src="" alt="" />
-                  <div>
-                    <h3>Parent's name</h3>
-                    <p>Child’s name</p>
-                    <p className="child-data">
-                      <span>Age:XX</span> <span>Gender:X</span>
-                    </p>
-                  </div>
-                </div>
-                <span className="session-date">Date: XX/XX/XXXX</span>
-              </div>
-            </div>
+            <div className="sessions-list">{sesssionsShow}</div>
           </div>
         </div>
       </div>
