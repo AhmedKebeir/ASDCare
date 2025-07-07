@@ -160,3 +160,55 @@ p.not-data {
   font-size: 40px;
   color: white;
 }
+.change-pass .choose {
+  height: fit-content !important;
+}
+.change-pass .child-info {
+  display: flex;
+  flex-direction: column;
+}
+.change-pass .choose .start {
+  display: flex !important;
+  position: relative;
+  bottom: 0;
+  margin-top: 50px;
+}
+.change-pass .child-info input {
+  margin: 5px 0;
+  flex: 1;
+  padding: 11px 0px 11px 20px;
+  outline: none;
+  border: none;
+  background-color: #b8bcc4;
+  color: rgba(45, 46, 49, 1);
+  border-radius: 6px;
+  border: 2px solid #b8bcc4;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  transition: 0.3s;
+}
+.change-pass .child-info input:focus {
+  background-color: white;
+  border: 2px solid #00225c;
+}
+
+.change-pass p.err {
+  color: red;
+  font-weight: 500;
+  text-align: start;
+  padding-left: 73px;
+  padding-right: 73px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+@media (width < 768px) {
+  .change-pass p.err {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

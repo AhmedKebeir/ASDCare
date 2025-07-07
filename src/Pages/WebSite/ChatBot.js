@@ -90,9 +90,9 @@ export default function ChatBot() {
             <p>A chatbot is an AI that assists through conversation.</p>
           </div>
           {messages.length !== 0 ? (
-            <div className="chat-box">
+            <div className="chat-box hide-scrollbar">
               {messages.map((msg, index) => (
-                <div key={index} className={`message ${msg.type}`}>
+                <div key={index} className={`message ${msg.type} `}>
                   {msg.type === "bot" && msg.text !== "__loading__" && (
                     <FontAwesomeIcon icon={faRobot} />
                   )}

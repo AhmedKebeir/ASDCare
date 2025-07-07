@@ -10,20 +10,35 @@ import Footer from "../../Components/WebSite/Footer";
 import { ScaleLoader } from "react-spinners";
 
 export default function DoctorForParentView() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const doctors = useSelector(
     (state) => state.doctors.doctors?.data?.data || []
   );
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  const filteredDoctors = doctors.filter((doctor) => {
+    const name = doctor?.parent?.userName?.toLowerCase() || "";
+    const qualification = doctor?.qualifications?.toLowerCase() || "";
+    const address = doctor?.address?.toLowerCase() || "";
+    return (
+      name.includes(searchTerm) ||
+      qualification.includes(searchTerm) ||
+      address.includes(searchTerm)
+    );
+  });
+
   const dispatch = useDispatch();
   const [load, setLoad] = useState(true);
 
-  console.log(doctors);
-  console.log(load);
   useEffect(() => {
     const fetchDoctors = async () => {
       setLoad(true);
       try {
-        await dispatch(getdoctors()); // wait for async thunk
+        await dispatch(getdoctors());
       } catch (err) {
         console.error("Failed to fetch doctors", err);
       } finally {
@@ -34,36 +49,32 @@ export default function DoctorForParentView() {
     fetchDoctors();
   }, [dispatch]);
 
-  // console.log(doctors[1].parent.userName.split("_").slice(0, 2).join("_"));
-  console.log(doctors);
-  const doctorList = doctors?.map((doctor, index) => {
-    return (
-      <div key={index} className="doctor-item">
-        <div className="doctor-details">
-          <div className="doctor-info">
-            <img src={doctor?.image} alt={doctor?.parent?.userName} />
-            <div>
-              <h2 title={`${doctor?.parent?.userName}`}>
-                {doctor.parent.userName.split("_").slice(0, 2).join("_")}
-              </h2>
-              <p>{doctor?.qualifications}</p>
-            </div>
-          </div>
-          <div className="doctor-rate">
-            <FontAwesomeIcon icon={faStar} />
-            {doctor?.ratingsAverage || 0}
+  const doctorList = filteredDoctors.map((doctor, index) => (
+    <div key={index} className="doctor-item">
+      <div className="doctor-details">
+        <div className="doctor-info">
+          <img src={doctor?.image} alt={doctor?.parent?.userName} />
+          <div>
+            <h2 title={doctor?.parent?.userName}>
+              {doctor?.parent?.userName?.split("_").slice(0, 2).join("_")}
+            </h2>
+            <p>{doctor?.qualifications}</p>
           </div>
         </div>
-        <p className="doctor-address">
-          {doctor?.address || "Address will be here."}.
-        </p>
-        <div className="doctor-price">
-          Price start with <span>{doctor?.Session_price}EGP</span>
+        <div className="doctor-rate">
+          <FontAwesomeIcon icon={faStar} />
+          {doctor?.ratingsAverage || 0}
         </div>
-        <Link to={`${doctor?._id}`}>View Doctor Profile</Link>
       </div>
-    );
-  });
+      <p className="doctor-address">
+        {doctor?.address || "Address will be here."}.
+      </p>
+      <div className="doctor-price">
+        Price start with <span>{doctor?.Session_price}EGP</span>
+      </div>
+      <Link to={`${doctor?._id}`}>View Doctor Profile</Link>
+    </div>
+  ));
   return (
     <>
       <Header />
@@ -82,7 +93,13 @@ export default function DoctorForParentView() {
             <div className="doctor-search">
               <h2>Looking for a doctor?</h2>
               <div className="search-box">
-                <input type="text" placeholder="Search here" name="search" />
+                <input
+                  type="text"
+                  placeholder="Search here"
+                  name="search"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </div>
 

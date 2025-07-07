@@ -12,15 +12,13 @@ import { ScaleLoader } from "react-spinners";
 
 export default function Charity() {
   const [charities, setCharities] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // 🔍 حالة البحث
   const [loading, setLoading] = useState(true);
 
   const cookie = Cookie();
-
   const user = cookie.get("userDetails");
 
-  // تحقق مما إذا كانت البيانات نصًا قبل محاولة JSON.parse
   let parsedUser = {};
-
   if (typeof user === "string") {
     try {
       parsedUser = JSON.parse(user);
@@ -28,8 +26,9 @@ export default function Charity() {
       console.error("❌ خطأ في تحويل JSON:", error);
     }
   } else if (typeof user === "object" && user !== null) {
-    parsedUser = user; // إذا كان بالفعل كائن، استخدمه كما هو
+    parsedUser = user;
   }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,9 +46,21 @@ export default function Charity() {
     };
     fetchData();
   }, []);
-  console.log(charities);
 
-  const charShow = charities.map((char, index) => {
+  // 🔍 تصفية الجمعيات حسب الاسم أو العنوان أو الأدوية المدعومة
+  const filteredCharities = charities.filter((char) => {
+    const name = char?.charity_name?.toLowerCase() || "";
+    const address = char?.charity_address?.toLowerCase() || "";
+    const medicans =
+      char?.charity_medican?.map((m) => m?.medican_name?.toLowerCase()) || [];
+    return (
+      name.includes(searchTerm.toLowerCase()) ||
+      address.includes(searchTerm.toLowerCase()) ||
+      medicans.some((med) => med.includes(searchTerm.toLowerCase()))
+    );
+  });
+
+  const charShow = filteredCharities.map((char, index) => {
     return (
       <CharityBax
         key={index}
@@ -62,35 +73,44 @@ export default function Charity() {
       />
     );
   });
+
   return (
     <>
       <Header />
       <div className="charity">
         <div className="charity-title">
-          <div className="main-container flex justify-between  items-center">
-            <div className="search text-start  ">
-              <p>Can’t find what you looking for?</p>
-              <div className="flex justify-between  items-center">
-                <input type="text" placeholder="Search here" />
+          <div className="main-container flex justify-between items-center">
+            <div className="search text-start">
+              <p>Can’t find what you’re looking for?</p>
+              <div className="flex justify-between items-center">
+                <input
+                  type="text"
+                  placeholder="Search here"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </div>
             </div>
             <div className="title">
               <h2>Charity Support</h2>
-              <p>Search for Charity and donate them or search for medicine</p>
+              <p>Search for a charity and donate to them or request medicine</p>
             </div>
           </div>
         </div>
+
         <div className="charity-result">
           <div className="main-container">
-            <p>Search results </p>
+            <p>Search results</p>
             <div className="charity-boxs">
               {loading ? (
                 <div className="medican-loading">
                   <ScaleLoader color="#133e87" height={50} width={7} />
                 </div>
-              ) : (
+              ) : charShow.length > 0 ? (
                 charShow
+              ) : (
+                <p className="not-data mt-1">Not available sessions</p>
               )}
             </div>
           </div>

@@ -142,10 +142,10 @@ export default function HomeParent() {
               <h2>Hello, {user?.userName.split(" ").slice(0, 1).join(" ")}!</h2>
               <p>What are you looking for?</p>
             </div>
-            <div className="search-box">
+            {/* <div className="search-box">
               <input type="text" placeholder="Search here" name="search" />
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </div>
+            </div> */}
           </section>
           <div className="welcome-image">
             <img src={require("../../Images/WelcomePage.png")} alt="" />

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../CSS/MyProfile.css";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { BsPencilSquare } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoAdd } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getuser, logOut } from "../../store/actions/user-actions";
@@ -13,6 +13,16 @@ import axios from "axios";
 import { BaseUrl } from "../../Api/Api";
 
 export default function MyProfile() {
+  const [showChangePassword, setShowChangePassword] = useState(false);
+
+  const [changePass, setChangePass] = useState({
+    currentPassword: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [accept, setAccept] = useState(false);
+  const [err, setErr] = useState(false);
+
   const cookie = Cookie();
 
   const userr = cookie.get("userDetails");
@@ -61,12 +71,13 @@ export default function MyProfile() {
     dispatch(logOut());
 
     nav("/");
+    window.location.reload();
   }
 
   function handleChange(e) {
     setCurUser({ ...curUser, [e.target.name]: e.target.value });
   }
-  console.log(curUser);
+
   async function handleChangeInfo() {
     try {
       const formData = new FormData();
@@ -87,6 +98,68 @@ export default function MyProfile() {
       console.log(err);
     }
   }
+
+  const chooseRef = useRef(null);
+
+  const location = useLocation();
+
+  const query = new URLSearchParams(location.search);
+  const showModal = query.get("modal") === "my-profile";
+
+  useEffect(() => {
+    if (showChangePassword) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+    const handleClickOutside = (event) => {
+      if (chooseRef.current && !chooseRef.current.contains(event.target)) {
+        setShowChangePassword(false); // ⬅️ إغلاق النافذة بدلاً من nav()
+      }
+    };
+
+    if (showChangePassword) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showChangePassword]);
+
+  function handleChangePass(e) {
+    setChangePass({ ...changePass, [e.target.name]: e.target.value });
+  }
+
+  async function changePassword() {
+    setAccept(true);
+    if (
+      changePass.currentPassword !== "" &&
+      changePass.password !== "" &&
+      changePass.confirmPassword !== "" &&
+      changePass.password === changePass.confirmPassword
+    ) {
+      try {
+        const res = await axios.put(
+          `${BaseUrl}/parents/changePassword/${parsedUser.id}`,
+          changePass,
+          { headers: { Authorization: `Bearer ${parsedUser.token}` } }
+        );
+
+        if (res.status === 200) {
+          setShowChangePassword(false); // ✅ أغلق النافذة
+          setErr(false);
+          nav("/my-profile"); // يمكنك حذفه إذا لا تريد التنقل
+        }
+
+        console.log(res);
+      } catch (err) {
+        setErr(true);
+      }
+    }
+  }
+
   return (
     <>
       <Header />
@@ -215,7 +288,9 @@ export default function MyProfile() {
                   <div className="buttons">
                     <button onClick={handleChangeInfo}>Change Info</button>
 
-                    <Link>Change Password</Link>
+                    <Link onClick={() => setShowChangePassword(true)}>
+                      Change Password
+                    </Link>
 
                     <button onClick={handleLogout}>Log Out</button>
                   </div>
@@ -282,6 +357,47 @@ export default function MyProfile() {
           </div>
         </div>
       </div>
+      {showChangePassword && (
+        <div className="choose-child-test change-pass">
+          <div className="choose" ref={chooseRef}>
+            <h3>Change Password</h3>
+            <div className="child-info">
+              <input
+                className="buton-form"
+                type="password"
+                name="currentPassword"
+                placeholder="Current Password"
+                value={changePass.currentPassword}
+                onChange={handleChangePass}
+              />
+              {err ? <p className="err">Current password is not valid!</p> : ""}
+              <input
+                type="password"
+                name="password"
+                placeholder="New Password"
+                value={changePass.password}
+                onChange={handleChangePass}
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={changePass.confirmPassword}
+                onChange={handleChangePass}
+              />
+            </div>
+            {accept && changePass.password !== changePass.confirmPassword ? (
+              <p className="err">Confirm password not match password!</p>
+            ) : (
+              ""
+            )}
+            <div className="start">
+              <Link onClick={changePassword}>Change Password</Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );

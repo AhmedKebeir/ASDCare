@@ -10,11 +10,22 @@ import { ScaleLoader } from "react-spinners";
 
 export default function Medican() {
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); // 🔍 حالة البحث
   const dispatch = useDispatch();
+
   const medican = useSelector(
     (state) => state.medicans?.medicans?.data?.data || []
   );
-  console.log(medican);
+
+  // 🔍 تصفية الأدوية حسب الاسم أو المعلومات
+  const filteredMedicans = medican.filter((item) => {
+    const name = item?.medican_name?.toLowerCase() || "";
+    const info = item?.medican_info?.toLowerCase() || "";
+    return (
+      name.includes(searchTerm.toLowerCase()) ||
+      info.includes(searchTerm.toLowerCase())
+    );
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,17 +40,24 @@ export default function Medican() {
 
     fetchData();
   }, [dispatch]);
+
   return (
     <>
       <Header />
 
       <div className="medican">
         <div className="med-title">
-          <div className="main-container flex justify-between  items-center">
-            <div className="search text-start  ">
+          <div className="main-container flex justify-between items-center">
+            <div className="search text-start">
               <p>Can’t find it?</p>
-              <div className="flex justify-between  items-center">
-                <input type="text" placeholder="Search here" />
+              <div className="flex justify-between items-center">
+                <input
+                  type="text"
+                  placeholder="Search here"
+                  name="search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)} // 🔄 تحديث البحث
+                />
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </div>
             </div>
@@ -49,15 +67,16 @@ export default function Medican() {
             </div>
           </div>
         </div>
+
         <div className="med-content mt-10">
           <div className="main-container flex justify-between gap-20">
-            <section className="">
+            <section>
               {loading ? (
                 <div className="medican-loading">
                   <ScaleLoader color="#133e87" height={50} width={7} />
                 </div>
-              ) : (
-                medican.map((item, index) => (
+              ) : filteredMedicans.length > 0 ? (
+                filteredMedicans.map((item, index) => (
                   <div
                     key={index}
                     className="card bg-white rounded-xl flex justify-between items-center"
@@ -74,8 +93,11 @@ export default function Medican() {
                     <img src={item?.medican_image} alt="medican" />
                   </div>
                 ))
+              ) : (
+                <p className="not-data mt-5">No matching results found.</p>
               )}
             </section>
+
             <aside>
               <h2>Filter</h2>
               <p>Medican</p>
@@ -83,6 +105,7 @@ export default function Medican() {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

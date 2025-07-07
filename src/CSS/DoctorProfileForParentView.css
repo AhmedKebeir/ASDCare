@@ -655,6 +655,10 @@
   border-radius: 30px;
   background-color: var(--second-color);
   color: var(--main-color);
+  margin-bottom: 20px;
+}
+.doctor-date-avaliable .doctor-reviews .review-list .review-item:first-child {
+  border-radius: 9px;
 }
 .doctor-date-avaliable
   .doctor-reviews

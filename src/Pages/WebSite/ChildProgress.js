@@ -101,25 +101,29 @@ export default function ChildProgress() {
   const [sessions, setSessions] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      if (!selectDoctor) return; // لا ترسل الطلب إذا لم يتم تحديد دكتور
+      if (!selectDoctor) return;
+
+      let statusPath = "";
+      if (radio === "sessiondone") statusPath = "/status/done";
+      else if (radio === "upcoming") statusPath = "/status/coming";
+      // lastnotes => no extra path
+
+      const url = `${BaseUrl}/sessions/ForParentToOneDoctor/${selectDoctor}${statusPath}`;
 
       try {
-        const res = await axios.get(
-          `${BaseUrl}/sessions/ForParent/${
-            radio === "lastnotes"
-              ? ""
-              : radio === "sessiondone"
-              ? "/status/done"
-              : "/status/coming"
-          }`,
-          { headers: { Authorization: `Bearer ${parsedUser.token}` } }
-        );
+        const res = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${parsedUser.token}`,
+          },
+        });
+
         setSessions(res.data.data);
         console.log(res.data.data);
       } catch (err) {
         console.error("❌ Error fetching sessions:", err);
       }
     };
+
     fetchData();
   }, [selectDoctor, radio]);
 
@@ -230,62 +234,117 @@ export default function ChildProgress() {
                 <div className="prog-main-content">
                   {radio === "lastnotes" ? (
                     <>
-                      {sessions.map((session, index) => {
-                        return (
-                          <div key={index} className="doc-boxs">
-                            <div className="doc-box">
-                              <div className="image">
-                                <img src={session?.doctorId?.image} alt="" />
-                                <h3 className="mobile">
-                                  {session?.doctorId?.parent?.userName}
-                                  <span>{getDaysAgo(session?.createdAt)}</span>
-                                </h3>
-                              </div>
-                              <div className="doc-title">
-                                <h3>
-                                  {session?.doctorId?.parent?.userName}
-                                  <span>{getDaysAgo(session?.createdAt)}</span>
-                                </h3>
-                                {/* <p>{session.comments.join(<br />)}</p> */}
-                                {session?.comments.map((comment, index) => {
-                                  return <p key={index}>{comment}</p>;
-                                })}
+                      {sessions.length > 0 ? (
+                        sessions.map((session, index) => {
+                          return (
+                            <div key={index} className="doc-boxs">
+                              <div className="doc-box">
+                                <div className="image">
+                                  <img src={session?.doctorId?.image} alt="" />
+                                  <h3 className="mobile">
+                                    {session?.doctorId?.parent?.userName}
+                                    <span>
+                                      {getDaysAgo(session?.createdAt)}
+                                    </span>
+                                  </h3>
+                                </div>
+                                <div className="doc-title">
+                                  <h3>
+                                    {session?.doctorId?.parent?.userName}
+                                    <span>
+                                      {getDaysAgo(session?.createdAt)}
+                                    </span>
+                                  </h3>
+                                  {/* <p>{session.comments.join(<br />)}</p> */}
+                                  {session?.comments.map((comment, index) => {
+                                    return <p key={index}>{comment}</p>;
+                                  })}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })
+                      ) : (
+                        <p className="not-data mt-5">Not available sessions</p>
+                      )}
                     </>
                   ) : radio === "sessiondone" ? (
                     <>
-                      {sessions.map((session, index) => {
-                        return (
-                          <div key={index} className="doc-boxs">
-                            <div className="doc-box">
-                              <div className="image">
-                                <img src={session?.doctorId?.image} alt="" />
-                                <h3 className="mobile">
-                                  Session {session?.session_number}
-                                  <span>{getDaysAgo(session?.createdAt)}</span>
-                                </h3>
-                              </div>
-                              <div className="doc-title">
-                                <h3>
-                                  Session {session?.session_number}
-                                  <span>{getDaysAgo(session?.createdAt)}</span>
-                                </h3>
-                                {/* <p>{session.comments.join(<br />)}</p> */}
-                                {session?.comments.map((comment, index) => {
-                                  return <p key={index}>{comment}</p>;
-                                })}
+                      {sessions.length > 0 ? (
+                        sessions.map((session, index) => {
+                          return (
+                            <div key={index} className="doc-boxs">
+                              <div className="doc-box">
+                                <div className="image">
+                                  <img src={session?.doctorId?.image} alt="" />
+                                  <h3 className="mobile">
+                                    Session {session?.session_number}
+                                    <span>
+                                      {getDaysAgo(session?.createdAt)}
+                                    </span>
+                                  </h3>
+                                </div>
+                                <div className="doc-title">
+                                  <h3>
+                                    Session {session?.session_number}
+                                    <span>
+                                      {getDaysAgo(session?.createdAt)}
+                                    </span>
+                                  </h3>
+                                  {/* <p>{session.comments.join(<br />)}</p> */}
+                                  {session?.comments.map((comment, index) => {
+                                    return <p key={index}>{comment}</p>;
+                                  })}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })
+                      ) : (
+                        <p className="not-data mt-5">Not available sessions</p>
+                      )}
                     </>
                   ) : radio === "upcoming" ? (
-                    <div className="upcoming"></div>
+                    <div className="upcoming">
+                      {sessions.length > 0 ? (
+                        <>
+                          {sessions.map((session, index) => {
+                            return (
+                              <div key={index} className="doc-boxs">
+                                <div className="doc-box">
+                                  <div className="image">
+                                    <img
+                                      src={session?.doctorId?.image}
+                                      alt=""
+                                    />
+                                    <h3 className="mobile">
+                                      Session {session?.session_number}
+                                      <span>
+                                        {getDaysAgo(session?.createdAt)}
+                                      </span>
+                                    </h3>
+                                  </div>
+                                  <div className="doc-title">
+                                    <h3>
+                                      Session {session?.session_number}
+                                      <span>
+                                        {getDaysAgo(session?.createdAt)}
+                                      </span>
+                                    </h3>
+                                    {/* <p>{session.comments.join(<br />)}</p> */}
+                                    {session?.comments.map((comment, index) => {
+                                      return <p key={index}>{comment}</p>;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </>
+                      ) : (
+                        <p className="not-data mt-5">Not available sessions</p>
+                      )}
+                    </div>
                   ) : (
                     ""
                   )}

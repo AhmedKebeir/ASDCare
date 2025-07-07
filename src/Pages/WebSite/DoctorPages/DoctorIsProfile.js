@@ -3,11 +3,11 @@ import Footer from "../../../Components/WebSite/Footer";
 import Header from "../../../Components/WebSite/Header";
 import "../../../CSS/DoctorStyle/DoctorIsProfile.css";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GrAddCircle, GrFormNext } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getuser } from "../../../store/actions/user-actions";
+import { getuser, logOut } from "../../../store/actions/user-actions";
 import axios from "axios";
 import { BaseUrl, CREATEDATETIMEDOCTOR } from "../../../Api/Api";
 import Cookie from "cookie-universal";
@@ -21,6 +21,17 @@ export default function DoctorIsProfile() {
   const [radioTime, setRadioTime] = useState(false);
   const [inpTime, setInpTime] = useState("");
   const [curUser, setCurUser] = useState({});
+  const nav = useNavigate();
+
+  const [showChangePassword, setShowChangePassword] = useState(false);
+
+  const [changePass, setChangePass] = useState({
+    currentPassword: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [accept, setAccept] = useState(false);
+  const [err, setErr] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -243,12 +254,107 @@ export default function DoctorIsProfile() {
 
   async function handleChangeInfo() {
     try {
-      const res = await axios.put(`${BaseUrl}/doctors/updateMe`, curUser, {
-        headers: { Authorization: `Bearer ${parsedUser.token}` },
+      const formData = new FormData();
+
+      // إذا كانت الصورة كائن File أضفها إلى FormData
+      if (curUser?.image instanceof File) {
+        formData.append("image", curUser.image);
+      }
+
+      // أضف بقية الحقول النصية
+      if (curUser?.Session_price)
+        formData.append("Session_price", curUser.Session_price);
+      if (curUser?.speciailization)
+        formData.append("speciailization", curUser.speciailization);
+      if (curUser?.qualifications)
+        formData.append("qualifications", curUser.qualifications);
+      if (curUser?.parent?.userName)
+        formData.append("userName", curUser.parent.userName);
+
+      const res = await axios.put(`${BaseUrl}/doctors/updateMe`, formData, {
+        headers: {
+          Authorization: `Bearer ${parsedUser.token}`,
+          // لا تضف Content-Type, المتصفح سيضيفه تلقائيًا
+        },
       });
-      console.log(res);
+
+      console.log("✅ تم التحديث:", res.data);
+      alert("✅ Profile updated successfully!");
     } catch (err) {
-      console.log(err);
+      console.error("❌ خطأ أثناء التحديث:", err);
+      alert("❌ Failed to update profile. Please try again.");
+    }
+  }
+
+  function handleLogout() {
+    // Implement logout functionality here
+    console.log("User logged out");
+    cookie.remove("userDetails");
+
+    dispatch(logOut());
+
+    nav("/");
+    window.location.reload();
+  }
+
+  const chooseRef = useRef(null);
+
+  const location = useLocation();
+
+  const query = new URLSearchParams(location.search);
+  const showModal = query.get("modal") === "doctor-profile";
+
+  useEffect(() => {
+    if (showChangePassword) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+    const handleClickOutside = (event) => {
+      if (chooseRef.current && !chooseRef.current.contains(event.target)) {
+        setShowChangePassword(false); // ⬅️ إغلاق النافذة بدلاً من nav()
+      }
+    };
+
+    if (showChangePassword) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showChangePassword]);
+
+  function handleChangePass(e) {
+    setChangePass({ ...changePass, [e.target.name]: e.target.value });
+  }
+
+  async function changePassword() {
+    setAccept(true);
+    if (
+      changePass.currentPassword !== "" &&
+      changePass.password !== "" &&
+      changePass.confirmPassword !== "" &&
+      changePass.password === changePass.confirmPassword
+    ) {
+      try {
+        const res = await axios.put(
+          `${BaseUrl}/doctors/updateMypassword`,
+          changePass,
+          { headers: { Authorization: `Bearer ${parsedUser.token}` } }
+        );
+
+        if (res.status === 200) {
+          setShowChangePassword(false); // ✅ أغلق النافذة
+          setErr(false);
+          nav("/doctor-profile"); // يمكنك حذفه إذا لا تريد التنقل
+        }
+
+        console.log(res);
+      } catch (err) {
+        setErr(true);
+      }
     }
   }
 
@@ -276,7 +382,7 @@ export default function DoctorIsProfile() {
                         onChange={(e) =>
                           setCurUser({
                             ...curUser,
-                            image: URL.createObjectURL(e.target.files[0]),
+                            image: e.target.files[0],
                           })
                         }
                       />
@@ -285,7 +391,14 @@ export default function DoctorIsProfile() {
                       </label>
                     </div>
 
-                    <img src={curUser?.image} alt="" />
+                    <img
+                      src={
+                        curUser?.image instanceof File
+                          ? URL.createObjectURL(curUser.image)
+                          : curUser?.image
+                      }
+                      alt=""
+                    />
                   </div>
                   <span className="doctor-rate-mobile">
                     {Array.from({
@@ -320,11 +433,16 @@ export default function DoctorIsProfile() {
               <div>
                 <p>Consultation fee</p>
                 <input
-                  type="text"
-                  placeholder={`${curUser?.Session_price} EGP` || "Price"}
-                  value={`${curUser?.Session_price}` || "Price"}
+                  type="number"
+                  placeholder="EGP"
+                  value={curUser?.Session_price || ""}
                   name="Session_price"
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    setCurUser({
+                      ...curUser,
+                      Session_price: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -481,9 +599,11 @@ export default function DoctorIsProfile() {
                       <div className="buttons">
                         <button onClick={handleChangeInfo}>Change Info</button>
 
-                        <Link>Change Password</Link>
+                        <Link onClick={() => setShowChangePassword(true)}>
+                          Change Password
+                        </Link>
 
-                        <button>Log Out</button>
+                        <button onClick={handleLogout}>Log Out</button>
                       </div>
                     </div>
                   </div>
@@ -509,6 +629,46 @@ export default function DoctorIsProfile() {
           </div>
         </div>
       </div>
+      {showChangePassword && (
+        <div className="choose-child-test change-pass">
+          <div className="choose" ref={chooseRef}>
+            <h3>Change Password</h3>
+            <div className="child-info">
+              <input
+                className="buton-form"
+                type="password"
+                name="currentPassword"
+                placeholder="Current Password"
+                value={changePass.currentPassword}
+                onChange={handleChangePass}
+              />
+              {err ? <p className="err">Current password is not valid!</p> : ""}
+              <input
+                type="password"
+                name="password"
+                placeholder="New Password"
+                value={changePass.password}
+                onChange={handleChangePass}
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={changePass.confirmPassword}
+                onChange={handleChangePass}
+              />
+            </div>
+            {accept && changePass.password !== changePass.confirmPassword ? (
+              <p className="err">Confirm password not match password!</p>
+            ) : (
+              ""
+            )}
+            <div className="start">
+              <Link onClick={changePassword}>Change Password</Link>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
