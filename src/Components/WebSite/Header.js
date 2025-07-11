@@ -180,7 +180,7 @@ export default function Header() {
             <Link className="btn" to="/login">
               Log In
             </Link>
-            <Link className="btn" to="/account-type">
+            <Link className="btn" to="/signup">
               Sign Up
             </Link>
           </div>
