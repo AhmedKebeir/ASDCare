@@ -44,6 +44,7 @@ import DoctorIsProfile from "./Pages/WebSite/DoctorPages/DoctorIsProfile";
 import PaymentCheck from "./Pages/WebSite/PaymentCheck";
 import PaymentCheckOut from "./Pages/WebSite/PaymentCheckOut";
 import AllDoctorFeedback from "./Pages/WebSite/DoctorPages/AllDoctorFeedback";
+import RatingCard from "./Pages/WebSite/RatingCard";
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
         <Route path="/medican/:id" element={<MedicanId />} />
         <Route path="/chatbot" element={<ChatBot />} />
         <Route path="/doctors" element={<DoctorForParentView />} />
+        <Route path="/rating" element={<RatingCard />} />
         <Route path="/doctors/:id" element={<DoctorProfileForParentView />}>
           <Route path="" element={<PaymentCheck />} />
           <Route path="payment" element={<PaymentCheckOut />} />

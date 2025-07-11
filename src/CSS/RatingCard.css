@@ -1,0 +1,77 @@
+.rating-card {
+  width: 100%;
+  background: white;
+  border-radius: 30px;
+  /* padding: 30px 20px; */
+  text-align: center;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.rating-card h2 {
+  margin-bottom: 20px;
+  color: #002f6c;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+input[type="radio"] {
+  display: none;
+}
+.rating-card input {
+  margin: 5px 0;
+  flex: 1;
+  padding: 11px 0px 11px 20px;
+  outline: none;
+  border: none;
+  background-color: #b8bcc4;
+  color: rgba(45, 46, 49, 1);
+  border-radius: 6px;
+  border: 2px solid #b8bcc4;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Tajawal";
+  transition: 0.3s;
+  width: 100%;
+  margin-bottom: 20px;
+  /* height: 100px; */
+  text-wrap: wrap;
+}
+.rating-card input:focus {
+  background-color: white;
+  border: 2px solid #00225c;
+}
+.rate-btn {
+  background: #002f6c;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.rate-btn:hover {
+  background: #001d45;
+}
+
+@media (width <768px) {
+  .rating-card input {
+    padding-left: 10px;
+    font-size: 16px;
+  }
+}
